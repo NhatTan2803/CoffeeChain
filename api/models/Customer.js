@@ -8,17 +8,17 @@
 module.exports = {
 
   attributes: {
-    cus_name: {
+    customer_name: {
       type:'string',
     },
-    cus_phone: {
+    customer_phone: {
       type:'string',
     },
-    cus_birthday: {
+    customer_birthday: {
       type: 'ref',
       columnType:'date'
     },
-    cus_email: {
+    customer_email: {
       type:'string',
     }
 
