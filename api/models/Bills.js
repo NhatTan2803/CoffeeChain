@@ -1,5 +1,5 @@
 /**
- * Drinks.js
+ * Bills.js
  *
  * @description :: A model definition.  Represents a database table/collection/etc.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
@@ -12,18 +12,30 @@ module.exports = {
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
-    drink_name: {
-      type: 'string',
-      required: true
+
+    bill_subTotal : {
+      type : 'number',
+      columnType : 'decimal'
     },
 
-    drink_price: {
-      type: 'number',
-      columnType: 'decimal'
+    bill_vat : {
+      type : 'number',
+      columnType : 'float'
     },
 
-    drink_avatar: {
-      type: 'string'
+    bill_total : {
+      type : 'number',
+      columnType : 'decimal'
+    },
+
+    bill_cash : {
+      type : 'number',
+      columnType : 'decimal'
+    },
+
+    bill_change : {
+      type : 'number',
+      columnType : 'decimal'
     },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
@@ -34,12 +46,25 @@ module.exports = {
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
-    drink_in_billDetail : {
-      model: 'BillDetails',
-      columnName: 'bill_detail_id',
-      required: true
+    bill_details : {
+      collection : 'BillDetails',
+      via : 'bill'
+    },
+    //can xem lai model user chinh xac chua ?
+    //One to One
+    customer : {
+      model : 'user',
+      unique : true
     }
   },
+
+  beforeCreate: function(valuesToSet, proceed) {
+    //Caculate subtotal
+    //Caculate VAT
+    //Caculate total = subtotal + vat 10%;
+    valuesToSet.bill_total = bill_subTotal + bill_vat;
+    return proceed();
+  }
 
 };
 

@@ -1,5 +1,5 @@
 /**
- * Drinks.js
+ * BillDetails.js
  *
  * @description :: A model definition.  Represents a database table/collection/etc.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
@@ -12,20 +12,25 @@ module.exports = {
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
-    drink_name: {
-      type: 'string',
-      required: true
+    detail_drink_name : {
+      type : 'string',
+      required : true
     },
 
-    drink_price: {
-      type: 'number',
-      columnType: 'decimal'
+    detail_quantity : {
+      type : 'number',
+      columnType : 'decimal'
     },
 
-    drink_avatar: {
-      type: 'string'
+    detail_price : {
+      type : 'number',
+      columnType : 'decimal'
     },
 
+    detail_drink_subtotal : {
+      type : 'number',
+      columnType : 'decimal'
+    },
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
     //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝
@@ -34,10 +39,15 @@ module.exports = {
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
-    drink_in_billDetail : {
-      model: 'BillDetails',
-      columnName: 'bill_detail_id',
-      required: true
+    bill : {
+      model : 'Bills',
+      columnName : 'bill_id',
+      required : true
+    },
+
+    drinks : {
+      collection : 'Drinks',
+      via : 'drinks_in_billDetail'
     }
   },
 
