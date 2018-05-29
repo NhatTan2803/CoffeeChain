@@ -49,7 +49,7 @@ module.exports.routes = {
   //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
   //  ║║║║╣ ╠╩╗╠═╣║ ║║ ║╠╩╗╚═╗
   //  ╚╩╝╚═╝╚═╝╩ ╩╚═╝╚═╝╩ ╩╚═╝
-
+  'POST /user/login':'UsersController.user_login'
 
   //  ╔╦╗╦╔═╗╔═╗
   //  ║║║║╚═╗║
