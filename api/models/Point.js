@@ -9,27 +9,30 @@ module.exports = {
 
   attributes: {
 
-    Point_shop_id: {
-      type:'number',
+    pointPoint: {
+      type: 'number',
     },
-    Point_system_id: {
-      type:'number',
-    },
-    Point_shop_id: {
-      type:'number',
-    },
-    Point_cus_id: {
-      type:'number',
-    },
-    Point_point: {
-      type:'number',
-    },
-    Point_isActive: {
+    pointIsActive: {
       type: 'string',
-      isIn:['on','off']
+      isIn: ['on', 'off']
+    },
+    //////////////
+    shops: {
+      model: 'Shops',
+      columnName: 'pointShopId',
+      required: false,
+    },
+    systems: {
+      model: 'Systems',
+      columnName: 'pointSystemId',
+      required: false
+    },
+    customer: {
+      model: 'Customer',
+      columnName: 'pointCustomerId',
+      required: true
     }
-
-  },
+  }, 
 
 };
 

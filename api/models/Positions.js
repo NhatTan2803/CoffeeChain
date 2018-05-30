@@ -8,13 +8,20 @@
 module.exports = {
 
   attributes: {
-    position_shop_id: {
+    positionName: {
       type: 'string',
     },
-    position_name: {
-      type: 'string',
-
+/////////////////////
+    shops: {
+      model: 'Shops',
+      columnName: 'positionShopId',
+      required: true,
     },
+////////////////////
+    users: {
+      collection: 'Users',
+      via:'positions'
+    }
   },
 
 };

@@ -8,17 +8,22 @@
 module.exports = {
 
   attributes: {
-    Review_cus_id: {
-      type:'number',
+
+    reviewStar: {
+      type: 'number',
     },
-    Review_shop_id: {
-      type:'number',
+    reviewContent: {
+      type: 'string'
     },
-    Review_star: {
-      type:'number',
+    shops: {
+      model: 'Shops',
+      columnName: 'reviewShopId',
+      required: true,
     },
-    Review_content: {
-      type:'string'
+    customer: {
+      model: 'Customer',
+      columnName: 'reviewCustomerId',
+      required: true
     }
   },
 

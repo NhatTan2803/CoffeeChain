@@ -8,35 +8,63 @@
 module.exports = {
 
   attributes: {
-    shop_name: {
+
+    shopName: {
       type: 'string',
       maxLength: 50
     },
-    shop_system_id: {
-      type: 'number',
-      unique: true
-    },
-    shop_email: {
+    shopEmail: {
       type: 'string',
       isEmail: true
     },
-    shop_address: {
+    shopAddress: {
       type: 'string'
     },
-    shop_phone: {
+    shopPhone: {
       type: 'string',
       maxLength: 15
     },
-    shop_avatar: {
+    shopAvatar: {
       type: 'string'
     },
-    shop_dayFrom: {
+    shopDayFrom: {
       type: 'ref',
       columnType: 'date'
     },
-    shop_dayTo: {
+    shopDayTo: {
       type: 'ref',
       columnType: 'date'
+    },
+///////////////
+    systems: {
+      model: 'Systems',
+      columnName: 'shopSystemId',
+      required: true,
+    },
+///////////////
+    positions: {
+      collection: 'Positions',
+      via:'shops'
+    },
+    users: {
+      collection: 'Users',
+      via:'shops'
+    },
+    drinks: {
+      collection: 'drinks',
+      via:'shops'
+    },
+    point: {
+      collection: 'Point',
+      via:'shops'
+    },
+    review: {
+      collection: 'Review',
+      via:'shops'
+    },
+    history: {
+      collection: 'HistoryBuy',
+      via:'shops'
     }
 
   },

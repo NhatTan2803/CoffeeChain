@@ -8,72 +8,87 @@ var bcrypt = require('bcryptjs');
 module.exports = {
 
   attributes: {
-    user_shop_id: {
-      type: 'number'
-    },
-    user_name: {
+
+    userName: {
       type: 'string',
       maxLength: 50
     },
-    user_email: {
+    userEmail: {
       type: 'string',
       isEmail: true,
       unique: true
     },
-    user_password: {
+    userPassword: {
       type: 'string',
       maxLength: 200
     },
-    user_idcard: {
+    userIdCard: {
       type: 'string',
       maxLength: 15
     },
-    user_birthday: {
+    userBirthday: {
       type: 'ref',
       columnType: 'date'
     },
-    user_gender: {
+    userGender: {
       type: 'string'
     },
-    user_avatar: {
+    userAvatar: {
       type: 'string',
       maxLength: 255
     },
-    user_phone: {
+    userPhone: {
       type: 'string',
       maxLength: 15
     },
-    user_address: {
+    userAddress: {
       type: 'string',
       maxLength: 100
     },
-    user_active: {
+    userActive: {
       type: 'string',
-      isIn: ['on','off']
+      isIn: ['on', 'off']
     },
-    user_position_id: {
-      type: 'number'
-    },
-    user_permission: {
+
+    userPermission: {
       type: 'string',
       isIn: ['admin', 'boss', 'staff']
+    },
+////////////////
+    shops: {
+      model: 'Shops',
+      columnName: 'userShopId',
+      required: true
+    },
+
+    positions: {
+      model: 'Positions',
+      columnName: 'userPositionId',
+      required: true,
+    },
+/////////////////
+    bills: {
+      collection: 'Bills',
+      via:'users'
     }
+
+
   },
   beforeCreate: function (user, cb) {
     bcrypt.genSalt(10, function (err, salt) {
-      bcrypt.hash(user.user_password, salt, function (err, hash) {
+      bcrypt.hash(user.userPassword, salt, function (err, hash) {
         if (err) {
           return cb(err);
         }
         if (hash) {
-          user.user_password = hash;
+          user.userPassword = hash;
           return cb(null, user);
         }
       });
     });
   },
   comparePassword: function (password, user, cb) {
-    bcrypt.compare(password, user.user_password, function (err, match) {
+    bcrypt.compare(password, user.userPassword, function (err, match) {
       if (err) {
         return cb(err);
       }

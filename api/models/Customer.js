@@ -8,18 +8,31 @@
 module.exports = {
 
   attributes: {
-    customer_name: {
-      type:'string',
+    customerName: {
+      type: 'string',
     },
-    customer_phone: {
-      type:'string',
+    customerPhone: {
+      type: 'string',
     },
-    customer_birthday: {
+    customerBirthday: {
       type: 'ref',
-      columnType:'date'
+      columnType: 'date'
     },
-    customer_email: {
-      type:'string',
+    customerEmail: {
+      type: 'string',
+    },
+    //////////////
+    point: {
+      collection: 'Point',
+      via: 'customer'
+    },
+    review: {
+      collection: 'Review',
+      via: 'customer'
+    },
+    historybuy: {
+      collection: 'HistoryBuy',
+      via: 'customer'
     }
 
   },

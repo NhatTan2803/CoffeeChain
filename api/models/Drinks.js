@@ -9,36 +9,31 @@ module.exports = {
 
   attributes: {
 
-    //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
-    //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
-    //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
-    drink_name: {
+    drinkName: {
       type: 'string',
       required: true
     },
 
-    drink_price: {
+    drinkPrice: {
       type: 'number',
       columnType: 'decimal'
     },
 
-    drink_avatar: {
+    drinkAvatar: {
       type: 'string'
     },
-
-    //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
-    //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
-    //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝
-
-
-    //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
-    //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
-    //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
-    drink_in_billDetail : {
-      model: 'BillDetails',
-      columnName: 'bill_detail_id',
+///////////////////
+    shops : {
+      model:'Shops',
+      columnName: 'drinkShopId',
       required: true
+    },
+//////////////////
+    billdetails: {
+      collection: 'BillDetails',
+      via:'drinks'
     }
+    
   },
 
 };

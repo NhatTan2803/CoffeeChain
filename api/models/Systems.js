@@ -8,12 +8,22 @@
 module.exports = {
 
   attributes: {
-    system_name: {
+    systemName: {
       type: 'string'
     },
-    system_address: {
+    systemAddress: {
       type: 'string'
+    },
+/////////////
+    shops: {
+      collection: 'Shops',
+      via:'systems'
+    },
+    point: {
+      collection: 'Point',
+      via:'systems'
     }
+
   }
 
 };

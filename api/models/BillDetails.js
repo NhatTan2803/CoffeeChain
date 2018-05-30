@@ -9,47 +9,37 @@ module.exports = {
 
   attributes: {
 
-    //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
-    //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
-    //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
-    detail_drink_name : {
+    detailDrinkName : {
       type : 'string',
       required : true
     },
 
-    detail_quantity : {
+    detailQuantity : {
       type : 'number',
       columnType : 'decimal'
     },
 
-    detail_price : {
+    detailPrice : {
       type : 'number',
       columnType : 'decimal'
     },
 
-    detail_drink_subtotal : {
+    detailDrinkSubtotal : {
       type : 'number',
       columnType : 'decimal'
     },
-    //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
-    //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
-    //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝
-
-
-    //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
-    //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
-    //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
-    bill : {
+//////////////////////////
+    bills : {
       model : 'Bills',
-      columnName : 'bill_id',
+      columnName : 'detaiBillId',
       required : true
     },
 
     drinks : {
-      collection : 'Drinks',
-      via : 'drinks_in_billDetail'
+      model: 'Drinks',
+      columnName: 'detailDrinkId',
+      required:true,
     }
   },
-
 };
 

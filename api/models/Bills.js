@@ -9,53 +9,41 @@ module.exports = {
 
   attributes: {
 
-    //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
-    //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
-    //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
-
-    bill_subTotal : {
+    billSubTotal : {
       type : 'number',
       columnType : 'decimal'
     },
 
-    bill_vat : {
+    billVat : {
       type : 'number',
       columnType : 'float'
     },
 
-    bill_total : {
+    billTotal : {
       type : 'number',
       columnType : 'decimal'
     },
 
-    bill_cash : {
+    billCash : {
       type : 'number',
       columnType : 'decimal'
     },
 
-    bill_change : {
+    billChange : {
       type : 'number',
       columnType : 'decimal'
     },
-
-    //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
-    //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
-    //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝
-
-
-    //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
-    //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
-    //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
-    bill_details : {
+/////////////////
+    users: {
+      model: 'Users',
+      columnName: 'billUserId',
+      required:true,
+    } ,   
+/////////////////
+    billdetails : {
       collection : 'BillDetails',
-      via : 'bill'
+      via : 'bills'
     },
-    //can xem lai model user chinh xac chua ?
-    //One to One
-    customer : {
-      model : 'user',
-      unique : true
-    }
   },
 
   beforeCreate: function(valuesToSet, proceed) {
