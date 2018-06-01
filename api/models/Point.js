@@ -9,27 +9,26 @@ module.exports = {
 
   attributes: {
 
-    pointPoint: {
+    point: {
       type: 'number',
     },
-    pointIsActive: {
-      type: 'string',
-      isIn: ['on', 'off']
+    isActive: {
+      type: 'boolean'
     },
     //////////////
     shops: {
-      model: 'Shops',
-      columnName: 'pointShopId',
+      model: 'Shop',
+      columnName: 'ShopId',
       required: false,
     },
     systems: {
-      model: 'Systems',
-      columnName: 'pointSystemId',
+      model: 'System',
+      columnName: 'SystemId',
       required: false
     },
-    customer: {
+    customers: {
       model: 'Customer',
-      columnName: 'pointCustomerId',
+      columnName: 'CustomerId',
       required: true
     }
   }, 

@@ -9,20 +9,20 @@ module.exports = {
 
   attributes: {
 
-    reviewStar: {
+    star: {
       type: 'number',
     },
-    reviewContent: {
+    content: {
       type: 'string'
     },
     shops: {
-      model: 'Shops',
-      columnName: 'reviewShopId',
+      model: 'Shop',
+      columnName: 'ShopId',
       required: true,
     },
-    customer: {
+    customers: {
       model: 'Customer',
-      columnName: 'reviewCustomerId',
+      columnName: 'CustomerId',
       required: true
     }
   },

@@ -8,18 +8,18 @@
 module.exports = {
 
   attributes: {
-    systemName: {
+    name: {
       type: 'string'
     },
-    systemAddress: {
+    address: {
       type: 'string'
     },
 /////////////
     shops: {
-      collection: 'Shops',
+      collection: 'Shop',
       via:'systems'
     },
-    point: {
+    points: {
       collection: 'Point',
       via:'systems'
     }

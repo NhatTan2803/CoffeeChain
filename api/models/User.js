@@ -9,66 +9,66 @@ module.exports = {
 
   attributes: {
 
-    userName: {
+    name: {
       type: 'string',
       maxLength: 50
     },
-    userEmail: {
+    email: {
       type: 'string',
       isEmail: true,
       unique: true
     },
-    userPassword: {
+    password: {
       type: 'string',
       maxLength: 200
     },
-    userIdCard: {
+    idCard: {
       type: 'string',
       maxLength: 15
     },
-    userBirthday: {
+    birthday: {
       type: 'ref',
       columnType: 'date'
     },
-    userGender: {
+    gender: {
       type: 'string'
     },
-    userAvatar: {
+    avatar: {
       type: 'string',
       maxLength: 255
     },
-    userPhone: {
+    phone: {
       type: 'string',
       maxLength: 15
     },
-    userAddress: {
+    address: {
       type: 'string',
       maxLength: 100
     },
-    userActive: {
+    active: {
       type: 'string',
       isIn: ['on', 'off']
     },
 
-    userPermission: {
+    permission: {
       type: 'string',
       isIn: ['admin', 'boss', 'staff']
     },
 ////////////////
     shops: {
-      model: 'Shops',
-      columnName: 'userShopId',
+      model: 'Shop',
+      columnName: 'ShopId',
       required: true
     },
 
     positions: {
-      model: 'Positions',
-      columnName: 'userPositionId',
+      model: 'Position',
+      columnName: 'PositionId',
       required: true,
     },
 /////////////////
     bills: {
-      collection: 'Bills',
+      collection: 'Bill',
       via:'users'
     }
 
@@ -76,7 +76,7 @@ module.exports = {
   },
   beforeCreate: function (user, cb) {
     bcrypt.genSalt(10, function (err, salt) {
-      bcrypt.hash(user.userPassword, salt, function (err, hash) {
+      bcrypt.hash(user.password, salt, function (err, hash) {
         if (err) {
           return cb(err);
         }
@@ -88,7 +88,7 @@ module.exports = {
     });
   },
   comparePassword: function (password, user, cb) {
-    bcrypt.compare(password, user.userPassword, function (err, match) {
+    bcrypt.compare(password, user.password, function (err, match) {
       if (err) {
         return cb(err);
       }

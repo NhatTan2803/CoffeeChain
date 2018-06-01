@@ -9,18 +9,18 @@ module.exports = {
 
   attributes: {
 
-    historyTotal: {
+    otal: {
       type: 'number',
       columnType: 'decimal(16,0)'
     },
-    customer: {
+    customers: {
       model: 'Customer',
-      columnName: 'historyCustomerId',
+      columnName: 'CustomerId',
       required: true,
     },
     shops: {
-      model: 'Shops',
-      columnName: 'historyShopId',
+      model: 'Shop',
+      columnName: 'ShopId',
       required: true,
     }
 

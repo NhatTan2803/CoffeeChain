@@ -9,39 +9,39 @@ module.exports = {
 
   attributes: {
 
-    billSubTotal : {
+    subTotal : {
       type : 'number',
       columnType : 'decimal'
     },
 
-    billVat : {
+    vat : {
       type : 'number',
       columnType : 'float'
     },
 
-    billTotal : {
+    total : {
       type : 'number',
       columnType : 'decimal'
     },
 
-    billCash : {
+    cash : {
       type : 'number',
       columnType : 'decimal'
     },
 
-    billChange : {
+    change : {
       type : 'number',
       columnType : 'decimal'
     },
 /////////////////
     users: {
-      model: 'Users',
-      columnName: 'billUserId',
+      model: 'User',
+      columnName: 'UserId',
       required:true,
     } ,   
 /////////////////
     billdetails : {
-      collection : 'BillDetails',
+      collection : 'BillDetail',
       via : 'bills'
     },
   },
@@ -50,7 +50,7 @@ module.exports = {
     //Caculate subtotal
     //Caculate VAT
     //Caculate total = subtotal + vat 10%;
-    valuesToSet.bill_total = bill_subTotal + bill_vat;
+    valuesToSet.total =subTotal + vat;
     return proceed();
   }
 

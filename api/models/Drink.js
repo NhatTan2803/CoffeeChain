@@ -9,28 +9,28 @@ module.exports = {
 
   attributes: {
 
-    drinkName: {
+    name: {
       type: 'string',
       required: true
     },
 
-    drinkPrice: {
+    price: {
       type: 'number',
       columnType: 'decimal'
     },
 
-    drinkAvatar: {
+    avatar: {
       type: 'string'
     },
 ///////////////////
     shops : {
-      model:'Shops',
-      columnName: 'drinkShopId',
+      model:'Shop',
+      columnName: 'ShopId',
       required: true
     },
 //////////////////
     billdetails: {
-      collection: 'BillDetails',
+      collection: 'BillDetail',
       via:'drinks'
     }
     

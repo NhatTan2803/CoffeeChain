@@ -9,35 +9,35 @@ module.exports = {
 
   attributes: {
 
-    detailDrinkName : {
+    drinkName : {
       type : 'string',
       required : true
     },
 
-    detailQuantity : {
+    quantity : {
       type : 'number',
       columnType : 'decimal'
     },
 
-    detailPrice : {
+    price : {
       type : 'number',
       columnType : 'decimal'
     },
 
-    detailDrinkSubtotal : {
+    drinkSubtotal : {
       type : 'number',
       columnType : 'decimal'
     },
 //////////////////////////
     bills : {
-      model : 'Bills',
-      columnName : 'detaiBillId',
+      model : 'Bill',
+      columnName : 'BillId',
       required : true
     },
 
     drinks : {
-      model: 'Drinks',
-      columnName: 'detailDrinkId',
+      model: 'Drink',
+      columnName: 'DrinkId',
       required:true,
     }
   },

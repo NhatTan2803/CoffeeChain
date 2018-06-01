@@ -9,60 +9,60 @@ module.exports = {
 
   attributes: {
 
-    shopName: {
+    name: {
       type: 'string',
       maxLength: 50
     },
-    shopEmail: {
+    email: {
       type: 'string',
       isEmail: true
     },
-    shopAddress: {
+    address: {
       type: 'string'
     },
-    shopPhone: {
+    phone: {
       type: 'string',
       maxLength: 15
     },
-    shopAvatar: {
+    avatar: {
       type: 'string'
     },
-    shopDayFrom: {
+    dayFrom: {
       type: 'ref',
       columnType: 'date'
     },
-    shopDayTo: {
+    dayTo: {
       type: 'ref',
       columnType: 'date'
     },
 ///////////////
     systems: {
-      model: 'Systems',
-      columnName: 'shopSystemId',
+      model: 'System',
+      columnName: 'systemId',
       required: true,
     },
 ///////////////
     positions: {
-      collection: 'Positions',
+      collection: 'Position',
       via:'shops'
     },
     users: {
-      collection: 'Users',
+      collection: 'User',
       via:'shops'
     },
     drinks: {
-      collection: 'drinks',
+      collection: 'Drink',
       via:'shops'
     },
-    point: {
+    points: {
       collection: 'Point',
       via:'shops'
     },
-    review: {
+    reviews: {
       collection: 'Review',
       via:'shops'
     },
-    history: {
+    historys: {
       collection: 'HistoryBuy',
       via:'shops'
     }
