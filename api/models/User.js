@@ -58,13 +58,12 @@ module.exports = {
     shops: {
       model: 'Shop',
       columnName: 'ShopId',
-      required: true
     },
 
     positions: {
       model: 'Position',
       columnName: 'PositionId',
-      required: true,
+
     },
 /////////////////
     bills: {
