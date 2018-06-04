@@ -27,17 +27,24 @@ module.exports.routes = {
   '/': {
     view: 'pages/homepage'
   },
+  'post /login': 'UsersController.user_login',
+  'get /user': 'UsersController.user_profile',
 
+  'post /drink/create': { action: 'drink/create' },
+  'put /drink/update': { action: 'drink/update' },
+  'get /drink/info': { action: 'drink/get-drink-info' },
+  'post /admin/newshop': { action: 'admin/create-shop' },
+  'get /admin/shopinfo': { action: 'admin/get-shop-info' },
   /***************************************************************************
-  *                                                                          *
-  * More custom routes here...                                               *
-  * (See https://sailsjs.com/config/routes for examples.)                    *
-  *                                                                          *
-  * If a request to a URL doesn't match any of the routes in this file, it   *
-  * is matched against "shadow routes" (e.g. blueprint routes).  If it does  *
-  * not match any of those, it is matched against static assets.             *
-  *                                                                          *
-  ***************************************************************************/
+*                                                                          *
+* More custom routes here...                                               *
+* (See https://sailsjs.com/config/routes for examples.)                    *
+*                                                                          *
+* If a request to a URL doesn't match any of the routes in this file, it   *
+* is matched against "shadow routes" (e.g. blueprint routes).  If it does  *
+* not match any of those, it is matched against static assets.             *
+*                                                                          *
+***************************************************************************/
 
 
   //  ╔═╗╔═╗╦  ╔═╗╔╗╔╔╦╗╔═╗╔═╗╦╔╗╔╔╦╗╔═╗
@@ -49,7 +56,7 @@ module.exports.routes = {
   //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
   //  ║║║║╣ ╠╩╗╠═╣║ ║║ ║╠╩╗╚═╗
   //  ╚╩╝╚═╝╚═╝╩ ╩╚═╝╚═╝╩ ╩╚═╝
-  'POST /user/login':'UsersController.user_login'
+  'POST /user/login': 'UsersController.user_login'
 
   //  ╔╦╗╦╔═╗╔═╗
   //  ║║║║╚═╗║

@@ -38,8 +38,7 @@ module.exports = {
 ///////////////
     systems: {
       model: 'System',
-      columnName: 'systemId',
-      required: true,
+      columnName: 'systemId'
     },
 ///////////////
     positions: {
