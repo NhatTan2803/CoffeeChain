@@ -29,9 +29,10 @@ module.exports = {
       required: true
     },
 //////////////////
-    billdetails: {
-      collection: 'BillDetail',
-      via:'drinks'
+    bills: {
+      collection: 'Bill',
+      via: 'drinks',
+      through:'BillDetail'
     }
     
   },
