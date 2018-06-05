@@ -50,7 +50,7 @@ module.exports.routes = {
   //  ╔═╗╔═╗╦  ╔═╗╔╗╔╔╦╗╔═╗╔═╗╦╔╗╔╔╦╗╔═╗
   //  ╠═╣╠═╝║  ║╣ ║║║ ║║╠═╝║ ║║║║║ ║ ╚═╗
   //  ╩ ╩╩  ╩  ╚═╝╝╚╝═╩╝╩  ╚═╝╩╝╚╝ ╩ ╚═╝
-  'POST /system' : 'SystemController.create',
+  'POST /system' : {controller: 'system', action: 'create'},
   'GET /system' : 'SystemController.getList',
   'GET /system/:id' : 'SystemController.getSystemInfo',
 

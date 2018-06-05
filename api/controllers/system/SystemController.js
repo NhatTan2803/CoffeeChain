@@ -43,8 +43,7 @@ module.exports = {
     try {
       const results = await System.find()
         .populate('shops')
-        .populate('points')
-        .fetch();
+        .populate('points');
       return this.exits.success();
     } catch (error) {
       return this.exits.error(error);
@@ -59,8 +58,7 @@ module.exports = {
       const result = await System.findOne({
         id: req.param('id')
       }).populate('shops')
-        .populate('points')
-        .fetch();
+        .populate('points');
     } catch (error) {
       return this.exits.errror(error);
     }
