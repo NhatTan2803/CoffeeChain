@@ -40,12 +40,16 @@ module.exports = {
   exits: {
     success: {
 
+    },
+    error: {
+      description: 'No shop was created'
     }
   },
 
 
   fn: async function (inputs, exits) {
-    var newShop = await Shop.create({
+
+    await Shop.create({
       name: inputs.name,
       email: inputs.email,
       address: inputs.address,
@@ -59,11 +63,6 @@ module.exports = {
           return exits.error(err);
         else
           return exits.success(created);
-  })
-
-
-
-}
-
-
+      })
+  }
 };

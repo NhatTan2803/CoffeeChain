@@ -40,7 +40,6 @@ module.exports = {
       description: 'No drink was found',
       respondType: 'notFound'
     }
-
   },
 
 
@@ -60,6 +59,5 @@ module.exports = {
         else
           return exits.success(updated);
       })
-
   }
 };

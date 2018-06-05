@@ -8,7 +8,7 @@ module.exports = {
 
 
   inputs: {
-    shop: {
+    shopId: {
       type: 'number',
       description: 'ID of shop to look up'
     }
@@ -27,8 +27,9 @@ module.exports = {
 
 
   fn: async function (inputs, exits) {
+    
     await Shop.find({
-      where: { id: inputs.shop },
+      where: { id: inputs.shopId },
       select: ['name', 'address', 'dayFrom', 'dayTo']
     })
       .exec(function (err, found) {
@@ -39,6 +40,4 @@ module.exports = {
         return exits.success(found);
       })
   }
-
-
 };

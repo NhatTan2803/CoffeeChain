@@ -27,14 +27,14 @@ module.exports.routes = {
   '/': {
     view: 'pages/homepage'
   },
-  'post /login': 'UsersController.user_login',
-  'get /user': 'UsersController.user_profile',
-
-  'post /drink/create': { action: 'drink/create' },
-  'put /drink/update': { action: 'drink/update' },
-  'get /drink/info': { action: 'drink/get-drink-info' },
-  'post /admin/newshop': { action: 'admin/create-shop' },
-  'get /admin/shopinfo': { action: 'admin/get-shop-info' },
+  'post /drink': { action: 'drink/create' },
+  'patch /drink': { action: 'drink/update' },
+  'get /drink/:id': { action: 'drink/get-drink-info' },
+  'post /admin/shop': { action: 'admin/create-shop' },
+  'get /admin/shop/:id': { action: 'admin/get-shop-info' },
+  'patch /admin/shop': { action: 'admin/update-shop' },
+  'PATCH /admin/shopavatar': { action: 'admin/upload-shop-avatar' },
+  'PATCH /admin/bossshopavatar': { action: 'admin/upload-boss-of-shop-avatar' }
   /***************************************************************************
 *                                                                          *
 * More custom routes here...                                               *
@@ -56,7 +56,7 @@ module.exports.routes = {
   //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
   //  ║║║║╣ ╠╩╗╠═╣║ ║║ ║╠╩╗╚═╗
   //  ╚╩╝╚═╝╚═╝╩ ╩╚═╝╚═╝╩ ╩╚═╝
-  'POST /user/login': 'UsersController.user_login'
+ 
 
   //  ╔╦╗╦╔═╗╔═╗
   //  ║║║║╚═╗║

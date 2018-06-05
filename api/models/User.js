@@ -80,7 +80,7 @@ module.exports = {
           return cb(err);
         }
         if (hash) {
-          user.userPassword = hash;
+          user.password = hash;
           return cb(null, user);
         }
       });

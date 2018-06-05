@@ -8,6 +8,9 @@ module.exports = {
 
 
   inputs: {
+    id: {
+      type: 'number'
+    },
     name: {
       type: 'string',
       maxLength: 50
@@ -23,9 +26,6 @@ module.exports = {
       type: 'string',
       maxLength: 15
     },
-    avatar: {
-      type: 'string'
-    },
     dayFrom: {
       type: 'ref',
       columnType: 'date'
@@ -36,16 +36,27 @@ module.exports = {
     }
   },
 
-
   exits: {
 
   },
 
 
   fn: async function (inputs, exits) {
-
-    return exits.success();
-
+    
+    Shop.update({ id: inputs.id }, {
+      name: inputs.name,
+      email: inputs.email,
+      address: inputs.address,
+      phone: inputs.phone,
+      dayFrom: inputs.dayFrom,
+      dayTo: inputs.dayTo
+    }).fetch()
+      .exec(function (err, updated) {
+        if (err) {
+          exits.error(err);
+        }
+        return exits.success(updated);
+      })
   }
 
 

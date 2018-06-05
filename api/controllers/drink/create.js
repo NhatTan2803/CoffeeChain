@@ -28,10 +28,11 @@ module.exports = {
 
     },
     error: {
-      description: 'No shop is created'
+      description: 'No drink was created'
     }
   },
   fn: async function (inputs, exits) {
+    
     await Drink.create({
       name: inputs.name,
       price: inputs.price,
@@ -39,12 +40,10 @@ module.exports = {
       shops: inputs.shop
     }).fetch()
       .exec(function (err, created) {
-        if(err)
-        return exits.error(err)
+        if (err)
+          return exits.error(err)
         else
-        return exits.success(created)
+          return exits.success(created)
       })
   }
-
-
 };
