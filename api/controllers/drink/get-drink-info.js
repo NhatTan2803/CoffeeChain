@@ -30,7 +30,7 @@ module.exports = {
     .exec(function (err, found) {
       if (err) return exits.error(err);
       if (found.length==0) {
-        return exits.notFound();
+        return exits.notFound('Shop không tồn tại');
       }
       return exits.success(found);
     })
