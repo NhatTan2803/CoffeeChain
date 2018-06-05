@@ -33,7 +33,10 @@ module.exports = {
     dayTo: {
       type: 'ref',
       columnType: 'date'
-    }
+    },
+    systems: {
+      type: 'number'
+    },
   },
 
 
@@ -52,18 +55,19 @@ module.exports = {
       phone: inputs.phone,
       avatar: inputs.avatar,
       dayFrom: inputs.dayFrom,
-      dayTo: inputs.dayTo
+      dayTo: inputs.dayTo,
+      systems: inputs.systems
     }).fetch()
       .exec(function (err, created) {
         if (err)
           return exits.error(err);
         else
           return exits.success(created);
-  })
+      })
 
 
 
-}
+  }
 
 
 };
