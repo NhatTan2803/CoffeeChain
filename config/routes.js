@@ -50,9 +50,12 @@ module.exports.routes = {
   //  ╔═╗╔═╗╦  ╔═╗╔╗╔╔╦╗╔═╗╔═╗╦╔╗╔╔╦╗╔═╗
   //  ╠═╣╠═╝║  ║╣ ║║║ ║║╠═╝║ ║║║║║ ║ ╚═╗
   //  ╩ ╩╩  ╩  ╚═╝╝╚╝═╩╝╩  ╚═╝╩╝╚╝ ╩ ╚═╝
-  'POST /system' : {controller: 'system', action: 'create'},
-  'GET /system' : 'SystemController.getList',
-  'GET /system/:id' : 'SystemController.getSystemInfo',
+  'POST /system': { controller: 'system', action: 'create' },
+  'GET /system': { controller: 'system', action: 'get-system-list' },
+  'GET /system/info': {
+    controller: 'system',
+    action: 'get-system-info'
+  },
 
 
   //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
