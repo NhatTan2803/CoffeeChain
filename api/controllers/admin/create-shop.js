@@ -47,9 +47,8 @@ module.exports = {
   },
 
 
-  fn: async function (inputs, exits) {
-
-    await Shop.create({
+  fn: function (inputs, exits) {
+    Shop.create({
       name: inputs.name,
       email: inputs.email,
       address: inputs.address,

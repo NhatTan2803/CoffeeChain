@@ -8,9 +8,11 @@ module.exports = {
 
 
   inputs: {
-    shop: {
+    shopId: {
       type: 'number',
-      description: 'ID of shop to look up'
+      description: 'ID of shop to look up',
+      required: true
+
     }
 
   },
@@ -25,11 +27,11 @@ module.exports = {
     }
   },
 
-  fn: async function (inputs, exits) {
+  fn: function (inputs, exits) {
 
-    await Shop.find({ id: inputs.shop })
+    Shop.find({ id: inputs.shopId })
       .populate('drinks')
-      .exec(function (err, found) {
+      .exec((err, found) => {
         if (err) return exits.error(err);
         if (found.length == 0) {
           return exits.notFound();

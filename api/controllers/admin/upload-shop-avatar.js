@@ -35,26 +35,27 @@ module.exports = {
       dirname: require('path').resolve(sails.config.appPath, 'assets/images/shops'),
       saveAs: function (__newFileStream, next) { return next(undefined, inputs.id + '-shop-avatar.png'); },
       maxBytes: 1000000
-    }, async function (err, uploadedFiles) {
+    }, function (err, uploadedFiles) {
       if (err) return exits.error(err);
-      if (uploadedFiles.lenghth > 0) {
-        await Shop.update({
+      if (uploadedFiles.length > 0) {
+        Shop.update({
           id: inputs.id
         }, {
             avatar: require('path').basename(uploadedFiles[0].fd)
-          }).fetch()
+          })
           .exec(function (err, update) {
             if (err) {
-              exits.error(err)
+              exits.error(err);
             }
           })
         return exits.success({
           message: 'Uploading avatar successed'
         });
+      } else {
+        return exits.missing({
+          message: 'Missing photo'
+        });
       }
-      return exits.missing({
-        message: 'Missing photo'
-      })
     })
   }
 };

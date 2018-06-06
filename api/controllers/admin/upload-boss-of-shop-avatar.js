@@ -30,36 +30,42 @@ module.exports = {
 
   fn: async function (inputs, exits) {
 
-    await User.find({ shops: inputs.id, permission: 'boss' })
-      .exec(function (err, found) {
+    User.find({ shops: inputs.id, permission: 'boss' })
+      .exec((err, found) => {
         if (err) {
-          return exits.error(err)
+          return exits.error(err);
         }
-        sails.log(found.length);
         if (found.length === 0) {
-          return exits.success('This shop is missing boss');
+          return exits.success({
+            message: 'This shop has no boss'
+          });
         } else {
           inputs.photo.upload({
             dirname: require('path').resolve(sails.config.appPath, 'assets/images/users'),
-            saveAs: function (__newFileStream, next) { return next('boss-of-shop-' + inputs.id + '.png'); },
+            saveAs: function (__newFileStream, next) { return next(undefined, inputs.id + '-boss-avatar.png'); },
             maxBytes: 1000000
-          }, async function (err, uploadedFiles) {
+          }, function (err, uploadedFiles) {
             if (err) {
               return exits.error(err);
             }
-            if (uploadedFiles > 0) {
-              await User.update({
+            if (uploadedFiles.length > 0) {
+              User.update({
                 permission: 'boss', shops: inputs.id
               }, {
                   avatar: require('path').basename(uploadedFiles[0].fd)
+                }).exec((err, update) => {
+                  if (err) {
+                    return exits.error(err);
+                  }
+                  return exits.success({
+                    message: 'Uploading avatar for boss successed'
+                  });
                 })
-              return exits.success({
-                message: 'Uploading avatar for boss successed'
+            } else {
+              return exits.missing({
+                message: 'Missing photo'
               });
             }
-            return exits.missing({
-              message: 'Missing photo'
-            })
           })
         }
       })

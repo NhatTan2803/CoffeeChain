@@ -41,8 +41,8 @@ module.exports = {
       columnName: 'systemId'
     },
 ///////////////
-    positions: {
-      collection: 'Position',
+    rolls: {
+      collection: 'Roll',
       via:'shops'
     },
     users: {

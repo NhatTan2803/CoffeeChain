@@ -29,12 +29,13 @@ module.exports.routes = {
   },
   'post /drink': { action: 'drink/create' },
   'patch /drink': { action: 'drink/update' },
-  'get /drink/:id': { action: 'drink/get-drink-info' },
+  'get /drink/': { action: 'drink/get-drink-info' },
   'post /admin/shop': { action: 'admin/create-shop' },
-  'get /admin/shop/:id': { action: 'admin/get-shop-info' },
+  'get /admin/shop': { action: 'admin/get-shop-info' },
   'patch /admin/shop': { action: 'admin/update-shop' },
   'PATCH /admin/shopavatar': { action: 'admin/upload-shop-avatar' },
-  'PATCH /admin/bossshopavatar': { action: 'admin/upload-boss-of-shop-avatar' }
+  'PATCH /admin/bossshopavatar': { action: 'admin/upload-boss-of-shop-avatar' },
+  'POST /admin/roll': { action: 'admin/create-position-for-shop' }
   /***************************************************************************
 *                                                                          *
 * More custom routes here...                                               *
@@ -56,7 +57,7 @@ module.exports.routes = {
   //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
   //  ║║║║╣ ╠╩╗╠═╣║ ║║ ║╠╩╗╚═╗
   //  ╚╩╝╚═╝╚═╝╩ ╩╚═╝╚═╝╩ ╩╚═╝
- 
+
 
   //  ╔╦╗╦╔═╗╔═╗
   //  ║║║║╚═╗║

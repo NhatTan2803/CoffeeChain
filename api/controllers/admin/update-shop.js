@@ -42,7 +42,7 @@ module.exports = {
 
 
   fn: async function (inputs, exits) {
-    
+
     Shop.update({ id: inputs.id }, {
       name: inputs.name,
       email: inputs.email,

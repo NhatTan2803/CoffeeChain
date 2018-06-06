@@ -31,9 +31,9 @@ module.exports = {
       description: 'No drink was created'
     }
   },
-  fn: async function (inputs, exits) {
-    
-    await Drink.create({
+  fn: function (inputs, exits) {
+
+    Drink.create({
       name: inputs.name,
       price: inputs.price,
       avatar: inputs.avatar,

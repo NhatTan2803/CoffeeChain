@@ -10,7 +10,8 @@ module.exports = {
   inputs: {
     shopId: {
       type: 'number',
-      description: 'ID of shop to look up'
+      description: 'ID of shop to look up',
+      required: true
     }
   },
 
@@ -26,9 +27,9 @@ module.exports = {
   },
 
 
-  fn: async function (inputs, exits) {
+  fn: function (inputs, exits) {
     
-    await Shop.find({
+    Shop.find({
       where: { id: inputs.shopId },
       select: ['name', 'address', 'dayFrom', 'dayTo']
     })

@@ -60,10 +60,9 @@ module.exports = {
       columnName: 'ShopId',
     },
 
-    positions: {
-      model: 'Position',
-      columnName: 'PositionId',
-
+    rolls: {
+      model: 'Roll',
+      columnName: 'Roll',
     },
 /////////////////
     bills: {

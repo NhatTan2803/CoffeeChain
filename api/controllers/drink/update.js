@@ -43,7 +43,7 @@ module.exports = {
   },
 
 
-  fn: async function (inputs, exits) {
+  fn: function (inputs, exits) {
 
     Drink.update({ id: inputs.id, shops: inputs.shop }, {
       name: inputs.name,
