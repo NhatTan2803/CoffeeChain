@@ -7,6 +7,9 @@
 var bcrypt = require('bcryptjs');
 var jwt = require('../services/jsonwebtoken');
 module.exports = {
+    showLoginForm: async function (req, res) {
+        return res.view('./pages/login')
+    },
     user_login: async function (req, res) {
 
         let { user_email, user_password } = req.allParams();
@@ -55,6 +58,8 @@ module.exports = {
             }
         })
     },
-
+    index: function (req, res) {
+        res.view('./intro/intro-page', { layout: 'layouts/layout-intro' });
+    },
 };
 
