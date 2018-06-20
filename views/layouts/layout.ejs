@@ -1,40 +1,25 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>New Sails App</title>
 
-    <!-- Viewport mobile tag for sensible mobile support -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <title>Coffee Chain</title>
 
+  <!-- Viewport mobile tag for sensible mobile support -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="/libs/assets/animate.css/animate.css" type="text/css" />
+  <link rel="stylesheet" href="/libs/assets/font-awesome/css/font-awesome.min.css" type="text/css" />
+  <link rel="stylesheet" href="/libs/assets/simple-line-icons/css/simple-line-icons.css" type="text/css" />
+  <link rel="stylesheet" href="/libs/jquery/bootstrap/dist/css/bootstrap.css" type="text/css" />
 
-    <!--
-        Stylesheets and Preprocessors
-        ==============================
+  <!--STYLES-->
+  <link rel="stylesheet" href="/styles/app.css">
+  <link rel="stylesheet" href="/styles/font.css">
+  <link rel="stylesheet" href="/styles/importer.css">
+  <!--STYLES END-->
+</head>
 
-        You can always bring in CSS files manually with `<link>` tags, or asynchronously
-        using a solution like AMD (RequireJS).  Or, if you like, you can take advantage
-        of Sails' conventional asset pipeline (boilerplate Gruntfile).
-
-        By default, stylesheets from your `assets/styles` folder are included
-        here automatically (between STYLES and STYLES END). Both CSS (.css) and LESS (.less)
-        are supported. In production, your styles will be minified and concatenated into
-        a single file.
-
-        To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
-        For example, here are a few things you could do:
-
-            + Change the order of your CSS files
-            + Import stylesheets from other directories
-            + Use a different or additional preprocessor, like SASS, SCSS or Stylus
-    -->
-
-    <!--STYLES-->
-    <link rel="stylesheet" href="/styles/importer.css">
-    <!--STYLES END-->
-  </head>
-
-  <body>
-    <%- body %>
+<body>
+  <%- body %>
 
 
 
@@ -102,9 +87,18 @@
           + Use a different preprocessor, like TypeScript
 
     -->
-
+    <script src="/libs/jquery/jquery/dist/jquery.js"></script>
+    <script src="/libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
     <!--SCRIPTS-->
     <script src="/dependencies/sails.io.js"></script>
+    <script src="/js/app.src.js"></script>
+    <script src="/js/ui-client.js"></script>
+    <script src="/js/ui-jp.config.js"></script>
+    <script src="/js/ui-jp.js"></script>
+    <script src="/js/ui-load.js"></script>
+    <script src="/js/ui-nav.js"></script>
+    <script src="/js/ui-toggle.js"></script>
     <!--SCRIPTS END-->
-  </body>
+</body>
+
 </html>
