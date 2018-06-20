@@ -10,6 +10,9 @@ module.exports = {
     showLoginForm: async function (req, res) {
         return res.view('./pages/login')
     },
+    showLoginCusForm: async function (req,res) {
+        return res.view('./pages/login-customer')
+    },
     index: function (req, res) {
         res.view('./intro/intro-page', { layout: 'layouts/layout-intro' });
     },

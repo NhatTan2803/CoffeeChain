@@ -31,7 +31,8 @@ module.exports.routes = {
     controller: 'Users',
     action: 'index',
   },
-  '/login':'UsersController.showLoginForm',
+  '/login': 'UsersController.showLoginForm',
+  '/login-customer':'UsersController.showLoginCusForm',
   'post /login': 'UsersController.user_login',
   'get /user': 'UsersController.user_profile',
 
