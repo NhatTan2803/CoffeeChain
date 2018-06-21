@@ -27,12 +27,15 @@ module.exports.routes = {
   '/': {
     view: 'intro/intro-page'
   },
-  '/': {
-    controller: 'Users',
-    action: 'index',
-  },
+  '/': 'UsersController.index',
+  
+  '/login-customer':'CustomerController.showLoginCus',
+  '/signUp-customer': 'CustomerController.showSignUpCus',
+  '/main-customer': 'CustomerController.showMainCus',
+  '/profile/:id': 'CustomerController.showProfileCus',
+  '/rate': 'CustomerController.showRateCus',
+  
   '/login': 'UsersController.showLoginForm',
-  '/login-customer':'UsersController.showLoginCusForm',
   'post /login': 'UsersController.user_login',
   'get /user': 'UsersController.user_profile',
 
