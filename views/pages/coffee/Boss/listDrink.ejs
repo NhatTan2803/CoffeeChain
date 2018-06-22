@@ -1,0 +1,117 @@
+<div class="app-content-body ">
+    <div class="hbox hbox-auto-xs hbox-auto-sm">
+        <!-- main -->
+        <div class="col">
+            <!-- main header -->
+            <div class="bg-light lter b-b wrapper-md">
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <h1 class="m-n font-thin h3 text-black">Danh sách đồ uống của quán</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="wrapper-md">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel panel-default">
+                            <div>
+                                <div class="panel-heading">
+                                    <div class="panel-body">
+                                        <table class="table table-striped b-light table-bordered table-hover table-text-center">
+                                            <thead>
+                                                <tr>
+                                                    <th>STT</th>
+                                                    <th>Ảnh</th>
+                                                    <th>Tên </th>
+                                                    <th>Giá</th>
+                                                    <th style="width:120px">Công Cụ</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let st of list_drink let i = index">
+                                                    <td>{{i+1}}</td>
+                                                    <img *ngIf="st.drink_avatar==null" src="https://cdn3.iconfinder.com/data/icons/yummicon-pro/100/046_Water-512.png" width="50"
+                                                        height="50" />
+                                                    <img *ngIf="st.drink_avatar!=null" [src]="folder_avatar + st.drink_avatar" width="50" height="50" />
+                                                    <!-- <img  *ngFor="let item of filterItemsOfType('')" [src]="https://cdn3.iconfinder.com/data/icons/yummicon-pro/100/046_Water-512.png" width="50" height="50" />                           -->
+                                                    <td>{{st.drink_name}}</td>
+                                                    <td>{{st.drink_price}}</td>
+                                                    <td>
+                                                        <button class="btn btn-xs btn-danger">Xóa</button>
+                                                        <button (click)="selectDrink(st)" class="btn btn-xs btn-info" data-toggle="modal" data-target="#drinkModal">Xem </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- / main -->
+    </div>
+    <!-- Modal -->
+    <div id="drinkModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-3 col-xs-12 col-md-2 drink-avatar-wapper">
+                            <div class="panel panel-default">
+                                <div class="panel-heading font-bold">Ảnh</div>
+                                <div class="panel-body">
+                                    <div class="drink-avatar" style="display: block; text-align: center;">
+                                        <img *ngIf="drink_avatar === ''" src="https://cdn3.iconfinder.com/data/icons/yummicon-pro/100/046_Water-512.png" width="120"
+                                            height="150" />
+                                        <img *ngIf="drink_avatar != ''" [src]="folder_avatar + drink_avatar" width="120" height="150" />
+                                        <label class="btn btn-default btn-file" style="margin-top: 17px">
+                                            Chọn ảnh
+                                            <input id="drink-avatar" (change)="uploadImg($event)" type="file" style="display: none;" />
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-9 col-xs-12 col-md-10">
+                            <div class="panel panel-default">
+                                <div class="panel-heading font-bold">Thêm</div>
+                                <div class="panel-body">
+                                    <form role="form" #formAddDrink="ngForm">
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label>Tên đồ uống</label>
+                                                <input id="drink-name" type="text" [(ngModel)]="drink_name" name="drink_name" class="form-control" placeholder="Nhập tên đồ uống">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label>Giá đồ uống</label>
+                                                <input id="drink-price" type="text" [(ngModel)]="drink_price" name="drink_price" class="form-control" placeholder="Nhập giá">
+                                            </div>
+                                        </div>
+                                        <!-- <button type="button" (click)="addRoom()" class="btn btn-sm btn-primary">Thêm</button> -->
+                                    </form>
+                                </div>
+                                <div class="panel-footer">
+                                    <button (click)="updateDrink()" class="btn btn-primary btn-block">Cập nhật đồ uống</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

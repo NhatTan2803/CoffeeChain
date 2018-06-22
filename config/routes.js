@@ -28,8 +28,8 @@ module.exports.routes = {
     view: 'intro/intro-page'
   },
   '/': 'ShowController.index',
-  
-  '/login-customer':'CustomerController.showLoginCus',
+
+  '/login-customer': 'CustomerController.showLoginCus',
   '/signUp-customer': 'CustomerController.showSignUpCus',
   '/main-customer': 'CustomerController.showMainCus',
   '/profile/:id': 'CustomerController.showProfileCus',
@@ -39,23 +39,25 @@ module.exports.routes = {
 
   ////////////////////////// admin view
 
-
-  /////////////////////////
-  '/main': 'ShowController.showMain',    
+  '/main': 'ShowController.showMain',
   '/login': 'ShowController.showLoginForm',
   '/main/addShop': 'ShowController.showAddShop',
   '/main/addAccount-Boss': 'ShowController.showAddAccount',
   '/main/listShop': 'ShowController.showListShop',
   '/main/listAccount-Boss': 'ShowController.showListAccount',
   '/main/add-listSystem': 'ShowController.showAddListSystem',
+  ///////////////////////// boss
 
-  
+  '/main/list-position': 'ShowController.showAddListPosition',
+  '/main/add-drink': 'ShowController.showAddDrink',
+  '/main/add-staff': 'ShowController.showAddStaff',
+  '/main/sell': 'ShowController.showSell',
+  '/main/list-drink': 'ShowController.showListDrink',
+  '/main/list-Staff': 'ShowController.showListStaff',
+  '/main/report': 'ShowController.showReport',
 
 
-
-
-
-
+  //////////////////////////
   'post /login': 'UsersController.user_login',
   'get /user': 'UsersController.user_profile',
 
@@ -75,12 +77,12 @@ module.exports.routes = {
 *                                                                          *
 ***************************************************************************/
 
-//systemController
-  'POST /system' : 'SystemController.create',
-  'GET /system' : 'SystemController.getList',
-  'GET /system/:id' : 'SystemController.getSystemInfo',
+  //systemController
+  'POST /system': 'SystemController.create',
+  'GET /system': 'SystemController.getList',
+  'GET /system/:id': 'SystemController.getSystemInfo',
 
-//userController
+  //userController
   'POST /user/login': 'UsersController.user_login'
 
 

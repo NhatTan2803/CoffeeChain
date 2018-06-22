@@ -1,0 +1,59 @@
+<div class="app-content-body ">
+    <div class="hbox hbox-auto-xs hbox-auto-sm">
+        <!-- main -->
+        <div class="col">
+            <!-- main header -->
+            <div class="bg-light lter b-b wrapper-md">
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <h1 class="m-n font-thin h3 text-black"></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="wrapper-md">
+                <div class="row">
+                    <div class="col-sm-5">
+                        <div class="panel panel-default">
+                            <div class="panel-heading font-bold">Thêm vị trí</div>
+                            <div class="panel-body">
+                                <form role="form" #formposition="ngForm">
+                                    <div class="form-group">
+                                        <label>Tên vị trí</label>
+                                        <!-- Hien cac phan can them vao -->
+                                        <input id="position-name" type="text" [(ngModel)]="position_name" name="position_name" class="form-control" placeholder="Tên vị trí">
+                                    </div>
+                                    <button type="button" (click)="addPosition()" class="btn btn-sm btn-primary">Thêm</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="panel panel-default">
+                            <div class="panel-heading font-bold">Danh sách vị trí</div>
+                            <div class="panel-body">
+                                <table class="table table-striped m-b-none">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Vị trí</th>
+                                            <th>Tác vụ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let pos of list_position; let i = index">
+                                            <td>{{i + 1}}</td>
+                                            <td>{{pos.position_name}}</td>
+                                            <td>
+                                                <button (click)="delposition(pos.position_id)" style="width:53px" class="btn btn-xs btn-danger">Xoá</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- / main -->
+    </div>

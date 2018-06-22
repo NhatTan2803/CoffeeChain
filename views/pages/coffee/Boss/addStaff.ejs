@@ -1,0 +1,118 @@
+<div class="app-content-body ">
+    <div class="hbox hbox-auto-xs hbox-auto-sm">
+        <!-- main -->
+        <div class="col">
+            <!-- main header -->
+            <div class="bg-light lter b-b wrapper-md">
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <h1 class="m-n font-thin h3 text-black">Thêm Cửa Hàng</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="wrapper-md">
+                <div class="row">
+                    <div class="col-sm-3 col-xs-12 col-md-2 staff-avatar-wapper">
+                        <div class="panel panel-default">
+                            <div class="panel-heading font-bold">Ảnh Chủ Quán</div>
+                            <div class="panel-body">
+                                <div class="staff-avatar" style="display: block; text-align: center;">
+                                    <img *ngIf="staff_avatar === ''" src="https://i.imgur.com/jNNT4LE.jpg" style="width: 100%" />
+                                    <img *ngIf="staff_avatar != ''" [src]="folder_avatar + staff_avatar" style="width: 100%" />
+                                    <label class="btn btn-default btn-file" style="margin-top: 17px">
+                                        Chọn ảnh
+                                        <input id="staff-avatar" (change)="uploadImg($event)" type="file" style="display: none;" />
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-9 col-xs-12 col-md-10">
+                        <div class="panel panel-default">
+                            <div class="panel-heading font-bold">Thêm</div>
+                            <div class="panel-body">
+                                <form role="form" #formAddStaff="ngForm">
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Tên nhân viên</label>
+                                            <input id="staff-name" type="text" [(ngModel)]="staff_name" name="staff_name" class="form-control" placeholder="Nhập tên nhân viên">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Địa chỉ email</label>
+                                            <input id="staff-email" type="text" [(ngModel)]="staff_email" name="staff_email" class="form-control" placeholder="Nhập email">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Mật khẩu</label>
+                                            <input id="staff-password" type="text" [(ngModel)]="staff_password" name="staff_password" class="form-control" placeholder="Nhập mật khẩu">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Số CMND</label>
+                                            <input id="staff-Idcard" type="text" [(ngModel)]="staff_Idcard" name="staff_Idcard" class="form-control" placeholder="Nhập CMND">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Ngày sinh</label>
+                                            <input id="staff-birthday" type="text" class="form-control" placeholder="Nhập ngày sinh">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Gới tính</label>
+                                            <select id="staff-sex" [(ngModel)]="staff_sex" name="staff_sex" class="form-control">
+                                                <option value="undefined">Chọn Giới tính</option>
+                                                <option value="male">Nam</option>
+                                                <option value="female">Nữ</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Vị trí</label>
+                                            <select id="staff-position" [(ngModel)]="staff_position" name="staff_position" class="form-control">
+                                                <option value="undefined">Chọn vị trí</option>
+                                                <option *ngFor="let pos of list_position" [ngValue]="pos['position_id']">{{pos['position_name']}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Số điện thoại</label>
+                                            <input id="staff-phone" type="text" [(ngModel)]="staff_phone" name="staff_phone" class="form-control" placeholder="Nhập số điện thoại">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Địa chỉ</label>
+                                            <input id="staff-address" type="text" [(ngModel)]="staff_address" name="staff_address" class="form-control" placeholder="Nhập địa chỉ">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Trạng Thái</label>
+                                            <select id="staff-active" [(ngModel)]="staff_active" name="staff_active" class="form-control">
+                                                <option value="undefined">Chọn chế độ</option>
+                                                <option value="on">Hoạt động</option>
+                                                <option value="off">Dừng</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- <button type="button" (click)="addRoom()" class="btn btn-sm btn-primary">Thêm</button> -->
+                                </form>
+                            </div>
+                            <div class="panel-footer">
+                                <button (click)="addStaff()" class="btn btn-primary btn-block">Thêm nhân viên</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- / main -->
+            </div>
+        </div>

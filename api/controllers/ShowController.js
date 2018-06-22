@@ -30,5 +30,29 @@ module.exports = {
     showAddListSystem: function (req, res) {
         res.view('./pages/coffee/admin/add-listSystem')
     },
+
+    /////////////////////// Boss
+    showAddListPosition: function (req, res) {
+        res.view('./pages/coffee/Boss/add-listPosition')
+    },
+    showAddDrink: function (req, res) {
+        res.view('./pages/coffee/Boss/addDrink')
+    },
+    showAddStaff: function (req, res) {
+        res.view('./pages/coffee/Boss/addStaff')
+    },
+    showSell: function (req, res) {
+        res.view('./pages/coffee/Boss/sell')
+    },
+    showListDrink: function (req, res) {
+        res.view('./pages/coffee/Boss/listDrink')
+    },
+    showListStaff: function (req, res) {
+        res.view('./pages/coffee/Boss/listStaff')
+    },
+    showReport: function (req, res) {
+        res.view('./pages/coffee/Boss/report')
+    },
+
 };
 

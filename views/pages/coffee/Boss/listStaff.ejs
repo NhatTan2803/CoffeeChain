@@ -1,0 +1,172 @@
+<div class="app-content-body ">
+    <div class="hbox hbox-auto-xs hbox-auto-sm">
+        <!-- main -->
+        <div class="col">
+            <!-- main header -->
+            <div class="bg-light lter b-b wrapper-md">
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <h1 class="m-n font-thin h3 text-black">Danh sách các quán</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="wrapper-md">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel panel-default">
+                            <div>
+                                <div class="panel-heading">
+                                    <div class="panel-body">
+                                        <table class="table table-striped b-light table-bordered table-hover table-text-center">
+                                            <thead>
+                                                <tr>
+                                                    <th>STT</th>
+                                                    <th>Ảnh</th>
+                                                    <th>Tên</th>
+                                                    <th>Vị Trí</th>
+                                                    <th>SĐT</th>
+                                                    <th>Ngày Vô</th>
+                                                    <th>Email</th>
+                                                    <th>Trạng Thái</th>
+                                                    <th style="width:120px">Công Cụ</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let st of list_staff let i = index">
+                                                    <td>{{i+1}}</td>
+                                                    <img *ngIf="st.user_avatar==null" src="https://i.imgur.com/jNNT4LE.jpg" width="50" height="50">
+                                                    <img *ngIf="st.user_avatar!=null" [src]="folder_avatar + st.user_avatar" width="50" height="50">
+                                                    <td>{{st.user_name}}</td>
+                                                    <td>{{st.position_name}}</td>
+                                                    <td>{{st.user_phone}}</td>
+                                                    <td>{{st.createdAt| date:'dd/MM/yyyy'}}</td>
+                                                    <td>{{st.user_email}}</td>
+                                                    <td>{{st.user_active}}</td>
+                                                    <td>
+                                                        <!-- <button class="btn btn-xs btn-danger">Xóa</button> -->
+                                                        <button (click)="selectStaff(st)" class="btn btn-xs btn-info" data-toggle="modal" data-target="#staffModal">Xem </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- / main -->
+    </div>
+    <!-- Modal -->
+    <div id="staffModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content  -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">Hủy</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-3 col-xs-12 col-md-2 staff-avatar-wapper">
+                            <div class="panel panel-default">
+                                <div class="panel-heading font-bold">Ảnh </div>
+                                <div class="panel-body">
+                                    <div class="staff-avatar" style="display: block; text-align: center;">
+                                        <img *ngIf="staff_avatar === ''" src="https://i.imgur.com/jNNT4LE.jpg" style="width: 100%" />
+                                        <img *ngIf="staff_avatar != ''" [src]="folder_avatar + staff_avatar" style="width: 100%" />
+                                        <label class="btn btn-default btn-file" style="margin-top: 17px">
+                                            Chọn ảnh
+                                            <input id="staff-avatar" (change)="uploadImg($event)" type="file" style="display: none;" />
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-9 col-xs-12 col-md-10">
+                            <div class="panel panel-default">
+                                <div class="panel-heading font-bold">Profile</div>
+                                <div class="panel-body">
+                                    <form role="form" #formStaff="ngForm">
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label>Tên nhân viên</label>
+                                                <input id="staff-name" type="text" [(ngModel)]="staff_name" name="staff_name" class="form-control" placeholder="Nhập tên nhân viên">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label>Địa chỉ email</label>
+                                                <input id="staff-email" type="text" [(ngModel)]="staff_email" name="staff_email" class="form-control" placeholder="Nhập email">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label>Số CMND</label>
+                                                <input id="staff-Idcard" type="text" [(ngModel)]="staff_Idcard" name="staff_Idcard" class="form-control" placeholder="Nhập CMND">
+                                            </div>
+                                        </div>
+                                        <!-- <div class="col-sm-3">
+                      <div class="form-group">
+                        <label>Ngày vô</label>
+                        <input id="staff-birthday"  type="text" [(ngModel)]="staff_bir" name="staff_Idcard" class="form-control" placeholder="Nhập ngày sinh">
+                      </div>
+                    </div> -->
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label>Giới tính</label>
+                                                <select id="staff-sex" [(ngModel)]="staff_sex" name="staff_sex" class="form-control">
+                                                    <option value="male">Nam</option>
+                                                    <option value="female">Nữ</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label>Vị trí</label>
+                                                <select id="staff-position" [(ngModel)]="staff_position" name="staff_position" class="form-control">
+                                                    <option *ngFor="let pos of list_position" [ngValue]="pos['position_id']">{{pos['position_name']}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label>Số điện thoại</label>
+                                                <input id="staff-phone" type="text" [(ngModel)]="staff_phone" name="staff_phone" class="form-control" placeholder="Nhập số điện thoại">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label>Địa chỉ</label>
+                                                <input id="staff-address" type="text" [(ngModel)]="staff_address" name="staff_address" class="form-control" placeholder="Nhập địa chỉ">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label>Trạng Thái</label>
+                                                <select id="staff-active" [(ngModel)]="staff_active" name="staff_active" class="form-control">
+                                                    <option value="on">Hoạt động</option>
+                                                    <option value="off">Dừng</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <!-- <button type="button" (click)="addRoom()" class="btn btn-sm btn-primary">Thêm</button> -->
+                                    </form>
+                                </div>
+                                <div class="panel-footer">
+                                    <button (click)="updateStaff()" class="btn btn-primary btn-block">Cập nhật</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
