@@ -7,7 +7,7 @@
 var bcrypt = require('bcryptjs');
 var jwt = require('../services/jsonwebtoken');
 module.exports = {
-   
+
     user_login: async function (req, res) {
 
         let { user_email, user_password } = req.allParams();
@@ -24,7 +24,7 @@ module.exports = {
             });
         }
         Users.findOne({ user_email }).exec(function (err, found) {
-            if (err) { console.log('Bị lỗi') }
+            if (err) { console.log(err) }
             if (found) {
                 Users.comparePassword(user_password, found, function (err, valid) {
                     if (err) {
@@ -56,6 +56,6 @@ module.exports = {
             }
         })
     },
-    
+
 };
 
