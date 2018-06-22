@@ -31,7 +31,7 @@
           <i class="glyphicon glyphicon-align-justify"></i>
         </button>
         <!-- brand -->
-        <a routerLink="/main/index" class="navbar-brand text-lt">
+        <a href="/main" class="navbar-brand text-lt">
           <i class="fa fa-usd"></i>
           <img src="assets/img/logo.png" alt="TheSCaffe" class="hide">
           <span class="hidden-folded m-l-xs">TheSCaffe</span>
@@ -282,7 +282,7 @@
             <ul class="dropdown-menu animated fadeInRight w">
 
               <li>
-                <a routerLink="/main/profile">Profile</a>
+                <a href="/main">Profile</a>
               </li>
 
               <li class="divider"></li>
@@ -388,17 +388,17 @@
                   </a>
                   <ul class="nav nav-sub dk">
                     <li>
-                      <a routerLink="/main/shop/list-shop">
+                      <a href="/main/listShop">
                         <span>D.S Cửa Hàng</span>
                       </a>
                     </li>
                     <li>
-                      <a routerLink="/main/shop/add-shop">
+                      <a href="/main/addShop">
                         <span>Thêm Cửa Hàng</span>
                       </a>
                     </li>
                     <li>
-                      <a routerLink="/main/shop/add-boss">
+                      <a href="/main/addAccount-Boss">
                         <span>Thêm T.K chủ</span>
                       </a>
                     </li>
@@ -419,12 +419,12 @@
                   </a>
                   <ul class="nav nav-sub dk">
                     <!-- <li>
-                    <a routerLink="/main/system/list-system">
+                    <a href="/main/system/list-system">
                   <span>Danh sách hệ thống</span>
                   </a>
                   </li> -->
                     <li>
-                      <a routerLink="/main/system/add-system">
+                      <a href="/main/add-listSystem">
                         <span>Thêm hệ thống</span>
                       </a>
                     </li>
@@ -434,7 +434,7 @@
               <!-- các tài khoản -->
               <div *ngIf="user.user_permission=='admin'">
                 <li>
-                  <a routerLink="/main/account" class="auto">
+                  <a href="/main/listAccount-Boss" class="auto">
                     <i class="glyphicon glyphicon-user"></i>
                     <span>Các tài khoản</span>
                   </a>
@@ -458,12 +458,12 @@
                       </a>
                     </li>
                     <li>
-                      <a routerLink="/main/staff/list-staff">
+                      <a href="/main/list-staff">
                         <span>Danh sách</span>
                       </a>
                     </li>
                     <li>
-                      <a routerLink="/main/staff/add-staff">
+                      <a href="/main/add-staff">
                         <span>Thêm Nhân Viên</span>
                       </a>
                     </li>
@@ -475,7 +475,7 @@
               <div *ngIf="user.user_permission=='boss'">
 
                 <li>
-                  <a routerLink="/main/position" class="auto">
+                  <a href="/main/list-position" class="auto">
                     <i class="glyphicon glyphicon-user"></i>
                     <span>Vị trí</span>
                   </a>
@@ -493,12 +493,12 @@
                   </a>
                   <ul class="nav nav-sub dk">
                     <li>
-                      <a routerLink="/main/drink/list-drink">
+                      <a href="/main/list-drink">
                         <span>Danh sách</span>
                       </a>
                     </li>
                     <li>
-                      <a routerLink="/main/drink/add-drink">
+                      <a href="/main/add-drink">
                         <span>Thêm đồ uống</span>
                       </a>
                     </li>
@@ -509,7 +509,7 @@
               <div *ngIf="user.user_permission=='boss'">
 
                 <li>
-                  <a routerLink="/main/statistic" class="auto">
+                  <a href="/main/report" class="auto">
                     <i class="glyphicon glyphicon-user"></i>
                     <span>Doanh Thu</span>
                   </a>
@@ -517,7 +517,7 @@
               </div>
               <div *ngIf="user.user_permission=='staff'||user.user_permission=='boss'">
                 <li>
-                  <a routerLink="/main/buy" class="auto">
+                  <a href="/main/sell" class="auto">
                     <i class="glyphicon glyphicon-user"></i>
                     <span>Bán Hàng</span>
                   </a>
@@ -525,7 +525,7 @@
               </div>
               <!-- <div *ngIf="user.user_permission=='staff'">
               <li>
-                <a routerLink="/main/buy" class="auto">      
+                <a href="/main/buy" class="auto">      
                 <i class="glyphicon glyphicon-user"></i>
                 <span>Bán Hàng</span>
                 </a>
@@ -548,17 +548,17 @@
                   </a>
                 </li>
                 <li>
-                  <a routerLink="/main/product/list">
+                  <a href="/main/product/list">
                   <span>Danh sách</span>
                   </a>
                 </li>
                 <li>
-                  <a routerLink="/main/product/category">
+                  <a href="/main/product/category">
                   <span>Danh mục</span>
                   </a>
                 </li>
                 <li>
-                  <a routerLink="/main/warehouse">
+                  <a href="/main/warehouse">
                   <b class="badge bg-info pull-right">3</b>
                   <span>Kho</span>
                   </a>
@@ -604,12 +604,12 @@
                   </a>
                 </li>
                 <li>
-                  <a routerLink="/main/supplier">
+                  <a href="/main/supplier">
                   <span>Nhà cung cấp</span>
                   </a>
                 </li>
                 <li>
-                  <a routerLink="/main/supplier">
+                  <a href="/main/supplier">
                   <span>Khách hàng</span>
                   </a>
                 </li>
@@ -696,7 +696,7 @@
           <a href ui-scroll="app" class="m-l-sm text-muted">
             <i class="fa fa-long-arrow-up"></i>
           </a>
-        </span> &copy; 2016 Copyright.
+        </span> &copy; 2016 Copyright. Team Nodejs 2
       </div>
     </footer>
     <!-- / footer -->
