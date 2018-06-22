@@ -8,7 +8,10 @@ var bcrypt = require('bcryptjs');
 var jwt = require('../services/jsonwebtoken');
 module.exports = {
     showLoginForm: async function (req, res) {
-        return res.view('./pages/coffee/login')
+        return res.view('./pages/coffee/login',{layout:'layouts/layout-SignLog'})
+    },
+    showMain: async function (req,res) {
+        return res.view('./pages/coffee/main')
     },
 
     index: function (req, res) {
