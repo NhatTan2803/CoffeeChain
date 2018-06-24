@@ -41,6 +41,7 @@ module.exports.routes = {
 
   '/main': 'ShowController.showMain',
   '/login': 'ShowController.showLoginForm',
+  '/signup':'ShowController.showSignUp',
   '/main/addShop': 'ShowController.showAddShop',
   '/main/addAccount-Boss': 'ShowController.showAddAccount',
   '/main/listShop': 'ShowController.showListShop',
@@ -57,9 +58,10 @@ module.exports.routes = {
   '/main/report': 'ShowController.showReport',
 
 
-  //////////////////////////
+  ////////////////////////// API 
   'post /login': 'UsersController.user_login',
   'get /user': 'UsersController.user_profile',
+  'POST /signup':'UsersController.user_SignUp',
 
   'post /drink/create': { action: 'drink/create' },
   'put /drink/update': { action: 'drink/update' },

@@ -12,6 +12,9 @@ module.exports = {
     showLoginForm: async function (req, res) {
         return res.view('./pages/coffee/login', { layout: 'layouts/layout-SignLog' })
     },
+    showSignUp: async function (req,res) {
+        return res.view('./pages/coffee/admin/signUpAdmin',{layout:'layouts/layout-SignLog'})
+    },
     showMain: async function (req, res) {
         return res.view('./pages/coffee/main')
     },
