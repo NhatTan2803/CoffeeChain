@@ -30,9 +30,10 @@
                                             <tbody>
                                                 <tr *ngFor="let st of list_drink let i = index">
                                                     <td>{{i+1}}</td>
-                                                    <img *ngIf="st.drink_avatar==null" src="https://cdn3.iconfinder.com/data/icons/yummicon-pro/100/046_Water-512.png" width="50"
-                                                        height="50" />
-                                                    <img *ngIf="st.drink_avatar!=null" [src]="folder_avatar + st.drink_avatar" width="50" height="50" />
+                                                    <td>
+                                                        <img *ngIf="st.drink_avatar==null" src="https://cdn3.iconfinder.com/data/icons/yummicon-pro/100/046_Water-512.png" width="50"
+                                                            height="50" />
+                                                    </td>
                                                     <!-- <img  *ngFor="let item of filterItemsOfType('')" [src]="https://cdn3.iconfinder.com/data/icons/yummicon-pro/100/046_Water-512.png" width="50" height="50" />                           -->
                                                     <td>{{st.drink_name}}</td>
                                                     <td>{{st.drink_price}}</td>

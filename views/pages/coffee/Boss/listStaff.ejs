@@ -34,8 +34,9 @@
                                             <tbody>
                                                 <tr *ngFor="let st of list_staff let i = index">
                                                     <td>{{i+1}}</td>
-                                                    <img *ngIf="st.user_avatar==null" src="https://i.imgur.com/jNNT4LE.jpg" width="50" height="50">
-                                                    <img *ngIf="st.user_avatar!=null" [src]="folder_avatar + st.user_avatar" width="50" height="50">
+                                                    <td>
+                                                        <img *ngIf="st.user_avatar==null" src="https://i.imgur.com/jNNT4LE.jpg" width="50" height="50">
+                                                    </td>
                                                     <td>{{st.user_name}}</td>
                                                     <td>{{st.position_name}}</td>
                                                     <td>{{st.user_phone}}</td>
