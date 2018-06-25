@@ -1,0 +1,99 @@
+<div class="app-content-body ">
+    <div class="hbox hbox-auto-xs hbox-auto-sm">
+        <!-- main -->
+        <div class="col">
+            <!-- main header -->
+            <div class="bg-light lter b-b wrapper-md">
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <h1 class="m-n font-thin h3 text-black"></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="wrapper-md">
+                <div class="row">
+                    <div class="col-sm-5">
+                        <div class="panel panel-default">
+                            <div class="panel-heading font-bold">List Drink</div>
+                            <div class="panel-body">
+                                <form role="form" #formSystem="ngForm">
+                                    <div class="form-group">
+                                        <table class="table table-striped m-b-none">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Tên</th>
+                                                    <th>Giá</th>
+                                                    <th>Tác vụ</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let sys of list_sp; let i = index">
+                                                    <td>{{i + 1}}</td>
+                                                    <td>{{sys.drink_name}}</td>
+                                                    <td>{{sys.drink_price}}</td>
+                                                    <td>
+                                                        <button (click)="addCart(sys)" style="width:53px" class="btn btn-xs btn-info">chọn</button>
+
+                                                        <!-- <button (click)="infoSystem(sys)" class="btn btn-xs btn-info" data-toggle="modal" data-target="#systemModal">Chi Tiết</button> -->
+
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- <button type="button" (click)="getDrinks()" class="btn btn-sm btn-primary">Thêm</button> -->
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-7">
+                        {{idBill}}
+                        <div class="panel panel-default">
+                            <div class="panel-heading font-bold">Detail bill</div>
+                            <div class="panel-body">
+                                <table class="table table-striped m-b-none">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Tên</th>
+                                            <th>Số Lượng</th>
+                                            <th>Đơn Giá</th>
+                                            <th>Thành Tiền</th>
+                                            <th>Tác vụ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of giohangs; let i = index">
+                                            <td>{{i + 1}}</td>
+                                            <td>{{item.drink_name}}</td>
+                                            <td>
+                                                <input type="number" class="text-center" style="width:45px" min="1" value="{{item.soluong}}" name="sl{{item.drink_id}}" id="sl{{item.drink_id}}"
+                                                    (click)="capnhatgio($event)">
+                                            </td>
+
+                                            <td>{{item.drink_price | number : '1.0-2'}}</td>
+                                            <td>{{item.soluong*item.drink_price | number : '1.0-2'}}</td>
+
+                                            <td>
+                                                <button (click)="xoaItemGioHang(item)" style="width:53px" class="btn btn-xs btn-danger">Xoá</button>
+
+                                                <!-- <button (click)="infoSystem(sys)" class="btn btn-xs btn-info" data-toggle="modal" data-target="#systemModal">Chi Tiết</button> -->
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div>Tổng tiền:{{tongtien}} VND</div>
+                        <button type="button" (click)="Pay()" class="btn btn-sm btn-primary">Thanh Toán</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- / main -->
+    </div>
+    <!-- modal -->
+
+</div>
