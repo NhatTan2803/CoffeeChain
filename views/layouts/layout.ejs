@@ -376,7 +376,7 @@
                 <span>Menu</span>
               </li>
               <!-- Danh sách các quán của admin cho thuê -->
-              <div *ngIf="user.user_permission=='admin'">
+              <div>
                 <li>
                   <a href class="auto">
                     <span class="pull-right text-muted">
@@ -407,7 +407,7 @@
                 </li>
               </div>
               <!-- Danh sách các hệ thống Quán -->
-              <div *ngIf="user.user_permission=='admin'">
+              <div>
                 <li>
                   <a href class="auto">
                     <span class="pull-right text-muted">
@@ -432,7 +432,7 @@
                 </li>
               </div>
               <!-- các tài khoản -->
-              <div *ngIf="user.user_permission=='admin'">
+              <div>
                 <li>
                   <a href="/main/listAccount-Boss" class="auto">
                     <i class="glyphicon glyphicon-user"></i>
@@ -471,193 +471,8 @@
                   </ul>
                 </li>
               </div>
-              <!--  -->
-              <div *ngIf="user.user_permission=='boss'">
 
-                <li>
-                  <a href="/main/list-position" class="auto">
-                    <i class="glyphicon glyphicon-user"></i>
-                    <span>Vị trí</span>
-                  </a>
-                </li>
-              </div>
-              <div *ngIf="user.user_permission=='boss'">
-                <li>
-                  <a href class="auto">
-                    <span class="pull-right text-muted">
-                      <i class="fa fa-fw fa-angle-right text"></i>
-                      <i class="fa fa-fw fa-angle-down text-active"></i>
-                    </span>
-                    <i class="glyphicon glyphicon-user"></i>
-                    <span>Đồ Uống</span>
-                  </a>
-                  <ul class="nav nav-sub dk">
-                    <li>
-                      <a href="/main/list-drink">
-                        <span>Danh sách</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/main/add-drink">
-                        <span>Thêm đồ uống</span>
-                      </a>
-                    </li>
-
-                  </ul>
-                </li>
-              </div>
-              <div *ngIf="user.user_permission=='boss'">
-
-                <li>
-                  <a href="/main/report" class="auto">
-                    <i class="glyphicon glyphicon-user"></i>
-                    <span>Doanh Thu</span>
-                  </a>
-                </li>
-              </div>
-              <div *ngIf="user.user_permission=='staff'||user.user_permission=='boss'">
-                <li>
-                  <a href="/main/sell" class="auto">
-                    <i class="glyphicon glyphicon-user"></i>
-                    <span>Bán Hàng</span>
-                  </a>
-                </li>
-              </div>
-              <!-- <div *ngIf="user.user_permission=='staff'">
-              <li>
-                <a href="/main/buy" class="auto">      
-                <i class="glyphicon glyphicon-user"></i>
-                <span>Bán Hàng</span>
-                </a>
-              </li>
-            </div> -->
-              <!-- cac chuc nang khac -->
-              <!-- <li>
-              <a href class="auto">
-              <span class="pull-right text-muted">
-              <i class="fa fa-fw fa-angle-right text"></i>
-              <i class="fa fa-fw fa-angle-down text-active"></i>
-              </span>
-              <i class="glyphicon glyphicon-th"></i>
-              <span>Hàng hoá</span>
-              </a>
-              <ul class="nav nav-sub dk">
-                <li class="nav-sub-header">
-                  <a href>
-                  <span>Hàng hoá</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="/main/product/list">
-                  <span>Danh sách</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="/main/product/category">
-                  <span>Danh mục</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="/main/warehouse">
-                  <b class="badge bg-info pull-right">3</b>
-                  <span>Kho</span>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href class="auto">
-              <span class="pull-right text-muted">
-              <i class="fa fa-fw fa-angle-right text"></i>
-              <i class="fa fa-fw fa-angle-down text-active"></i>
-              </span>
-              <b class="label bg-primary pull-right">2</b>
-              <i class="glyphicon glyphicon-refresh"></i>
-              <span>Giao dịch</span>
-              </a>
-              <ul class="nav nav-sub dk">
-                <li class="nav-sub-header">
-                  <a href>
-                  <span>Giao dịch</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="table_static.html">
-                  <span>Đơn hàng</span>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href class="auto">
-              <span class="pull-right text-muted">
-              <i class="fa fa-fw fa-angle-right text"></i>
-              <i class="fa fa-fw fa-angle-down text-active"></i>
-              </span>
-              <i class="glyphicon glyphicon-briefcase"></i>
-              <span>Đối tác</span>
-              </a>
-              <ul class="nav nav-sub dk">
-                <li class="nav-sub-header">
-                  <a href>
-                  <span>Đối tác</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="/main/supplier">
-                  <span>Nhà cung cấp</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="/main/supplier">
-                  <span>Khách hàng</span>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href class="auto">
-              <span class="pull-right text-muted">
-              <i class="fa fa-fw fa-angle-right text"></i>
-              <i class="fa fa-fw fa-angle-down text-active"></i>
-              </span>
-              <i class="glyphicon glyphicon-print"></i>
-              <span>Báo cáo</span>
-              </a>
-              <ul class="nav nav-sub dk">
-                <li class="nav-sub-header">
-                  <a href>
-                  <span>Báo cáo</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="form_element.html">
-                  <span>Cuối ngày</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="form_element.html">
-                  <span>Cuối tuần</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="form_element.html">
-                  <span>Cuối tháng</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="form_element.html">
-                  <span>Cuối quý</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="form_element.html">
-                  <span>Cuối năm</span>
-                  </a>
-                </li>
-              </ul>
-            </li> -->
-            </ul>
+          </ul>
           </nav>
           <!-- nav -->
           <!-- aside footer -->

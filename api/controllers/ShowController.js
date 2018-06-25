@@ -12,8 +12,8 @@ module.exports = {
     showLoginForm: async function (req, res) {
         return res.view('./pages/coffee/login', { layout: 'layouts/layout-SignLog' })
     },
-    showSignUp: async function (req,res) {
-        return res.view('./pages/coffee/admin/signUpAdmin',{layout:'layouts/layout-SignLog'})
+    showSignUp: async function (req, res) {
+        return res.view('./pages/coffee/admin/signUpAdmin', { layout: 'layouts/layout-SignLog' })
     },
     showMain: async function (req, res) {
         return res.view('./pages/coffee/main')
@@ -35,27 +35,34 @@ module.exports = {
     },
 
     /////////////////////// Boss
+    showMainShop: (req, res) => {
+        res.view('./pages/coffee/Boss/main-shop', { layout: 'layouts/layout-boss' })
+    },
     showAddListPosition: function (req, res) {
-        res.view('./pages/coffee/Boss/add-listPosition')
+        res.view('./pages/coffee/Boss/add-listPosition', { layout: 'layouts/layout-boss' })
     },
     showAddDrink: function (req, res) {
-        res.view('./pages/coffee/Boss/addDrink')
+        res.view('./pages/coffee/Boss/addDrink', { layout: 'layouts/layout-boss' })
     },
     showAddStaff: function (req, res) {
-        res.view('./pages/coffee/Boss/addStaff')
+        res.view('./pages/coffee/Boss/addStaff', { layout: 'layouts/layout-boss' })
     },
     showSell: function (req, res) {
-        res.view('./pages/coffee/Boss/sell')
+        res.view('./pages/coffee/Boss/sell', { layout: 'layouts/layout-boss' })
     },
     showListDrink: function (req, res) {
-        res.view('./pages/coffee/Boss/listDrink')
+        res.view('./pages/coffee/Boss/listDrink', { layout: 'layouts/layout-boss' })
     },
     showListStaff: function (req, res) {
-        res.view('./pages/coffee/Boss/listStaff')
+        res.view('./pages/coffee/Boss/listStaff', { layout: 'layouts/layout-boss' })
     },
     showReport: function (req, res) {
-        res.view('./pages/coffee/Boss/report')
+        res.view('./pages/coffee/Boss/report', { layout: 'layouts/layout-boss' })
     },
+
+    showSellStaff: (req, res) => {
+        res.view('./pages/coffee/Boss/main-staff', { layout: 'layouts/layout-staff' })
+    }
 
 };
 

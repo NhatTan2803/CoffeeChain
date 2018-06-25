@@ -41,27 +41,29 @@ module.exports.routes = {
 
   '/main': 'ShowController.showMain',
   '/login': 'ShowController.showLoginForm',
-  '/signup':'ShowController.showSignUp',
+  '/signup': 'ShowController.showSignUp',
   '/main/addShop': 'ShowController.showAddShop',
   '/main/addAccount-Boss': 'ShowController.showAddAccount',
   '/main/listShop': 'ShowController.showListShop',
   '/main/listAccount-Boss': 'ShowController.showListAccount',
   '/main/add-listSystem': 'ShowController.showAddListSystem',
   ///////////////////////// boss
+  '/main-shop': 'ShowController.showMainShop',
+  '/main-shop/list-position': 'ShowController.showAddListPosition',
+  '/main-shop/add-drink': 'ShowController.showAddDrink',
+  '/main-shop/add-staff': 'ShowController.showAddStaff',
+  '/main-shop/sell': 'ShowController.showSell',
+  '/main-shop/list-drink': 'ShowController.showListDrink',
+  '/main-shop/list-Staff': 'ShowController.showListStaff',
+  '/main-shop/report': 'ShowController.showReport',
 
-  '/main/list-position': 'ShowController.showAddListPosition',
-  '/main/add-drink': 'ShowController.showAddDrink',
-  '/main/add-staff': 'ShowController.showAddStaff',
-  '/main/sell': 'ShowController.showSell',
-  '/main/list-drink': 'ShowController.showListDrink',
-  '/main/list-Staff': 'ShowController.showListStaff',
-  '/main/report': 'ShowController.showReport',
+  '/main-staff':'ShowController.showSellStaff',
 
 
   ////////////////////////// API 
   'post /login': 'UsersController.user_login',
   'get /user': 'UsersController.user_profile',
-  'POST /signup':'UsersController.user_SignUp',
+  'POST /signup': 'UsersController.user_SignUp',
 
   'post /drink/create': { action: 'drink/create' },
   'put /drink/update': { action: 'drink/update' },
