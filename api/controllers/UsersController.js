@@ -69,8 +69,7 @@ module.exports = {
                     if (valid) {
                         req.session.userId = user.id
                         res.cookie('id', user.id)
-                        res.redirect('/main', { user: user })
-
+                        res.redirect('/main')
                     }
                 })
             }
