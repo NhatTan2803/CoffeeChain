@@ -47,6 +47,8 @@ module.exports.routes = {
   '/main/listShop': 'ShowController.showListShop',
   '/main/listAccount-Boss': 'ShowController.showListAccount',
   '/main/add-listSystem': 'ShowController.showAddListSystem',
+
+  'GET /main/listAccount-Boss' : 'admin/get-account-list',
   ///////////////////////// boss
   '/main-shop': 'ShowController.showMainShop',
   '/main-shop/list-position': 'ShowController.showAddListPosition',

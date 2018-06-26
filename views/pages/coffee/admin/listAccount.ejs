@@ -1,201 +1,219 @@
 <div class="app-content-body ">
-    <div class="hbox hbox-auto-xs hbox-auto-sm">
-        <!-- main -->
-        <div class="col">
-            <!-- main header -->
-            <div class="bg-light lter b-b wrapper-md">
-                <div class="row">
-                    <div class="col-sm-12 col-xs-12">
-                        <h1 class="m-n font-thin h3 text-black">Danh sách tài khoản chủ quán</h1>
-                    </div>
-                </div>
-            </div>
-            <div class="wrapper-md">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="panel panel-default">
-                            <div>
-                                <div class="panel-heading">
-                                    <div class="panel-body">
-                                        <table class="table table-striped b-light table-bordered table-hover table-text-center">
-                                            <thead>
-                                                <tr>
-                                                    <th>STT</th>
-                                                    <th>Tên Chủ</th>
-                                                    <th>Tài Khoản</th>
-                                                    <th>Tên Quán</th>
-                                                    <th>Tinh Trạng</th>
-                                                    <th>SĐT</th>
-                                                    <th>Tác vụ</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr *ngFor="let st of list_account, let i = index">
-                                                    <td>{{i+1}}</td>
-                                                    <td>{{st.user_name}}</td>
-                                                    <td>{{st.user_email}}</td>
-                                                    <td>{{st.shop_name}}</td>
-                                                    <td>{{st.user_active}}</td>
-                                                    <td>{{st.user_phone}}</td>
-                                                    <td>
-                                                        <button (click)="selectAccount(st)" class="btn btn-xs btn-info" data-toggle="modal" data-target="#accountModal">Xem </button>
-                                                        <button (click)="selectAccount(st)" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#changePassModal">Password</button>
-
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+  <div class="hbox hbox-auto-xs hbox-auto-sm">
+    <!-- main -->
+    <div class="col">
+      <!-- main header -->
+      <div class="bg-light lter b-b wrapper-md">
+        <div class="row">
+          <div class="col-sm-12 col-xs-12">
+            <h1 class="m-n font-thin h3 text-black">Danh sách tài khoản chủ quán</h1>
+          </div>
         </div>
-        <!-- / main -->
-    </div>
-    <div id="accountModal" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-lg">
-            <!-- Modal content  -->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">Hủy</button>
-                    <h4 class="modal-title">Tài Khoản</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-sm-3 col-xs-12 col-md-2 boss-avatar-wapper">
-                            <div class="panel panel-default">
-                                <div class="panel-heading font-bold">Ảnh Chủ</div>
-                                <div class="panel-body">
-                                    <div class="boss-avatar" style="display: block; text-align: center;">
-                                        <img *ngIf="boss_avatar ===null  " src="https://i.imgur.com/jNNT4LE.jpg" style="width: 100%" />
-                                        <img *ngIf="boss_avatar !=null" [src]="folder_avatar + boss_avatar" style="width: 100%" />
-                                        <label class="btn btn-default btn-file" style="margin-top: 17px">
-                                            Chọn ảnh
-                                            <input id="boss-avatar" (change)="uploadImg($event)" type="file" style="display: none;" />
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-9 col-xs-12 col-md-10">
-                            <div class="panel panel-default">
-                                <div class="panel-heading font-bold">Thêm</div>
-                                <div class="panel-body">
-                                    <form role="form" #formBoss="ngForm">
-                                        <div class="col-sm-3">
-                                            <div class="form-group">
-                                                <label>Tên chủ quán</label>
-                                                <input id="boss-name" type="text" [(ngModel)]="boss_name" name="boss_name" class="form-control" placeholder="Nhập tên cửa chủ quán">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="form-group">
-                                                <label>Địa chỉ email</label>
-                                                <input id="boss-email" type="text" [(ngModel)]="boss_email" name="boss_email" class="form-control" placeholder="Nhập email">
-                                            </div>
-                                        </div>
+      </div>
+      <div class="wrapper-md">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="panel panel-default">
+              <div>
+                <div class="panel-heading">
+                  <div class="panel-body">
+                    <%if (account.length > 0) {%>
+                      <table class="table table-striped b-light table-bordered table-hover table-text-center">
+                        <thead>
+                          <tr>
+                            <th>STT</th>
+                            <th>Tên Chủ</th>
+                            <th>Tài Khoản</th>
+                            <th>Tên Quán</th>
+                            <th>Tinh Trạng</th>
+                            <th>SĐT</th>
+                            <th>Tác vụ</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% for(var index= 0;index < account.length;index++){%>
+                            <tr>
+                              <td>
+                                <%= index+1 %>
+                              </td>
+                              <td>
+                                <%= account[index].name %>
+                              </td>
+                              <td>
+                                <%= account[index].email %>
+                              </td>
+                              <td>
+                                <%= account[index].shops.name %>
+                              </td>
+                              <td>
+                                <%= account[index].active %>
+                              </td>
+                              <td>
+                                <%= account[index].phone %>
+                              </td>
+                              <td>
+                                <button (click)="selectAccount(<%=account[index]%>)" class="btn btn-xs btn-info" data-toggle="modal" data-target="#accountModal">Xem </button>
+                                <button (click)="selectAccount(<%=account[index]%>)" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#changePassModal">Password</button>
 
-                                        <div class="col-sm-3">
-                                            <div class="form-group">
-                                                <label>CMND</label>
-                                                <input id="boss-idcard" type="text" [(ngModel)]="boss_Idcard" name="boss_Idcard" class="form-control" placeholder="Nhập mật cmnd">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="form-group">
-                                                <label>Chủ Quán</label>
-                                                <select id="boss-shop" [(ngModel)]="boss_shop" name="boss_shop" class="form-control">
-                                                    <option value="undefined" selected disabled>Chọn quán</option>
-                                                    <option *ngFor="let sh of list_shop" [ngValue]="sh['shop_id']">{{sh['shop_name']}}</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="form-group">
-                                                <label>Số điện thoại</label>
-                                                <input id="boss-phone" type="text" [(ngModel)]="boss_phone" name="boss_phone" class="form-control" placeholder="Nhập số điện thoại">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="form-group">
-                                                <label>Địa chỉ</label>
-                                                <input id="boss-address" type="text" [(ngModel)]="boss_address" name="boss_address" class="form-control" placeholder="Nhập địa chỉ">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="form-group">
-                                                <label>Trạng Thái</label>
-                                                <select id="boss-active" [(ngModel)]="boss_active" name="boss_active" class="form-control">
-
-                                                    <option value="on">Hoạt động</option>
-                                                    <option value="off">Dừng</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <!-- <button type="button" (click)="addRoom()" class="btn btn-sm btn-primary">Thêm</button> -->
-                                    </form>
-                                </div>
-                                <div class="panel-footer">
-                                    <button (click)="updateProfile()" class="btn btn-primary btn-block">Cập nhật tài khoản</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                              </td>
+                            </tr>
+                            <%}%>
+                        </tbody>
+                      </table>
+                      <%} else {%>
+                        <h2>No Record Found</h2>
+                      <%}%>
+                  </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
+              </div>
             </div>
-        </div>
-    </div>
-    <!-- Modal doi mat khau -->
-    <div id="changePassModal" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-lg">
-            <!-- Modal content  -->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">Hủy</button>
-                    <h4 class="modal-title">Tài Khoản</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
+          </div>
 
-                        <div class="col-sm-12 col-xs-12 ">
-                            <div class="panel panel-default">
-                                <div class="panel-heading font-bold">Thêm</div>
-                                <div class="panel-body">
-                                    <form role="form" #formBoss="ngForm">
-                                        <div class="col-sm-3">
-                                            <div class="form-group">
-                                                <label>Mật khẩu mới</label>
-                                                <input id="boss-Npassword" type="password" [(ngModel)]="newPassword" name="newPassword" class="form-control" placeholder="Mật khẩu mới">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="form-group">
-                                                <label>Xác nhận mật khẩu</label>
-                                                <input id="boss-Vpassword" type="text" [(ngModel)]="boss_Vpassword" name="boss_Vpassword" class="form-control" placeholder="Xác nhận mật khẩu">
-                                            </div>
-                                        </div>
-                                        <!-- <button type="button" (click)="addRoom()" class="btn btn-sm btn-primary">Thêm</button> -->
-                                    </form>
-                                </div>
-                                <div class="panel-footer">
-                                    <button (click)="changePassword()" class="btn btn-primary btn-block">Cập nhật mật khẩu</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
         </div>
+      </div>
     </div>
+    <!-- / main -->
+  </div>
+  <div id="accountModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <!-- Modal content  -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">Hủy</button>
+          <h4 class="modal-title">Tài Khoản</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-3 col-xs-12 col-md-2 boss-avatar-wapper">
+              <div class="panel panel-default">
+                <div class="panel-heading font-bold">Ảnh Chủ</div>
+                <div class="panel-body">
+                  <div class="boss-avatar" style="display: block; text-align: center;">
+                    <img *ngIf="boss_avatar ===null  " src="https://i.imgur.com/jNNT4LE.jpg" style="width: 100%" />
+                    <img *ngIf="boss_avatar !=null" [src]="folder_avatar + boss_avatar" style="width: 100%" />
+                    <label class="btn btn-default btn-file" style="margin-top: 17px">
+                      Chọn ảnh
+                      <input id="boss-avatar" (change)="uploadImg($event)" type="file" style="display: none;" />
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-9 col-xs-12 col-md-10">
+              <div class="panel panel-default">
+                <div class="panel-heading font-bold">Thêm</div>
+                <div class="panel-body">
+                  <form role="form" #formBoss="ngForm">
+                    <div class="col-sm-3">
+                      <div class="form-group">
+                        <label>Tên chủ quán</label>
+                        <input id="boss-name" type="text" [(ngModel)]="boss_name" name="boss_name" class="form-control" placeholder="Nhập tên cửa chủ quán">
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="form-group">
+                        <label>Địa chỉ email</label>
+                        <input id="boss-email" type="text" [(ngModel)]="boss_email" name="boss_email" class="form-control" placeholder="Nhập email">
+                      </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                      <div class="form-group">
+                        <label>CMND</label>
+                        <input id="boss-idcard" type="text" [(ngModel)]="boss_Idcard" name="boss_Idcard" class="form-control" placeholder="Nhập mật cmnd">
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="form-group">
+                        <label>Chủ Quán</label>
+                        <select id="boss-shop" [(ngModel)]="boss_shop" name="boss_shop" class="form-control">
+                          <option value="undefined" selected disabled>Chọn quán</option>
+                          <option *ngFor="let sh of list_shop" [ngValue]="sh['shop_id']">{{sh['shop_name']}}</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="form-group">
+                        <label>Số điện thoại</label>
+                        <input id="boss-phone" type="text" [(ngModel)]="boss_phone" name="boss_phone" class="form-control" placeholder="Nhập số điện thoại">
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="form-group">
+                        <label>Địa chỉ</label>
+                        <input id="boss-address" type="text" [(ngModel)]="boss_address" name="boss_address" class="form-control" placeholder="Nhập địa chỉ">
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="form-group">
+                        <label>Trạng Thái</label>
+                        <select id="boss-active" [(ngModel)]="boss_active" name="boss_active" class="form-control">
+
+                          <option value="on">Hoạt động</option>
+                          <option value="off">Dừng</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <!-- <button type="button" (click)="addRoom()" class="btn btn-sm btn-primary">Thêm</button> -->
+                  </form>
+                </div>
+                <div class="panel-footer">
+                  <button (click)="updateProfile()" class="btn btn-primary btn-block">Cập nhật tài khoản</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal doi mat khau -->
+  <div id="changePassModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <!-- Modal content  -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">Hủy</button>
+          <h4 class="modal-title">Tài Khoản</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+
+            <div class="col-sm-12 col-xs-12 ">
+              <div class="panel panel-default">
+                <div class="panel-heading font-bold">Thêm</div>
+                <div class="panel-body">
+                  <form role="form" #formBoss="ngForm">
+                    <div class="col-sm-3">
+                      <div class="form-group">
+                        <label>Mật khẩu mới</label>
+                        <input id="boss-Npassword" type="password" [(ngModel)]="newPassword" name="newPassword" class="form-control" placeholder="Mật khẩu mới">
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="form-group">
+                        <label>Xác nhận mật khẩu</label>
+                        <input id="boss-Vpassword" type="text" [(ngModel)]="boss_Vpassword" name="boss_Vpassword" class="form-control" placeholder="Xác nhận mật khẩu">
+                      </div>
+                    </div>
+                    <!-- <button type="button" (click)="addRoom()" class="btn btn-sm btn-primary">Thêm</button> -->
+                  </form>
+                </div>
+                <div class="panel-footer">
+                  <button (click)="changePassword()" class="btn btn-primary btn-block">Cập nhật mật khẩu</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
