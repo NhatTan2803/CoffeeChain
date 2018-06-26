@@ -32,7 +32,7 @@ module.exports.routes = {
   '/login-customer': 'CustomerController.showLoginCus',
   '/signUp-customer': 'CustomerController.showSignUpCus',
   '/main-customer': 'CustomerController.showMainCus',
-  '/profile/:id': 'CustomerController.showProfileCus',
+  '/main-customer/profile': 'CustomerController.showProfileCus',
   '/rate': 'CustomerController.showRateCus',
 
 
