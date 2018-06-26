@@ -12,15 +12,18 @@ module.exports = {
     showSignUpCus: async function (req, res) {
         return res.view('./pages/customer/signup-customer', { layout: 'layouts/layout-intro' })
     },
-    showMainCus: async function (req,res) {
-        return res.view('./pages/customer/main-customer', { layout:'layouts/layout-intro'})
+    showMainCus: async function (req, res) {
+        return res.view('./pages/customer/main-customer', { layout: 'layouts/layout-intro' })
     },
-    showProfileCus: async function (req,res) {
+    showProfileCus: async function (req, res) {
         return res.view('./pages/customer/profile-customer', { layout: 'layouts/layout-intro' })
     },
     showRateCus: async function (req, res) {
-        return res.view('./pages/customer/profile-customer', { layout: 'layouts/layout-intro' })
+        return res.view('./pages/customer/rate-customer', { layout: 'layouts/layout-intro' })
     },
+    showPointCus: async function (req, res) {
+        return res.view('./pages/customer/point-customer', { layout: 'layouts/layout-intro' })
+    }
 
 };
 

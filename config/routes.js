@@ -33,7 +33,8 @@ module.exports.routes = {
   '/signUp-customer': 'CustomerController.showSignUpCus',
   '/main-customer': 'CustomerController.showMainCus',
   '/main-customer/profile': 'CustomerController.showProfileCus',
-  '/rate': 'CustomerController.showRateCus',
+  '/main-customer/rate': 'CustomerController.showRateCus',
+  '/main-customer/point':'CustomerController.showPointCus',
 
 
 
