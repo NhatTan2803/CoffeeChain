@@ -27,7 +27,6 @@ module.exports = {
   fn: async function (inputs, exits) {
     await User.find({
       where: { 
-        id: this.req.cookies.id, 
         permission: 'boss'
       },
       select: ['name', 'email', 'shops','active', 'phone']
