@@ -17,37 +17,52 @@
               <div>
                 <div class="panel-heading">
                   <div class="panel-body">
-                    <table class="table table-striped b-light table-bordered table-hover table-text-center">
-                      <thead>
-                        <tr>
-                          <th>STT</th>
-                          <th>Tên Chủ</th>
-                          <th>Tài Khoản</th>
-                          <th>Tên Quán</th>
-                          <th>Tinh Trạng</th>
-                          <th>SĐT</th>
-                          <th>Tác vụ</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <% for(var index= 0;index < account.length;index++){%>
+                    <%if (account.length > 0) {%>
+                      <table class="table table-striped b-light table-bordered table-hover table-text-center">
+                        <thead>
                           <tr>
-                            <td><%= index+1 %></td>
-                            <td><%= account[index].name %></td>
-                            <td><%= account[index].email %></td>
-                            <td><%= account[index].shops.name %></td>
-                            <td><%= account[index].active %></td>
-                            <td><%= account[index].phone %></td>
-                            <td>
-                              <button (click)="selectAccount(<%=account[index]%>)" class="btn btn-xs btn-info" data-toggle="modal" data-target="#accountModal">Xem </button>
-                              <button (click)="selectAccount(<%=account[index]%>)" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#changePassModal">Password</button>
-
-                            </td>
+                            <th>STT</th>
+                            <th>Tên Chủ</th>
+                            <th>Tài Khoản</th>
+                            <th>Tên Quán</th>
+                            <th>Tinh Trạng</th>
+                            <th>SĐT</th>
+                            <th>Tác vụ</th>
                           </tr>
-                          <%}%>
+                        </thead>
+                        <tbody>
+                          <% for(var index= 0;index < account.length;index++){%>
+                            <tr>
+                              <td>
+                                <%= index+1 %>
+                              </td>
+                              <td>
+                                <%= account[index].name %>
+                              </td>
+                              <td>
+                                <%= account[index].email %>
+                              </td>
+                              <td>
+                                <%= account[index].shops.name %>
+                              </td>
+                              <td>
+                                <%= account[index].active %>
+                              </td>
+                              <td>
+                                <%= account[index].phone %>
+                              </td>
+                              <td>
+                                <button (click)="selectAccount(<%=account[index]%>)" class="btn btn-xs btn-info" data-toggle="modal" data-target="#accountModal">Xem </button>
+                                <button (click)="selectAccount(<%=account[index]%>)" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#changePassModal">Password</button>
 
-                      </tbody>
-                    </table>
+                              </td>
+                            </tr>
+                            <%}%>
+                        </tbody>
+                      </table>
+                      <%} else {%>
+                        <h2>No Record Found</h2>
+                      <%}%>
                   </div>
                 </div>
               </div>
