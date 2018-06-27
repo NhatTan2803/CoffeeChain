@@ -59,7 +59,7 @@ module.exports.routes = {
   '/main/list-Staff': 'ShowController.showListStaff',
   '/main/report': 'ShowController.showReport',
 
-
+  'GET /main/list-drink' : 'boss/get-drink-list',
   ////////////////////////// API 
   'post /login': 'UsersController.user_login',
   'get /user': 'UsersController.user_profile',
