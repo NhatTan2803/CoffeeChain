@@ -21,7 +21,7 @@ module.exports = {
     showAddShop: function (req, res) {
         res.view('./pages/coffee/admin/addShop')
     },
-    showAddAccount: function (req, res) {
+    showAddAccount: async function (req, res) {
         res.view('./pages/coffee/admin/addAccountBoss')
     },
     showListShop: function (req, res) {

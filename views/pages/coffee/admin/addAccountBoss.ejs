@@ -17,12 +17,7 @@
                             <div class="panel-heading font-bold">Ảnh Chủ Quán</div>
                             <div class="panel-body">
                                 <div class="boss-avatar" style="display: block; text-align: center;">
-                                    <img *ngIf="boss_avatar === ''" src="https://i.imgur.com/jNNT4LE.jpg" style="width: 100%" />
-                                    <img *ngIf="boss_avatar != ''" [src]="folder_avatar + boss_avatar" style="width: 100%" />
-                                    <label class="btn btn-default btn-file" style="margin-top: 17px">
-                                        Chọn ảnh
-                                        <input id="boss-avatar" (change)="uploadImg($event)" type="file" style="display: none;" />
-                                    </label>
+                                    <img  src="https://i.imgur.com/jNNT4LE.jpg" style="width: 100%" />
                                 </div>
                             </div>
                         </div>
@@ -31,50 +26,54 @@
                         <div class="panel panel-default">
                             <div class="panel-heading font-bold">Thêm</div>
                             <div class="panel-body">
-                                <form role="form" #formAddBoss="ngForm">
+                                <form role="form" id="addBoss" method="POST" action="/admin/newboss" enctype="multipart/form-data">
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label>Tên chủ quán</label>
-                                            <input id="boss-name" type="text" [(ngModel)]="boss_name" name="boss_name" class="form-control" placeholder="Nhập tên của chủ quán">
+                                            <input  type="text" name="name" class="form-control" placeholder="Nhập tên của chủ quán">
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label>Địa chỉ email</label>
-                                            <input id="boss-email" type="text" [(ngModel)]="boss_email" name="boss_email" class="form-control" placeholder="Nhập email">
+                                            <input  type="email" name="email" class="form-control" placeholder="Nhập email">
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label>Mật khẩu</label>
-                                            <input id="boss-password" type="text" [(ngModel)]="boss_password" name="boss_password" class="form-control" placeholder="Nhập mật khẩu">
+                                            <input  type="text" name="password" class="form-control" placeholder="Nhập mật khẩu">
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label>CMND</label>
-                                            <input id="boss-Idcard" type="text" [(ngModel)]="boss_Idcard" name="boss_Idcard" class="form-control" placeholder="Nhập CMND">
+                                            <input  type="text" name="idCard" class="form-control" placeholder="Nhập CMND">
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label>Chủ Quán</label>
-                                            <select id="boss-shop" [(ngModel)]="boss_shop" name="boss_shop" class="form-control">
+                                            <select name="shops" class="form-control">
                                                 <option value="undefined">Chọn quán</option>
-                                                <option *ngFor="let sh of list_shop" [ngValue]="sh['shop_id']">{{sh['shop_name']}}</option>
+                                                <%found.forEach((shop)=>{%>
+                                                    <option value="<%=shop.id%>">
+                                                        <%=shop.name%>
+                                                    </option>
+                                                    <%});%>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label>Ngày sinh</label>
-                                            <input id="boss-birthday" type="text" class="form-control" placeholder="Nhập ngày sinh">
+                                            <input  name="birthday" type="date" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label>Gới tính</label>
-                                            <select id="boss-sex" [(ngModel)]="boss_sex" name="boss_sex" class="form-control">
+                                            <select name="gender" class="form-control">
                                                 <option value="undefined">Chọn Giới tính</option>
                                                 <option value="male">Nam</option>
                                                 <option value="female">Nữ</option>
@@ -84,31 +83,35 @@
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label>Số điện thoại</label>
-                                            <input id="boss-phone" type="text" [(ngModel)]="boss_phone" name="boss_phone" class="form-control" placeholder="Nhập số điện thoại">
+                                            <input  type="text" name="phone" class="form-control" placeholder="Nhập số điện thoại">
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label>Địa chỉ</label>
-                                            <input id="boss-address" type="text" [(ngModel)]="boss_address" name="boss_address" class="form-control" placeholder="Nhập địa chỉ">
+                                            <input  type="text" name="address" class="form-control" placeholder="Nhập địa chỉ">
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label>Trạng Thái</label>
-                                            <select id="boss-active" [(ngModel)]="boss_active" name="boss_active" class="form-control">
+                                            <select  name="active" class="form-control">
                                                 <option value="undefined">Chọn chế độ</option>
                                                 <option value="on">Hoạt động</option>
                                                 <option value="off">Dừng</option>
                                             </select>
                                         </div>
                                     </div>
-
-                                    <!-- <button type="button" (click)="addRoom()" class="btn btn-sm btn-primary">Thêm</button> -->
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Chọn ảnh</label>
+                                            <input  class="form-control" name="photo" type="file" accept=".jpg, .jpeg, .png" >
+                                        </div>
+                                    </div>
                                 </form>
                             </div>
                             <div class="panel-footer">
-                                <button (click)="addBoss()" class="btn btn-primary btn-block">Thêm tài khoản</button>
+                                <button class="btn btn-primary btn-block" type="submit" form="addBoss">Thêm tài khoản</button>
                             </div>
                         </div>
                     </div>
