@@ -1,3 +1,4 @@
+const moment = require('moment');
 module.exports = {
 
 
@@ -17,7 +18,8 @@ module.exports = {
 
   exits: {
     success: {
-
+      responseType: 'view',
+      viewTemplatePath: 'pages/coffee/admin/listShop',
     },
     notFound: {
       description: 'No shop with the specified ID was found',
@@ -28,15 +30,11 @@ module.exports = {
 
   fn: async function (inputs, exits) {
     await Shop.find({
-      where: { id: inputs.shop },
-      select: ['name', 'address', 'dayFrom', 'dayTo']
-    })
+      select: ['id','name', 'address','phone', 'dayFrom', 'dayTo']
+    }).populate('systems')
       .exec(function (err, found) {
         if (err) return exits.error(err);
-        if (found.length == 0) {
-          return exits.notFound();
-        }
-        return exits.success(found);
+        return exits.success({found,moment});
       })
   }
 
