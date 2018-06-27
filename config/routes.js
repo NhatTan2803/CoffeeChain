@@ -63,7 +63,7 @@ module.exports.routes = {
   '/main-staff':'ShowController.showSellStaff',
 
 
-  ////////////////////////// API 
+  ////////////////////////// API system
   'post /login': 'UsersController.user_login',
   'get /user': 'UsersController.user_profile',
   'POST /signup': 'UsersController.user_SignUp',
@@ -73,6 +73,14 @@ module.exports.routes = {
   'get /drink/info': { action: 'drink/get-drink-info' },
   'post /admin/newshop': { action: 'admin/create-shop' },
   'get /admin/shopinfo': { action: 'admin/get-shop-info' },
+
+
+
+  /////////////////////////// API customer
+  'POST /login-customer': 'CustomerController.customerLogIn',
+  'POST /signup-customer': 'CustomerController.customerSignUp',
+
+
   /***************************************************************************
 *                                                                          *
 * More custom routes here...                                               *
