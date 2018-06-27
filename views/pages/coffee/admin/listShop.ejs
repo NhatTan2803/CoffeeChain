@@ -31,19 +31,36 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr *ngFor="let st of list_shop let i = index">
-                                                    <td>{{i+1}}</td>
-                                                    <td><img *ngIf="st.shop_avatar==null" src="http://simpleicon.com/wp-content/uploads/shop-3.png" width="50" height="50"></td>
-                                                    <td>{{st.shop_name}}</td>
-                                                    <td>{{st.shop_phone}}</td>
-                                                    <td>{{st.shop_dayFrom| date:'dd/MM/yyyy'}}</td>
-                                                    <td>{{st.shop_dayTo| date:'dd/MM/yyyy'}}</td>
-                                                    <td>{{st.system_name}}</td>
-                                                    <td>
-                                                        <button class="btn btn-xs btn-danger">Xóa</button>
-                                                        <button (click)="selectShop(st)" class="btn btn-xs btn-info" data-toggle="modal" data-target="#staffModal">Xem </button>
-                                                    </td>
-                                                </tr>
+                                                <%if(found)%>
+                                                    <%(found).forEach(function(shop){%>
+                                                        <tr>
+                                                            <td>
+                                                                <%=shop.id%>
+                                                            </td>
+                                                            <td>
+                                                                <img *ngIf="st.shop_avatar==null" src="http://simpleicon.com/wp-content/uploads/shop-3.png" width="50" height="50">
+                                                            </td>
+                                                            <td>
+                                                                <%=shop.name%>
+                                                            </td>
+                                                            <td>
+                                                                <%=shop.phone%>
+                                                            </td>
+                                                            <td>
+                                                                <%=moment(shop.dayFrom).format("MMM Do YY")%>
+                                                            </td>
+                                                            <td>
+                                                                <%=moment(shop.dayTo).format("MMM Do YY")%>
+                                                            </td>
+                                                            <td>
+                                                                <%=shop.systems||"Separate shop"%>
+                                                            </td>
+                                                            <td>
+                                                                <button class="btn btn-xs btn-danger">Xóa</button>
+                                                                <button (click)="selectShop(st)" class="btn btn-xs btn-info" data-toggle="modal" data-target="#staffModal">Xem </button>
+                                                            </td>
+                                                        </tr>
+                                                        <% }); %>
                                             </tbody>
                                         </table>
                                     </div>
