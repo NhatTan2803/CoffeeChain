@@ -43,8 +43,8 @@ module.exports.routes = {
   '/login': 'ShowController.showLoginForm',
   '/signup':'ShowController.showSignUp',
   '/main/addShop': 'ShowController.showAddShop',
-  '/main/addAccount-Boss': 'ShowController.showAddAccount',
-  '/main/listShop': 'ShowController.showListShop',
+  '/main/addAccount-Boss': { action: 'admin/add-shop-info' },
+  '/main/listShop': { action: 'admin/get-shop-info' },
   '/main/listAccount-Boss': 'ShowController.showListAccount',
   '/main/add-listSystem': 'ShowController.showAddListSystem',
   ///////////////////////// boss
@@ -68,6 +68,8 @@ module.exports.routes = {
   'get /drink/info': { action: 'drink/get-drink-info' },
   'post /admin/newshop': { action: 'admin/create-shop' },
   'get /admin/shopinfo': { action: 'admin/get-shop-info' },
+  'post /admin/newboss': { action: 'admin/create-boss-account' },
+
   /***************************************************************************
 *                                                                          *
 * More custom routes here...                                               *
