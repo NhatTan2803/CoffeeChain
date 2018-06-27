@@ -6,8 +6,13 @@ module.exports = {
 
   description: 'Create new shop',
 
+  files: ['photo'],
 
   inputs: {
+    photo: {
+      example: '===',
+      required: true
+    },
     name: {
       type: 'string',
       maxLength: 50
@@ -41,14 +46,17 @@ module.exports = {
 
 
   exits: {
+    error: {
+      responseType: 'redirect',
+    },
     success: {
-
+      responseType: 'redirect',
     }
   },
 
 
   fn: async function (inputs, exits) {
-    var newShop = await Shop.create({
+    Shop.create({
       name: inputs.name,
       email: inputs.email,
       address: inputs.address,
@@ -59,10 +67,30 @@ module.exports = {
       systems: inputs.systems
     }).fetch()
       .exec(function (err, created) {
-        if (err)
-          return exits.error(err);
-        else
-          return exits.success(created);
+        if (err) {
+          return exits.error('/main/addShop');
+        }
+        inputs.photo.upload({
+          dirname: require('path').resolve(sails.config.appPath, 'assets/images/shops'),
+          saveAs: function (__newFileStream, next) { return next(undefined, created.id + '-shop-avatar.png'); },
+          maxBytes: 1000000
+        }, function (err, uploadedFiles) {
+          if (err) {
+            return exits.error('/main/addShop');
+          }
+          if (uploadedFiles.length > 0) {
+            Shop.update({
+              id: created.id
+            }, {
+                avatar: require('path').basename(uploadedFiles[0].fd)
+              }).exec((err, updated) => {
+                if (err) {
+                  return exits.error('/main/addShop');
+                }
+                return exits.success('/main/listShop');
+              });
+          }
+        });
       })
 
 
