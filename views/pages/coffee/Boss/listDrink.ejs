@@ -17,33 +17,42 @@
                             <div>
                                 <div class="panel-heading">
                                     <div class="panel-body">
-                                        <table class="table table-striped b-light table-bordered table-hover table-text-center">
-                                            <thead>
-                                                <tr>
-                                                    <th>STT</th>
-                                                    <th>Ảnh</th>
-                                                    <th>Tên </th>
-                                                    <th>Giá</th>
-                                                    <th style="width:120px">Công Cụ</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr *ngFor="let st of list_drink let i = index">
-                                                    <td>{{i+1}}</td>
-                                                    <td>
-                                                        <img *ngIf="st.drink_avatar==null" src="https://cdn3.iconfinder.com/data/icons/yummicon-pro/100/046_Water-512.png" width="50"
-                                                            height="50" />
-                                                    </td>
-                                                    <!-- <img  *ngFor="let item of filterItemsOfType('')" [src]="https://cdn3.iconfinder.com/data/icons/yummicon-pro/100/046_Water-512.png" width="50" height="50" />                           -->
-                                                    <td>{{st.drink_name}}</td>
-                                                    <td>{{st.drink_price}}</td>
-                                                    <td>
-                                                        <button class="btn btn-xs btn-danger">Xóa</button>
-                                                        <button (click)="selectDrink(st)" class="btn btn-xs btn-info" data-toggle="modal" data-target="#drinkModal">Xem </button>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                        <%if (drinkList.length > 0) {%>
+                                            <table class="table table-striped b-light table-bordered table-hover table-text-center">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>STT</th>
+                                                            <th>Ảnh</th>
+                                                            <th>Tên </th>
+                                                            <th>Giá</th>
+                                                            <th style="width:120px">Công Cụ</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% for(var index= 0;index < drinkList.length;index++){%>
+                                                            <tr>
+                                                                    <td><%= index+1 %></td>
+                                                                    <td>
+                                                                        <!-- <img *ngIf="st.drink_avatar==null" src="https://cdn3.iconfinder.com/data/icons/yummicon-pro/100/046_Water-512.png" width="50"
+                                                                            height="50" /> -->
+                                                                        <img src="/images/<%=drinkList[index].avatar%>" width="50"
+                                                                            height="50" />
+                                                                    </td>
+                                                                    <!-- <img  *ngFor="let item of filterItemsOfType('')" [src]="https://cdn3.iconfinder.com/data/icons/yummicon-pro/100/046_Water-512.png" width="50" height="50" />                           -->
+                                                                    <td><%= drinkList[index].name %></td>
+                                                                    <td><%= drinkList[index].price %></td>
+                                                                    <td>
+                                                                        <button class="btn btn-xs btn-danger">Xóa</button>
+                                                                        <button (click)="" class="btn btn-xs btn-info" data-toggle="modal" data-target="#drinkModal">Xem </button>
+                                                                    </td>
+                                                            </tr>  
+                                                        <%}%>
+                                                       
+                                                    </tbody>
+                                            </table>
+                                        <%} else {%>
+                                            <h2>No record found</h2>
+                                        <%}%>
                                     </div>
                                 </div>
                             </div>

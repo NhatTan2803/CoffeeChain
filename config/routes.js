@@ -64,6 +64,8 @@ module.exports.routes = {
 
 
   ////////////////////////// API system
+  'GET /main/list-drink' : 'boss/get-drink-list',
+  ////////////////////////// API 
   'post /login': 'UsersController.user_login',
   'get /user': 'UsersController.user_profile',
   'POST /signup': 'UsersController.user_SignUp',
