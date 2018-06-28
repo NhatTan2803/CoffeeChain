@@ -16,7 +16,10 @@ module.exports = {
         return res.view('./pages/customer/main-customer', { layout: 'layouts/layout-intro' })
     },
     showProfileCus: async function (req, res) {
-        return res.view('./pages/customer/profile-customer', { layout: 'layouts/layout-intro' })
+        console.log(req.cookies.id);
+        let { id } = req.cookies;
+        var info = await User.find({ id })
+        return res.view('./pages/customer/profile-customer', { info: info, layout: 'layouts/layout-intro' })
     },
     showRateCus: async function (req, res) {
         return res.view('./pages/customer/rate-customer', { layout: 'layouts/layout-intro' })
@@ -66,7 +69,8 @@ module.exports = {
 
             }
         }
-    }
+    },
+
 
 };
 
