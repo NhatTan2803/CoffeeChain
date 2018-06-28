@@ -34,7 +34,6 @@ module.exports = {
     })
       .populate('shops')
       .exec(function (err, account) {
-        sails.log("account : " + {account});
         if (err) return exits.error(err);
         return exits.success({account:account});
       })
