@@ -60,6 +60,7 @@ module.exports.routes = {
   '/main/report': 'ShowController.showReport',
 
   'GET /main/list-drink' : 'boss/get-drink-list',
+  'POST /drink/create': { action: 'drink/create' },
   ////////////////////////// API 
   'post /login': 'UsersController.user_login',
   'get /user': 'UsersController.user_profile',
