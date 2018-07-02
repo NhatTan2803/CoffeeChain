@@ -51,7 +51,8 @@ module.exports = {
         res.view('./pages/coffee/Boss/sell', { layout: 'layouts/layout-boss' })
     },
     showListDrink: function (req, res) {
-        res.view('./pages/coffee/Boss/listDrink', { layout: 'layouts/layout-boss' })
+        // res.view('./pages/coffee/Boss/listDrink', { layout: 'layouts/layout-boss' })
+        res.redirect('/main-shop/list-drink');
     },
     showListStaff: function (req, res) {
         res.view('./pages/coffee/Boss/listStaff', { layout: 'layouts/layout-boss' })

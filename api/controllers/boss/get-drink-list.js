@@ -15,7 +15,8 @@ module.exports = {
   exits: {
     success: {
       responseType: "view",
-      viewTemplatePath: './pages/coffee/Boss/listDrink'
+      viewTemplatePath: './pages/coffee/Boss/listDrink',
+      
     },
     notFound: {
       description: 'The data of drinks are empty',
