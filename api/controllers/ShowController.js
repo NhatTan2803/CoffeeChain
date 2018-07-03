@@ -45,14 +45,13 @@ module.exports = {
         res.view('./pages/coffee/Boss/addDrink', { layout: 'layouts/layout-boss' })
     },
     showAddStaff: function (req, res) {
-        res.view('./pages/coffee/Boss/addStaff', { layout: 'layouts/layout-boss' })
+        res.view('./pages/coffee/Boss/addStaff', { layout: 'layouts/layout-boss' });
     },
     showSell: function (req, res) {
         res.view('./pages/coffee/Boss/sell', { layout: 'layouts/layout-boss' })
     },
     showListDrink: function (req, res) {
-        // res.view('./pages/coffee/Boss/listDrink', { layout: 'layouts/layout-boss' })
-        res.redirect('/main-shop/list-drink');
+        res.view('./pages/coffee/Boss/listDrink', { layout: 'layouts/layout-boss' });
     },
     showListStaff: function (req, res) {
         res.view('./pages/coffee/Boss/listStaff', { layout: 'layouts/layout-boss' })

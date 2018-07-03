@@ -13,7 +13,7 @@
       <div class="wrapper-md">
         <!--created-->
         <div>
-            <%if (typeof created !== 'undefined' && created) {%>
+            <%if (req.query.created) {%>
                 Created Successfull
             <%}%>
         </div>

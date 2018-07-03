@@ -20,29 +20,30 @@ module.exports = {
     price: {
       type: 'number',
       columnType: 'decimal'
-    },
-    shops: {
-      type: 'number'
-    },
+    }
   },
 
 
   exits: {
     success: {
-      responseType: 'view',
-      viewTemplatePath: './pages/coffee/Boss/addDrink',
+      responseType: 'redirect',
     }
   },
 
 
   fn: async function (inputs, exits) {
     try {
-      inputs.shops = this.req.cookies.id;
+      
+      const shopId = (await User.findOne({
+        where: { id: this.req.cookies.id },
+        select: ['shops']
+      })).shops;
+
       var createdDrink = await Drink.create({
         name: inputs.name,
         price: inputs.price,
         avatar: inputs.avatar,
-        shops: inputs.shops
+        shops: shopId
       }).fetch();
     } catch (error) {
       return exits.error(error);
@@ -67,7 +68,7 @@ module.exports = {
             if (updatedError){
               return exits.error(updatedError);
             }
-            return exits.success({created: true});
+            return exits.success('/main-shop/add-drink?created=true');
           })
       }
     });
