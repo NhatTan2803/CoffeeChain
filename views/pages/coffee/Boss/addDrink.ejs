@@ -1,59 +1,89 @@
 <div class="app-content-body ">
-    <div class="hbox hbox-auto-xs hbox-auto-sm">
-        <!-- main -->
-        <div class="col">
-            <!-- main header -->
-            <div class="bg-light lter b-b wrapper-md">
-                <div class="row">
-                    <div class="col-sm-12 col-xs-12">
-                        <h1 class="m-n font-thin h3 text-black">Thêm đồ uống</h1>
-                    </div>
-                </div>
-            </div>
-            <div class="wrapper-md">
-                <div class="row">
-                    <div class="col-sm-3 col-xs-12 col-md-2 drink-avatar-wapper">
-                        <div class="panel panel-default">
-                            <div class="panel-heading font-bold">Ảnh Đồ Uống</div>
-                            <div class="panel-body">
-                                <div class="drink-avatar" style="display: block; text-align: center;">
-                                    <img *ngIf="drink_avatar === ''" src="https://cdn3.iconfinder.com/data/icons/yummicon-pro/100/046_Water-512.png" style="width: 100%"
-                                    />
-                                    <img *ngIf="drink_avatar != ''" [src]="folder_avatar + drink_avatar" style="width: 100%" />
-                                    <label class="btn btn-default btn-file" style="margin-top: 17px">
-                                        Chọn ảnh
-                                        <input id="drink-avatar" (change)="uploadImg($event)" type="file" style="display: none;" />
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-9 col-xs-12 col-md-10">
-                        <div class="panel panel-default">
-                            <div class="panel-heading font-bold">Thêm</div>
-                            <div class="panel-body">
-                                <form role="form" #formAddDrink="ngForm">
-                                    <div class="col-sm-3">
-                                        <div class="form-group">
-                                            <label>Tên đồ uống</label>
-                                            <input id="drink-name" type="text" [(ngModel)]="drink_name" name="drink_name" class="form-control" placeholder="Nhập tên đồ uống">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="form-group">
-                                            <label>Giá đồ uống</label>
-                                            <input id="drink-price" type="text" [(ngModel)]="drink_price" name="drink_price" class="form-control" placeholder="Nhập giá">
-                                        </div>
-                                    </div>
-                                    <!-- <button type="button" (click)="addRoom()" class="btn btn-sm btn-primary">Thêm</button> -->
-                                </form>
-                            </div>
-                            <div class="panel-footer">
-                                <button (click)="addDrink()" class="btn btn-primary btn-block">Thêm sản phẩm</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- / main -->
-            </div>
+  <div class="hbox hbox-auto-xs hbox-auto-sm">
+    <!-- main -->
+    <div class="col">
+      <!-- main header -->
+      <div class="bg-light lter b-b wrapper-md">
+        <div class="row">
+          <div class="col-sm-12 col-xs-12">
+            <h1 class="m-n font-thin h3 text-black">Thêm đồ uống</h1>
+          </div>
         </div>
+      </div>
+      <div class="wrapper-md">
+        <!--created-->
+        <div>
+            <%if (created) {%>
+                Created Successfull
+            <%}%>
+        </div>
+        <form action="/drink/create" enctype="multipart/form-data" method="POST">
+          <div class="row">
+            <div class="col-sm-9 col-xs-12 col-md-10">
+              <div class="panel panel-default">
+                <div class="panel-heading font-bold">Thêm</div>
+                <div class="panel-body">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label>Tên đồ uống</label>
+                      <input id="drink-name" type="text" name="name" class="form-control" placeholder="Nhập tên đồ uống">
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label>Giá đồ uống</label>
+                      <input id="drink-price" type="text" name="price" class="form-control" placeholder="Nhập giá">
+                    </div>
+                  </div>
+                  <!-- <button type="button" (click)="addRoom()" class="btn btn-sm btn-primary">Thêm</button> -->
+                  <button (click)="addDrink()" class="btn btn-primary btn-block">Thêm sản phẩm</button>
+                </div>
+                <!-- <div class="panel-footer">
+                <button (click)="addDrink()" class="btn btn-primary btn-block">Thêm sản phẩm</button>
+              </div> -->
+              </div>
+            </div>
+
+            <div class="col-sm-3 col-xs-12 col-md-2 drink-avatar-wapper">
+              <div class="panel panel-default">
+                <div class="panel-heading font-bold">Ảnh Đồ Uống</div>
+                <div class="panel-body">
+                  <div class="drink-avatar" style="display: block; text-align: center;">
+                    <img id="blah" src="" style="width: 100%" />
+                    <!-- <img *ngIf="drink_avatar != ''" [src]="folder_avatar + drink_avatar" style="width: 100%" /> -->
+                    <label class="btn btn-default btn-file" style="margin-top: 17px">
+                      Chọn ảnh
+                      <input id="imgInp" type="file" name="photo" multiple="multiple" style="display: none;" accept="image/png, image/jpeg" />
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        <!-- / main -->
+      </div>
+    </div>
+
+
+    <!--Show Image after upload before "Submit"-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+      function readURL(input) {
+
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function (e) {
+            $('#blah').attr('src', e.target.result);
+          }
+
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+
+      $("#imgInp").change(function () {
+        readURL(this);
+      });
+
+    </script>

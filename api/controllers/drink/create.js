@@ -28,12 +28,16 @@ module.exports = {
 
 
   exits: {
-
+    success: {
+      responseType: 'view',
+      viewTemplatePath: './pages/coffee/Boss/addDrink',
+    }
   },
 
 
   fn: async function (inputs, exits) {
     try {
+      inputs.shops = this.req.cookies.id;
       var createdDrink = await Drink.create({
         name: inputs.name,
         price: inputs.price,
@@ -43,7 +47,6 @@ module.exports = {
     } catch (error) {
       return exits.error(error);
     }
-    sails.log("SHOPSID : " + createdDrink.shops);
     inputs.photo.upload({
       dirname: require('path').resolve(sails.config.appPath, 'assets/images/drinks'),
       saveAs: function (__newFileStream, next) {
@@ -64,7 +67,7 @@ module.exports = {
             if (updatedError){
               return exits.error(updatedError);
             }
-            return exits.success(updatedDrink);
+            return exits.success({created: true});
           })
       }
     });
