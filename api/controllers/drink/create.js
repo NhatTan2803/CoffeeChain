@@ -68,7 +68,7 @@ module.exports = {
             if (updatedError){
               return exits.error(updatedError);
             }
-            return exits.success('/main-shop/add-drink?created=true');
+            return exits.success('/main-shop/add-drink');
           })
       }
     });
