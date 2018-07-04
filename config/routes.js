@@ -34,7 +34,7 @@ module.exports.routes = {
   '/main-customer': 'CustomerController.showMainCus',
   '/main-customer/profile': 'CustomerController.showProfileCus',
   '/main-customer/rate': 'CustomerController.showRateCus',
-  '/main-customer/point':'CustomerController.showPointCus',
+  '/main-customer/point': 'CustomerController.showPointCus',
 
 
 
@@ -49,7 +49,7 @@ module.exports.routes = {
   '/main/listAccount-Boss': 'ShowController.showListAccount',
   '/main/add-listSystem': 'ShowController.showAddListSystem',
 
-  'GET /main/listAccount-Boss' : 'admin/get-account-list',
+  'GET /main/listAccount-Boss': 'admin/get-account-list',
   ///////////////////////// boss
   '/main-shop': 'ShowController.showMainShop',
   '/main-shop/list-position': 'ShowController.showAddListPosition',
@@ -60,11 +60,16 @@ module.exports.routes = {
   '/main-shop/list-Staff': 'ShowController.showListStaff',
   '/main-shop/report': 'ShowController.showReport',
 
-  '/main-staff':'ShowController.showSellStaff',
+  '/main-staff': 'ShowController.showSellStaff',
 
-
+  'GET /main-shop/list-staff': {
+    action: 'staff/get-staffs',
+    locals: {
+      layout: 'layouts/layout-boss'
+    }
+  },
   ////////////////////////// API system
-  'GET /main-shop/list-drink' : {
+  'GET /main-shop/list-drink': {
     action: 'boss/get-drink-list',
     locals: {
       layout: 'layouts/layout-boss'
