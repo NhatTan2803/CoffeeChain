@@ -34,7 +34,7 @@ module.exports.routes = {
   '/main-customer': 'CustomerController.showMainCus',
   '/main-customer/profile': 'CustomerController.showProfileCus',
   '/main-customer/rate': 'CustomerController.showRateCus',
-  '/main-customer/point':'CustomerController.showPointCus',
+  '/main-customer/point': 'CustomerController.showPointCus',
 
 
 
@@ -49,7 +49,7 @@ module.exports.routes = {
   '/main/listAccount-Boss': 'ShowController.showListAccount',
   '/main/add-listSystem': 'ShowController.showAddListSystem',
 
-  'GET /main/listAccount-Boss' : 'admin/get-account-list',
+  'GET /main/listAccount-Boss': 'admin/get-account-list',
   ///////////////////////// boss
   '/main-shop': 'ShowController.showMainShop',
   '/main-shop/list-position': 'ShowController.showAddListPosition',
@@ -60,16 +60,20 @@ module.exports.routes = {
   '/main-shop/list-Staff': 'ShowController.showListStaff',
   '/main-shop/report': 'ShowController.showReport',
 
-  '/main-staff':'ShowController.showSellStaff',
+  '/main-staff': 'ShowController.showSellStaff',
 
 
   ////////////////////////// API system
+<<<<<<< HEAD
   'GET /main-shop/list-drink' : {
     action: 'boss/get-drink-list',
     locals: {
       layout: 'layouts/layout-boss'
     }
   },
+=======
+  'GET /main/list-drink': 'boss/get-drink-list',
+>>>>>>> staff
   ////////////////////////// API 
   'post /login': 'UsersController.user_login',
   'get /user': 'UsersController.user_profile',
@@ -80,7 +84,8 @@ module.exports.routes = {
   'get /drink/info': { action: 'drink/get-drink-info' },
   'post /admin/newshop': { action: 'admin/create-shop' },
   'get /admin/shopinfo': { action: 'admin/get-shop-info' },
-
+  'get  /shop/position': { action: 'boss/get-position' },
+  'post /shop/position': { action: 'boss/create-position' },
 
 
   /////////////////////////// API customer
