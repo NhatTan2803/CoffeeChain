@@ -61,7 +61,7 @@ module.exports = {
     },
 
     positions: {
-      model: 'Roll' ,
+      model: 'Role' ,
       columnName: 'PositionId',
 
     },

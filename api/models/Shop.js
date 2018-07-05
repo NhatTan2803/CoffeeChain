@@ -42,7 +42,7 @@ module.exports = {
     },
 ///////////////
     positions: {
-      collection: 'Roll',
+      collection: 'Role',
       via:'shops'
     },
     users: {
