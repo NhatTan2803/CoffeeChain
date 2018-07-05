@@ -14,13 +14,13 @@ class Position extends React.Component {
         e.preventDefault();
         const form = new FormData(e.target)
         form.append('shops', this.state.shop[0].id)
-        fetch('http://localhost:1337/shop/position', {
+        fetch('/shop/position', {
             method: 'POST',
             body: form
         }).then(() => this.showPosition())
     }
     showPosition() {
-        fetch('http://localhost:1337/shop/position?id=3', { credentials: "same-origin" })
+        fetch('/shop/position', { credentials: "same-origin" })
             .then((resp) => resp.json())
             .then(shop => {
                 this.setState({

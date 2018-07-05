@@ -10,74 +10,9 @@
                     </div>
                 </div>
             </div>
-            <div class="wrapper-md">
-                <div class="row">
-                    <div class="col-sm-3 col-xs-12 col-md-2 staff-avatar-wapper">
-                        <div class="panel panel-default">
-                            <div class="panel-heading font-bold">Ảnh Quán</div>
-                            <div class="panel-body">
-                                <div class="staff-avatar" style="display: block; text-align: center;">
-                                    <img *ngIf="shop_avatar === ''" src="http://simpleicon.com/wp-content/uploads/shop-3.png" style="width: 100%" />
-                                    <img *ngIf="shop_avatar != ''" [src]="folder_avatar + shop_avatar" style="width: 100%" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-9 col-xs-12 col-md-10">
-                        <div class="panel panel-default">
-                            <div class="panel-heading font-bold">Thêm</div>
-                            <div class="panel-body">
-                                <form id="addShop" method="POST" action="/admin/newshop" enctype="multipart/form-data">
-                                    <div class="col-sm-3">
-                                        <div class="form-group">
-                                            <label>Tên cửa hàng</label>
-                                            <input id="shop-name" type="text" name="name" class="form-control" placeholder="Nhập tên cửa hàng" >
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="form-group">
-                                            <label>Địa chỉ email</label>
-                                            <input id="shop-email" type="email" name="email"  class="form-control" placeholder="Nhập email">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="form-group">
-                                            <label>Số điện thoại</label>
-                                            <input id="shop-phone" type="text" name="phone"  class="form-control" placeholder="Nhập số điện thoại">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="form-group">
-                                            <label>Ngày thuê</label>
-                                            <input id="dayFrom" type="date" name="dayFrom" class="form-control" >
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="form-group">
-                                            <label>Ngày hết hạn</label>
-                                            <input id="dayTo" type="date" name="dayTo" class="form-control" >
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="form-group">
-                                            <label>Địa chỉ</label>
-                                            <input id="shop-address" type="text"  name="address" class="form-control" placeholder="Nhập địa chỉ">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="form-group">
-                                            <label>Chọn ảnh quán</label>
-                                            <input  class="form-control" name="photo" type="file" accept=".jpg, .jpeg, .png" >
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="panel-footer">
-                                <button type="submit" class="btn btn-primary btn-block" form='addShop'>Thêm cửa hàng</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- / main -->
-            </div>
+            <div id="bossCreate" ></div>
+            <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+            <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+            <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+            <script src="/React/shopCreate.js" type="text/babel" ></script>
         </div>
