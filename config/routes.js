@@ -68,6 +68,18 @@ module.exports.routes = {
       layout: 'layouts/layout-boss'
     }
   },
+  'GET /main-shop/preprocess': {
+    action: 'staff/pass-positions-into-staff-page',
+    locals: {
+      layout: 'layouts/layout-boss'
+    }
+  },
+  'POST /main-shop/staff': {
+    action: 'staff/create',
+    locals: {
+      layout: 'layouts/layout-boss'
+    }
+  },
   ////////////////////////// API system
   'GET /main-shop/list-drink': {
     action: 'boss/get-drink-list',
