@@ -39,7 +39,7 @@ module.exports = {
         res.view('./pages/coffee/Boss/main-shop', { layout: 'layouts/layout-boss' })
     },
     showAddListPosition: function (req, res) {
-        res.view('./pages/coffee/Boss/add-listPosition', { layout: 'layouts/layout-boss' })
+        res.view('./pages/coffee/Boss/add-listPosition', { layout: 'layouts/layout-boss', id: req.cookies.id })
     },
     showAddDrink: function (req, res) {
         res.view('./pages/coffee/Boss/addDrink', { layout: 'layouts/layout-boss' })

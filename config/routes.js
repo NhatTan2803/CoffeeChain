@@ -57,7 +57,7 @@ module.exports.routes = {
   '/main-shop/add-staff': 'ShowController.showAddStaff',
   '/main-shop/sell': 'ShowController.showSell',
   '/main-shop/list-drink': 'ShowController.showListDrink',
-  '/main-shop/list-Staff': 'ShowController.showListStaff',
+  '/main-shop/list-staff': 'ShowController.showListStaff',
   '/main-shop/report': 'ShowController.showReport',
 
   '/main-staff': 'ShowController.showSellStaff',
@@ -87,6 +87,7 @@ module.exports.routes = {
       layout: 'layouts/layout-boss'
     }
   },
+  'GET /main/list-drink': 'boss/get-drink-list',
   ////////////////////////// API 
   'post /login': 'UsersController.user_login',
   'get /user': 'UsersController.user_profile',
@@ -97,7 +98,8 @@ module.exports.routes = {
   'get /drink/info': { action: 'drink/get-drink-info' },
   'post /admin/newshop': { action: 'admin/create-shop' },
   'get /admin/shopinfo': { action: 'admin/get-shop-info' },
-
+  'get  /shop/position': { action: 'boss/get-position' },
+  'post /shop/position': { action: 'boss/create-position' },
 
 
   /////////////////////////// API customer

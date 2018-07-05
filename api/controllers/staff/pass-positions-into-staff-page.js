@@ -26,7 +26,7 @@ module.exports = {
         where: { id: this.req.cookies.id },
         select: ['shops']
       })).shops;
-      const positions = await Position.find({
+      const positions = await Role.find({
         where: { shops: shopId },
         select: ['name']
       });
