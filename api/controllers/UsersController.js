@@ -64,15 +64,23 @@ module.exports = {
             var user = await User.findOne({ email });
 
             if (user) {
-
                 User.comparePassword(password, user, (err, valid) => {
                     if (valid) {
                         req.session.userId = user.id
                         res.cookie('id', user.id)
-                        res.redirect('/main')
+                        if (user.permission === 'admin') {
+                            return res.redirect('/main')
+                        }
+                        if (user.permission === 'boss') {
+                            return res.redirect('/main-shop')
+                        }
+                        if (user.permission === 'staff') {
+                            return res.redirect('/main-staff')
+                        }
                     }
                 })
             }
+            return res.redirect('/login')
         } catch (error) {
             return console.log(error);
 
