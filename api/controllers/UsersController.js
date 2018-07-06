@@ -78,9 +78,12 @@ module.exports = {
                             return res.redirect('/main-staff')
                         }
                     }
+                    res.redirect('/login')
                 })
             }
-            return res.redirect('/login')
+            else {
+                res.redirect('/login')
+            }
         } catch (error) {
             return console.log(error);
 
