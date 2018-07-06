@@ -57,14 +57,31 @@ module.exports.routes = {
   '/main-shop/add-staff': 'ShowController.showAddStaff',
   '/main-shop/sell': 'ShowController.showSell',
   '/main-shop/list-drink': 'ShowController.showListDrink',
-  '/main-shop/list-Staff': 'ShowController.showListStaff',
+  '/main-shop/list-staff': 'ShowController.showListStaff',
   '/main-shop/report': 'ShowController.showReport',
 
   '/main-staff': 'ShowController.showSellStaff',
 
-
+  'GET /main-shop/list-staff': {
+    action: 'staff/get-staffs',
+    locals: {
+      layout: 'layouts/layout-boss'
+    }
+  },
+  'GET /main-shop/preprocess': {
+    action: 'staff/pass-positions-into-staff-page',
+    locals: {
+      layout: 'layouts/layout-boss'
+    }
+  },
+  'POST /main-shop/staff': {
+    action: 'staff/create',
+    locals: {
+      layout: 'layouts/layout-boss'
+    }
+  },
   ////////////////////////// API system
-  'GET /main-shop/list-drink' : {
+  'GET /main-shop/list-drink': {
     action: 'boss/get-drink-list',
     locals: {
       layout: 'layouts/layout-boss'
