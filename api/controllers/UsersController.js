@@ -69,15 +69,7 @@ module.exports = {
                     if (valid) {
                         req.session.userId = user.id
                         res.cookie('id', user.id)
-                        if (user.permission === 'admin') {
-                            return res.redirect('/main')
-                        }
-                        if (user.permission === 'boss') {
-                            return res.redirect('/main-shop')
-                        }
-                        if (user.permission === 'staff') {
-                            return res.redirect('/main-staff')
-                        }
+                        res.redirect('/main')
                     }
                 })
             }
