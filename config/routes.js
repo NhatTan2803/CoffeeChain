@@ -93,7 +93,7 @@ module.exports.routes = {
   'GET /system': 'SystemController.getList',
   'GET /system/:id': 'SystemController.getSystemInfo',
   'GET /main/listAccount-Boss': 'admin/get-account-list',
-  
+
   'POST /drink/create': { action: 'drink/create' },
   'PUT /drink/update': { action: 'drink/update' },
   'GET /shop/drinks': { action: 'drink/get-drink-info' },
@@ -103,6 +103,7 @@ module.exports.routes = {
   'GET /admin/shopinfo': { action: 'admin/get-shop-info' },
   'GET  /shop/position': { action: 'boss/get-position' },
   'POST /shop/position': { action: 'boss/create-position' },
+  'POST /shop/sell': { action: 'boss/create-bill' },
   'POST /shop/sell/billdetail': { action: 'boss/create-bill-detail' },
   'GET /system' : {action:'boss/get-system-info'},
   'POST /system': { action: 'boss/create-system' },
