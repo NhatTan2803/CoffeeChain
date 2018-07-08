@@ -84,6 +84,7 @@ module.exports.routes = {
   'get  /shop/position': { action: 'boss/get-position' },
   'post /shop/position': { action: 'boss/create-position' },
   'post /shop/sell': { action: 'boss/create-bill' },
+  'post /shop/sell/billdetail': { action: 'boss/create-bill-detail' },
 
 
   /////////////////////////// API customer

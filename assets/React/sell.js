@@ -77,13 +77,31 @@ class Sell extends React.Component {
         }).then((resp) => resp.json())
             .then(mess => {
                 if (mess.success === 'ok') {
+                    this.state.shoppingCart.map(item => {
+                        console.log(item.name)
+                        const form = new FormData()
+                        form.append('name', item.name)
+                        form.append('quantity', item.quantity)
+                        form.append('price', item.price)
+                        form.append('drinkSubtotal', item.total)
+                        form.append('bills', mess.billId)
+                        form.append('drinks', item.id)
+                        fetch('/shop/sell/billdetail', {
+                            method: 'POST',
+                            body: form
+                        })
+                    })
+                    this.state.shoppingCart.map(item => {
+                        item.quantity = 0
+                        item.total = 0
+                    })
                     this.setState({
                         cash: 0,
                         total: 0,
                         change: 0,
                         users: 'Unknown',
-                        shoppingCart: [],
                     })
+
                 }
             })
 
@@ -107,7 +125,7 @@ class Sell extends React.Component {
     }
 
     render() {
-        const { drinks,shoppingCart, change, cash, total } = this.state
+        const { drinks, shoppingCart, change, cash, total } = this.state
         const buttonStyle = {
             width: '53px'
         }
@@ -195,7 +213,7 @@ class Sell extends React.Component {
                         <div className="payView">
                             <div >Tổng tiền : {outputTotal} VNĐ</div>
                             <div >
-                                <span>Mã khách hàng:</span><input className="inputStyle" type="text" name="users" onChange={this.inputCustomerId} />
+                                <span>Mã khách hàng:</span><input className="inputStyle" type="text" name="users" onChange={this.inputCustomerId}  />
                             </div>
                             <div >
                                 <span>Tiền khách trả:</span><input className="inputStyle" type="text" name="cash" onChange={this.inputCash} value={outputCash} />

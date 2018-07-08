@@ -26,9 +26,9 @@ module.exports = {
   },
   fn: async function (inputs, exits) {
     try {
-      const boss = await User.findOne({ id: this.req.cookies.id }).populate('shops');
+      const boss = await User.findOne({ id: this.req.cookies.id })
       const shop = await Shop.find({ id: boss.shops.id }).populate('drinks');
-      const drink = await Drink.find({ shops: boss.shops.id })
+      const drink = await Drink.find({ where: { shops: boss.shops }, select: ['name', 'id', 'price'] })
       return exits.success(drink);
     }
     catch (err) {

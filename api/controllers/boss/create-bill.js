@@ -36,14 +36,15 @@ module.exports = {
         total: inputs.total,
         cash: inputs.cash,
         change: inputs.change,
-      }).exec((err, created) => {
-        if (err) {
-          return exits.error({
-            success: 'fail'
-          })
-        }
-        return exits.success({ success: 'ok' });
-      })
+      }).fetch()
+        .exec((err, created) => {
+          if (err) {
+            return exits.error({
+              success: 'fail'
+            })
+          }
+          return exits.success({ success: 'ok', billId: created.id });
+        })
     }
     else {
       Bill.create({
@@ -51,14 +52,15 @@ module.exports = {
         cash: inputs.cash,
         change: inputs.change,
         users: inputs.users
-      }).exec((err, created) => {
-        if (err) {
-          return exits.error({
-            success: 'fail'
-          })
-        }
-        return exits.success({ success: 'ok' });
-      })
+      }).fetch()
+        .exec((err, created) => {
+          if (err) {
+            return exits.error({
+              success: 'fail'
+            })
+          }
+          return exits.success({ success: 'ok', billId: created.id });
+        })
     }
 
   }
