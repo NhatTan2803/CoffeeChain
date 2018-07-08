@@ -22,13 +22,11 @@ module.exports = {
 
   fn: async function (inputs, exits) {
     try {
-      //shopID
       const shopId = (await User.findOne({
         where: { id: this.req.cookies.id },
         select: ['shops']
       })).shops;
 
-      //staff
       const staffs = await User.find({
         where: { shops: shopId, permission: 'staff' },
         select: ['avatar', 'name', 'positions', 'phone', 'email', 'active']

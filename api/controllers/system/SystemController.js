@@ -41,11 +41,11 @@ module.exports = {
    */
   getList: async function (inputs, exits) {
     try {
-      const results = await System.find()
+      const systems = await System.find()
         .populate('shops')
         .populate('points')
         .fetch();
-      return this.exits.success();
+      return this.exits.success(systems);
     } catch (error) {
       return this.exits.error(error);
     }
