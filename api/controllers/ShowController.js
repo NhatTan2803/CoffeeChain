@@ -9,7 +9,7 @@ module.exports = {
     index: function (req, res) {
         res.view('./intro/intro-page', { layout: 'layouts/layout-intro' });
     },
-    showLoginForm: async function (req, res) {
+    showLogin: async function (req, res) {
         return res.view('./pages/coffee/login', { layout: 'layouts/layout-SignLog' })
     },
     showSignUp: async function (req, res) {

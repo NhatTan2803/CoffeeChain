@@ -39,16 +39,14 @@ module.exports.routes = {
 
 
   ////////////////////////// admin view
-
   '/main': 'ShowController.showMain',
-  '/login': 'ShowController.showLoginForm',
+  '/login': 'ShowController.showLogin',
   '/signup': 'ShowController.showSignUp',
   '/main/addShop': 'ShowController.showAddShop',
   '/main/addAccount-Boss': { action: 'admin/add-shop-info' },
   '/main/listShop': { action: 'admin/get-shop-info' },
   '/main/listAccount-Boss': 'ShowController.showListAccount',
   '/main/add-listSystem': 'ShowController.showAddListSystem',
-
   'GET /main/listAccount-Boss': 'admin/get-account-list',
   ///////////////////////// boss
   '/main-shop': 'ShowController.showMainShop',
@@ -59,8 +57,8 @@ module.exports.routes = {
   '/main-shop/list-drink': 'ShowController.showListDrink',
   '/main-shop/list-staff': 'ShowController.showListStaff',
   '/main-shop/report': 'ShowController.showReport',
-
   '/main-staff': 'ShowController.showSellStaff',
+  ////////////////////////// API 
 
   'GET /main-shop/list-staff': {
     action: 'staff/get-staffs',
@@ -80,7 +78,6 @@ module.exports.routes = {
       layout: 'layouts/layout-boss'
     }
   },
-  ////////////////////////// API system
   'GET /main-shop/list-drink': {
     action: 'boss/get-drink-list',
     locals: {
@@ -88,29 +85,34 @@ module.exports.routes = {
     }
   },
   'GET /main/list-drink': 'boss/get-drink-list',
-  ////////////////////////// API 
-  'post /login': 'UsersController.user_login',
-  'get /user': 'UsersController.user_profile',
+  'POST /login': 'UsersController.user_login',
+  'GET /logout':'UsersController.user_logOut',
+  'GET /user': 'UsersController.user_profile',
   'POST /signup': 'UsersController.user_SignUp',
+  //systemController
+  'POST /system': 'SystemController.create',
+  'GET /system': 'SystemController.getList',
+  'GET /system/:id': 'SystemController.getSystemInfo',
 
-  'post /drink/create': { action: 'drink/create' },
-  'put /drink/update': { action: 'drink/update' },
-  'get /shop/drinks': { action: 'drink/get-drink-info' },
-  'post /admin/newshop': { action: 'admin/create-shop' },
-  'get /admin/shopinfo': { action: 'admin/get-shop-info' },
-  'get  /shop/position': { action: 'boss/get-position' },
-  'post /shop/position': { action: 'boss/create-position' },
-  'post /shop/sell': { action: 'boss/create-bill' },
-  'post /shop/sell/billdetail': { action: 'boss/create-bill-detail' },
-  'get /system' : {action:'boss/get-system-info'},
-  'post /system' : {action: 'boss/create-system'},
+  'POST /drink/create': { action: 'drink/create' },
+  'PUT /drink/update': { action: 'drink/update' },
+  'GET /shop/drinks': { action: 'drink/get-drink-info' },
+  // 'GET /drink/info': { action: 'drink/get-drink-info' },
 
+  'POST /admin/newshop': { action: 'admin/create-shop' },
+  'GET /admin/shopinfo': { action: 'admin/get-shop-info' },
+  'GET  /shop/position': { action: 'boss/get-position' },
+  'POST /shop/position': { action: 'boss/create-position' },
+  'POST /shop/sell/billdetail': { action: 'boss/create-bill-detail' },
+  'GET /system' : {action:'boss/get-system-info'},
+  'POST /system' : {action: 'boss/create-system'},
+
+  // 'POST /user/login': 'UsersController.user_login',
 
   /////////////////////////// API customer
   'POST /login-customer': 'CustomerController.customerLogIn',
   'POST /signup-customer': 'CustomerController.customerSignUp',
-
-  'post /admin/newboss': { action: 'admin/create-boss-account' },
+  'POST /admin/newboss': { action: 'admin/create-boss-account' },
 
   /***************************************************************************
 *                                                                          *
@@ -123,13 +125,7 @@ module.exports.routes = {
 *                                                                          *
 ***************************************************************************/
 
-  //systemController
-  'POST /system': 'SystemController.create',
-  'GET /system': 'SystemController.getList',
-  'GET /system/:id': 'SystemController.getSystemInfo',
 
-  //userController
-  'POST /user/login': 'UsersController.user_login'
 
 
 

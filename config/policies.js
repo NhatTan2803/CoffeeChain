@@ -18,5 +18,25 @@ module.exports.policies = {
   ***************************************************************************/
 
   // '*': true,
+  'ShowController': {
+    'index': true,
+    'showLogin': true,
+    'showSignUp': true,
+    'showMain': 'authadmin',
+    '*': 'authadmin',
+
+    'showMainShop': 'authboss',
+    'showAddListPosition': 'authboss',
+    'showAddDrink': 'authboss',
+    'showAddStaff': 'authboss',
+    'showSell': 'auth',
+    'showListDrink': 'authboss',
+    'showListStaff': 'authboss',
+    'showReport': 'authboss',
+    'showSellStaff': 'auth'
+  },
+  'admin/add-shop-info': 'authadmin',
+  'admin/get-shop-info': 'authadmin',
+
 
 };

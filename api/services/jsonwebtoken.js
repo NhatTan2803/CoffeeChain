@@ -4,7 +4,7 @@ var key = 'abcasfasgvezsefewfwefnreiughfekvufdhvk';
 module.exports = {
     encode: function (data) {
         return jwt.sign({
-            email: data
+            info: data
         }, key);
     },
     decode: function (token) {
