@@ -14,14 +14,14 @@ module.exports = {
     address: {
       type: 'string'
     },
-/////////////
+    /////////////
     shops: {
       collection: 'Shop',
-      via:'systems'
+      via: 'systems'
     },
     points: {
       collection: 'Point',
-      via:'systems'
+      via: 'systems'
     }
 
   }

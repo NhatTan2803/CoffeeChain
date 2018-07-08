@@ -9,51 +9,50 @@ module.exports = {
 
   attributes: {
 
-    subTotal : {
-      type : 'number',
-      columnType : 'decimal'
+    // subTotal: {
+    //   type: 'number',
+    //   columnType: 'decimal'
+    // },
+
+    // vat: {
+    //   type: 'number',
+    //   columnType: 'float'
+    // },
+
+    total: {
+      type: 'number',
+      columnType: 'decimal'
     },
 
-    vat : {
-      type : 'number',
-      columnType : 'float'
+    cash: {
+      type: 'number',
+      columnType: 'decimal'
     },
 
-    total : {
-      type : 'number',
-      columnType : 'decimal'
+    change: {
+      type: 'number',
+      columnType: 'decimal'
     },
-
-    cash : {
-      type : 'number',
-      columnType : 'decimal'
-    },
-
-    change : {
-      type : 'number',
-      columnType : 'decimal'
-    },
-/////////////////
+    /////////////////
     users: {
       model: 'User',
       columnName: 'UserId',
-      required:true,
-    } ,   
-/////////////////
-    drinks : {
-      collection : 'Drink',
+    },
+    /////////////////
+    drinks: {
+      collection: 'Drink',
       via: 'bills',
-      through:'BillDetail'
+      through: 'BillDetail'
     },
   },
 
-  beforeCreate: function(valuesToSet, proceed) {
-    //Caculate subtotal
-    //Caculate VAT
-    //Caculate total = subtotal + vat 10%;
-    valuesToSet.total =subTotal + vat;
-    return proceed();
-  }
+  // beforeCreate: function (valuesToSet, proceed) {
+  //   //Caculate subtotal
+  //   //Caculate VAT
+  //   //Caculate total = subtotal + vat 10%;
+  //   valuesToSet.total = subTotal * vat;
+  //   return proceed();
+  // }
 
 };
 

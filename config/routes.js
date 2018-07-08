@@ -95,11 +95,15 @@ module.exports.routes = {
 
   'post /drink/create': { action: 'drink/create' },
   'put /drink/update': { action: 'drink/update' },
-  'get /drink/info': { action: 'drink/get-drink-info' },
+  'get /shop/drinks': { action: 'drink/get-drink-info' },
   'post /admin/newshop': { action: 'admin/create-shop' },
   'get /admin/shopinfo': { action: 'admin/get-shop-info' },
   'get  /shop/position': { action: 'boss/get-position' },
   'post /shop/position': { action: 'boss/create-position' },
+  'post /shop/sell': { action: 'boss/create-bill' },
+  'post /shop/sell/billdetail': { action: 'boss/create-bill-detail' },
+  'get /system' : {action:'boss/get-system-info'},
+  'post /system' : {action: 'boss/create-system'},
 
 
   /////////////////////////// API customer
