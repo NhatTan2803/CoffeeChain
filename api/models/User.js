@@ -54,21 +54,21 @@ module.exports = {
       type: 'string',
       isIn: ['admin', 'boss', 'staff']
     },
-////////////////
+    ////////////////
     shops: {
       model: 'Shop',
       columnName: 'ShopId',
     },
 
     positions: {
-      model: 'Role' ,
+      model: 'Role',
       columnName: 'PositionId',
 
     },
-/////////////////
+    /////////////////
     bills: {
       collection: 'Bill',
-      via:'users'
+      via: 'users'
     }
 
 

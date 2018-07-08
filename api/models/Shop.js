@@ -35,35 +35,35 @@ module.exports = {
       type: 'ref',
       columnType: 'date'
     },
-///////////////
+    ///////////////
     systems: {
       model: 'System',
       columnName: 'systemId'
     },
-///////////////
+    ///////////////
     positions: {
       collection: 'Role',
-      via:'shops'
+      via: 'shops'
     },
     users: {
       collection: 'User',
-      via:'shops'
+      via: 'shops'
     },
     drinks: {
       collection: 'Drink',
-      via:'shops'
+      via: 'shops'
     },
     points: {
       collection: 'Point',
-      via:'shops'
+      via: 'shops'
     },
     reviews: {
       collection: 'Review',
-      via:'shops'
+      via: 'shops'
     },
     historys: {
       collection: 'HistoryBuy',
-      via:'shops'
+      via: 'shops'
     }
 
   },

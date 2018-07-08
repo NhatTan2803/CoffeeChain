@@ -22,19 +22,19 @@ module.exports = {
     avatar: {
       type: 'string'
     },
-///////////////////
-    shops : {
-      model:'Shop',
+    ///////////////////
+    shops: {
+      model: 'Shop',
       columnName: 'ShopId',
       required: true
     },
-//////////////////
+    //////////////////
     bills: {
       collection: 'Bill',
       via: 'drinks',
-      through:'BillDetail'
+      through: 'BillDetail'
     }
-    
+
   },
 
 };

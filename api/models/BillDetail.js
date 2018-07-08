@@ -9,36 +9,36 @@ module.exports = {
 
   attributes: {
 
-    drinkName : {
-      type : 'string',
-      required : true
+    drinkName: {
+      type: 'string',
+      required: true
     },
 
-    quantity : {
-      type : 'number',
-      columnType : 'decimal'
+    quantity: {
+      type: 'number',
+      columnType: 'decimal'
     },
 
-    price : {
-      type : 'number',
-      columnType : 'decimal'
+    price: {
+      type: 'number',
+      columnType: 'decimal'
     },
 
-    drinkSubtotal : {
-      type : 'number',
-      columnType : 'decimal'
+    drinkSubtotal: {
+      type: 'number',
+      columnType: 'decimal'
     },
-//////////////////////////
-    bills : {
-      model : 'Bill',
-      columnName : 'BillId',
-      required : true
+    //////////////////////////
+    bills: {
+      model: 'Bill',
+      columnName: 'BillId',
+      required: true
     },
 
-    drinks : {
+    drinks: {
       model: 'Drink',
       columnName: 'DrinkId',
-      required:true,
+      required: true,
     }
   },
 };

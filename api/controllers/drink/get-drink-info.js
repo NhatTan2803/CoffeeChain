@@ -25,14 +25,14 @@ module.exports = {
     }
   },
   fn: async function (inputs, exits) {
-    await Shop.find({ id: inputs.shop })
-    .populate('drinks')
-    .exec(function (err, found) {
-      if (err) return exits.error(err);
-      if (found.length==0) {
-        return exits.notFound('Shop không tồn tại');
-      }
-      return exits.success(found);
-    })
-}
+    try {
+      const boss = await User.findOne({ id: this.req.cookies.id }).populate('shops');
+      const shop = await Shop.find({ id: boss.shops.id }).populate('drinks');
+      const drink = await Drink.find({ shops: boss.shops.id })
+      return exits.success(drink);
+    }
+    catch (err) {
+      return exits.error();
+    }
+  }
 }

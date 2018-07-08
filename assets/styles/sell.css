@@ -1,0 +1,21 @@
+.payView {
+    background-color: white;
+    width: 60%;
+    margin: auto;
+    text-align: center;
+    font-size: 30px;
+    padding: 10px;
+    display: block;
+}
+
+.payView div {
+    padding: 10px;
+}
+.inputStyle  {
+    text-align: center;
+    font-size: 30px;
+    float: right;
+    background-color: #eae9de;
+    border: 0;
+    margin-right: 100px;
+}
