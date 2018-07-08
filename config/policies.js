@@ -22,7 +22,6 @@ module.exports.policies = {
     'index': true,
     'showLogin': true,
     'showSignUp': true,
-    'showMain': 'authadmin',
     '*': 'authadmin',
 
     'showMainShop': 'authboss',
@@ -35,8 +34,20 @@ module.exports.policies = {
     'showReport': 'authboss',
     'showSellStaff': 'auth'
   },
+  'admin/get-account-list': 'authadmin',
   'admin/add-shop-info': 'authadmin',
   'admin/get-shop-info': 'authadmin',
+  'staff/get-staffs': 'authboss',
+  '/main-shop/preprocess': 'authboss',
+
+  '/main-shop/staff': 'authboss',
+  '/main-shop/list-drink': 'authboss',
+  'add-staff-account': 'authboss',
+  'staff/pass-positions-into-staff-page': 'authboss',
+  'staff/create': 'authboss',
+  'boss/get-drink-list':'authboss'
+  
+
 
 
 };

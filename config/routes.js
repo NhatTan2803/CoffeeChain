@@ -47,7 +47,6 @@ module.exports.routes = {
   '/main/listShop': { action: 'admin/get-shop-info' },
   '/main/listAccount-Boss': 'ShowController.showListAccount',
   '/main/add-listSystem': 'ShowController.showAddListSystem',
-  'GET /main/listAccount-Boss': 'admin/get-account-list',
   ///////////////////////// boss
   '/main-shop': 'ShowController.showMainShop',
   '/main-shop/list-position': 'ShowController.showAddListPosition',
@@ -93,7 +92,8 @@ module.exports.routes = {
   'POST /system': 'SystemController.create',
   'GET /system': 'SystemController.getList',
   'GET /system/:id': 'SystemController.getSystemInfo',
-
+  'GET /main/listAccount-Boss': 'admin/get-account-list',
+  
   'POST /drink/create': { action: 'drink/create' },
   'PUT /drink/update': { action: 'drink/update' },
   'GET /shop/drinks': { action: 'drink/get-drink-info' },
@@ -105,7 +105,8 @@ module.exports.routes = {
   'POST /shop/position': { action: 'boss/create-position' },
   'POST /shop/sell/billdetail': { action: 'boss/create-bill-detail' },
   'GET /system' : {action:'boss/get-system-info'},
-  'POST /system' : {action: 'boss/create-system'},
+  'POST /system': { action: 'boss/create-system' },
+
 
   // 'POST /user/login': 'UsersController.user_login',
 
