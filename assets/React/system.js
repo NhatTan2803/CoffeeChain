@@ -1,43 +1,46 @@
 
-class Position extends React.Component {
+class System extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            position: [],
+            system: [],
             submit: false,
         }
     }
     componentDidMount() {
-        this.showPosition()
+        this.showSystem()
     }
-    handleSubmit(e) {
+    handleSubmit = (e) => {
         e.preventDefault();
         const form = new FormData(e.target)
-        form.append('shops', this.state.shop[0].id)
-        fetch('/shop/position', {
+        fetch('/system', {
             method: 'POST',
             body: form
-        }).then(() => this.showPosition())
+        }).then(() => this.showSystem())
     }
-    showPosition() {
-        fetch('/shop/position', { credentials: "same-origin" })
+    showSystem() {
+        fetch('/system')
             .then((resp) => resp.json())
-            .then(shop => {
+            .then(system => {
                 this.setState({
-                    shop: shop,
-                    position: shop[0].positions,
+                    system: system,
                 })
             })
     }
     render() {
-        const { position } = this.state
-        const role = position.map(item => {
+        const buttonStyle = {
+            width: '53px'
+        }
+        const { system } = this.state
+        const allSystem = system.map(item => {
             return (
-                <tr key={item.id} >
+                <tr key={item.id}>
                     <td>{item.id}</td>
                     <td>{item.name}</td>
+                    <td>{item.address}</td>
                     <td>
-                        <button className="btn btn-xs btn-danger">Xoá</button>
+                        <button style={buttonStyle} className="btn btn-xs btn-danger">Xoá</button>
+                        <button className="btn btn-xs btn-info" data-toggle="modal" data-target="#systemModal">Chi Tiết</button>
                     </td>
                 </tr>
             )
@@ -47,12 +50,16 @@ class Position extends React.Component {
                 <div className="row">
                     <div className="col-sm-5">
                         <div className="panel panel-default">
-                            <div className="panel-heading font-bold">Thêm vị trí</div>
+                            <div className="panel-heading font-bold">Thêm hệ thống quán</div>
                             <div className="panel-body">
-                                <form onSubmit={e => this.handleSubmit(e)} >
+                                <form onSubmit={this.handleSubmit} >
                                     <div className="form-group">
-                                        <label>Tên vị trí</label>
-                                        <input id="position-name" type="text" name="name" className="form-control" placeholder="Tên vị trí" />
+                                        <label>Tên hệ thống</label>
+                                        <input id="system_name" type="text" name="name" className="form-control" placeholder="Tên hệ thống" />
+                                    </div>
+                                    <div className="form-group">
+                                        <label>Địa chỉ của hệ thống chung</label>
+                                        <input id="system_address" type="text" name="address" className="form-control" placeholder="Địa chỉ" />
                                     </div>
                                     <button type="submit" className="btn btn-sm btn-primary">Thêm</button>
                                 </form>
@@ -61,27 +68,28 @@ class Position extends React.Component {
                     </div>
                     <div className="col-sm-7">
                         <div className="panel panel-default">
-                            <div className="panel-heading font-bold">Danh sách vị trí</div>
+                            <div className="panel-heading font-bold">Danh sách hệ thống</div>
                             <div className="panel-body">
                                 <table className="table table-striped m-b-none">
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Vị trí</th>
+                                            <th>Hệ thống</th>
+                                            <th>Địa chỉ</th>
                                             <th>Tác vụ</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {role}
+                                        {allSystem}
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </div >
+                </div >
             </div >
         )
     }
 
 }
-ReactDOM.render(<Position />, document.querySelector('#position'));
+ReactDOM.render(<System />, document.querySelector('#system'));

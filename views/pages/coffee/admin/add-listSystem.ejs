@@ -10,60 +10,11 @@
                     </div>
                 </div>
             </div>
-            <div class="wrapper-md">
-                <div class="row">
-                    <div class="col-sm-5">
-                        <div class="panel panel-default">
-                            <div class="panel-heading font-bold">Thêm hệ thống quán</div>
-                            <div class="panel-body">
-                                <form role="form" #formSystem="ngForm">
-                                    <div class="form-group">
-                                        <label>Tên hệ thống</label>
-                                        <!-- Hien cac phan can them vao -->
-                                        <input id="system_name" type="text" [(ngModel)]="system_name" name="system_name" class="form-control" placeholder="Tên hệ thống">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Địa chỉ của hệ thống chung</label>
-                                        <!-- Hien cac phan can them vao -->
-                                        <input id="system_address" type="text" [(ngModel)]="system_address" name="system_name" class="form-control" placeholder="Địa chỉ">
-                                    </div>
-                                    <button type="button" (click)="addSystem()" class="btn btn-sm btn-primary">Thêm</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-7">
-                        <div class="panel panel-default">
-                            <div class="panel-heading font-bold">Danh sách hệ thống</div>
-                            <div class="panel-body">
-                                <table class="table table-striped m-b-none">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Hệ thống</th>
-                                            <th>Địa chỉ</th>
-                                            <th>Tác vụ</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr *ngFor="let sys of list_system; let i = index">
-                                            <td>{{i + 1}}</td>
-                                            <td>{{sys.system_name}}</td>
-                                            <td>{{sys.system_address}}</td>
-                                            <td>
-                                                <button (click)="delSystem(sys.system_id)" style="width:53px" class="btn btn-xs btn-danger">Xoá</button>
-
-                                                <button (click)="infoSystem(sys)" class="btn btn-xs btn-info" data-toggle="modal" data-target="#systemModal">Chi Tiết</button>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div id="system"></div>
+            <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+            <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+            <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+            <script src="/React/system.js" type="text/babel"></script>
         </div>
         <!-- / main -->
     </div>
