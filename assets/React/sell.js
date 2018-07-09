@@ -31,17 +31,17 @@ class Sell extends React.Component {
     }
     handleButtonAdd = (e) => {
         e.preventDefault();
-        const { shoppingCart } = this.state
+        const { shoppingCart, cash } = this.state
         shoppingCart.map(item => {
             if (item.id == e.target.value) {
                 item.quantity += 1
                 item.total = item.quantity * item.price
             }
         })
-        let total = this.state.shoppingCart.reduce((sum, item) => {
+        let total = shoppingCart.reduce((sum, item) => {
             return sum += item.total
         }, 0)
-        let change = this.state.cash - this.state.total
+        let change = cash - total
         change < 0 ? change = 0 : change
         this.setState({
             shoppingCart: shoppingCart,
@@ -51,16 +51,22 @@ class Sell extends React.Component {
     }
     handleButtonDelete = (e) => {
         e.preventDefault();
-        const { shoppingCart } = this.state
+        const { shoppingCart, cash } = this.state
         shoppingCart.map(item => {
             if (item.id == e.target.value) {
                 item.quantity -= 1
                 item.total = item.quantity * item.price
             }
         })
-
+        let total = shoppingCart.reduce((sum, item) => {
+            return sum += item.total
+        }, 0)
+        let change = cash - total
+        change < 0 ? change = 0 : change
         this.setState({
             shoppingCart: shoppingCart,
+            total: total,
+            change: change
         })
     }
     handleButtonSubmit = (e) => {
@@ -213,7 +219,7 @@ class Sell extends React.Component {
                         <div className="payView">
                             <div >Tổng tiền : {outputTotal} VNĐ</div>
                             <div >
-                                <span>Mã khách hàng:</span><input className="inputStyle" type="text" name="users" onChange={this.inputCustomerId}  />
+                                <span>Mã khách hàng:</span><input className="inputStyle" type="text" name="users" onChange={this.inputCustomerId} />
                             </div>
                             <div >
                                 <span>Tiền khách trả:</span><input className="inputStyle" type="text" name="cash" onChange={this.inputCash} value={outputCash} />
