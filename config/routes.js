@@ -83,6 +83,7 @@ module.exports.routes = {
       layout: 'layouts/layout-boss'
     }
   },
+  'POST /admin/newboss': { action: 'admin/create-boss-account' },
   'GET /main/list-drink': 'boss/get-drink-list',
   'POST /login': 'UsersController.user_login',
   'GET /logout':'UsersController.user_logOut',
@@ -114,7 +115,6 @@ module.exports.routes = {
   /////////////////////////// API customer
   'POST /login-customer': 'CustomerController.customerLogIn',
   'POST /signup-customer': 'CustomerController.customerSignUp',
-  'POST /admin/newboss': { action: 'admin/create-boss-account' },
 
   /***************************************************************************
 *                                                                          *
