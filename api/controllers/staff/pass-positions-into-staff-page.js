@@ -15,7 +15,7 @@ module.exports = {
   exits: {
     success: {
       responseType: 'view',
-      viewTemplatePath: 'pages/coffee/boss/addStaff',
+      viewTemplatePath: './pages/coffee/Boss/addStaff',
     }
   },
 
