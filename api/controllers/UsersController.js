@@ -68,7 +68,7 @@ module.exports = {
                     if (valid) {
                         req.session.userId = user.id
                         res.cookie('id', user.id)
-                        res.cookie('token',jwt.encode(user))
+                        res.cookie('token', jwt.encode(user))
                         if (user.permission === 'admin') {
                             return res.redirect('/main')
                         }
@@ -115,8 +115,8 @@ module.exports = {
         }
     },
     user_logOut: async (req, res) => {
-        res.cookie('token','')
-        res.redirect('/login')        
+        res.clearCookie('token')
+        res.redirect('/login')
     }
 
 
