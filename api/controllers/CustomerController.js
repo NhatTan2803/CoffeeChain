@@ -4,6 +4,7 @@
  * @description :: Server-side actions for handling incoming requests.
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
+var jwt = require('../services/jsonwebtoken');
 
 module.exports = {
     showLoginCus: async function (req, res) {
@@ -39,11 +40,15 @@ module.exports = {
                     if (valid) {
                         req.session.userId = customer.id
                         res.cookie('id', customer.id)
-                        res.redirect('/main-customer')
+                        res.cookie('token', jwt.encode(customer))
+                        return res.redirect('/main-customer')
                     }
+                    return res.redirect('/login-customer')
                 })
             }
-            return redirect('/login-customer')
+            else {
+                return res.redirect('/login-customer')
+            }
         } catch (error) {
             return console.log(error);
 
@@ -70,6 +75,26 @@ module.exports = {
             }
         }
     },
+    customerRate: async (req, res) => {
+        let { idbill, star, feedback } = req.allParams();
+        const idUser = await Bill.findOne({ id: idbill })
+        const idShop = await User.findOne({ id: idUser.id })
+        try {
+            await Review.create({
+                star: star,
+                content: feedback,
+                shops: idShop.shops
+            })
+                .then(() => {
+                    res.redirect('main-customer/rate')
+                });
+                
+            
+        } catch (error) {
+            return console.log(error);
+
+        }
+    }
 
 
 };

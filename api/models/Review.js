@@ -23,7 +23,6 @@ module.exports = {
     customers: {
       model: 'Customer',
       columnName: 'CustomerId',
-      required: true
     }
   },
 

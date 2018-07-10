@@ -115,6 +115,7 @@ module.exports.routes = {
   /////////////////////////// API customer
   'POST /login-customer': 'CustomerController.customerLogIn',
   'POST /signup-customer': 'CustomerController.customerSignUp',
+  'POST /rate':'CustomerController.customerRate'
 
   /***************************************************************************
 *                                                                          *

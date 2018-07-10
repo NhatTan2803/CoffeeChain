@@ -14,23 +14,23 @@
 
         <div class="col-md-8 contact-grids1 animated wow fadeInRight" data-wow-delay=".5s">
             <h1>Give me your feedback about shop</h1>
-            <form>
+            <form method="POST" action="/rate">
                 <div class="contact-form2">
                     <h4>ID Bill</h4>
 
-                    <input type="text" placeholder="" required="">
+                    <input type="text" placeholder="" name="idbill">
 
                 </div>
                 <div class="contact-form2">
                     <h4>Star(5/5)</h4>
 
-                    <input type="text" placeholder="" required="">
+                    <input type="text" placeholder="" name="star">
 
                 </div>
                 <div class="contact-me ">
                     <h4>Feedback</h4>
 
-                    <textarea type="text" placeholder="" required=""> </textarea>
+                    <textarea type="text" placeholder="" name="feedback"> </textarea>
                 </div>
                 <input type="submit" value="Submit">
             </form>
