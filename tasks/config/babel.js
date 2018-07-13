@@ -9,21 +9,35 @@
  *   https://sailsjs.com/anatomy/tasks/config/babel.js
  *
  */
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
   grunt.config.set('babel', {
-    dist: {
+    // dist: {
+    //   options: {
+    //     presets: [require('sails-hook-grunt/accessible/babel-preset-env')]
+    //   },
+    //   files: [
+    //     {
+    //       expand: true,
+    //       cwd: '.tmp/public',
+    //       src: ['js/**/*.js'],
+    //       dest: '.tmp/public'
+    //     }
+    //   ]
+    // },
+    dev: {
       options: {
-        presets: [require('sails-hook-grunt/accessible/babel-preset-env')]
+        presets: ['react', 'babel-preset-env'],
+        plugins: ['transform-class-properties',
+          'transform-react-jsx']
       },
-      files: [
-        {
-          expand: true,
-          cwd: '.tmp/public',
-          src: ['js/**/*.js'],
-          dest: '.tmp/public'
-        }
-      ]
+      files: [{
+        expand: true,
+        cwd: 'assets/js/',
+        src: ['**/*.jsx', '/React/*.jsx',],
+        dest: '.tmp/public/js/',
+        ext: '.js'
+      }]
     }
   });
 

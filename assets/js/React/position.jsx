@@ -1,3 +1,5 @@
+const React = require('react');
+const ReactDOM = require('react-dom');
 
 class Position extends React.Component {
     constructor(props) {
@@ -84,4 +86,5 @@ class Position extends React.Component {
     }
 
 }
+
 ReactDOM.render(<Position />, document.querySelector('#position'));

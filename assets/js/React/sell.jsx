@@ -1,3 +1,7 @@
+const React = require('react');
+const ReactDOM = require('react-dom');
+
+
 class Sell extends React.Component {
     constructor(props) {
         super(props);
@@ -163,7 +167,7 @@ class Sell extends React.Component {
                 )
             }
         })
-
+        let output = (a) => { return a.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") }
         const outputTotal = output(total)
         const outputCash = output(cash)
         const outputChange = output(change)
@@ -238,5 +242,5 @@ class Sell extends React.Component {
         )
     }
 }
-let output = (a) => { return a.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") }
+
 ReactDOM.render(<Sell />, document.querySelector('#sell'));
