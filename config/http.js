@@ -1,3 +1,5 @@
+const express = require('express')
+
 /**
  * HTTP Server Settings
  * (sails.config.http)
@@ -29,16 +31,17 @@ module.exports.http = {
     *                                                                          *
     ***************************************************************************/
 
-    // order: [
-    //   'cookieParser',
-    //   'session',
-    //   'bodyParser',
-    //   'compress',
-    //   'poweredBy',
-    //   'router',
-    //   'www',
-    //   'favicon',
-    // ],
+    order: [
+      'cookieParser',
+      'session',
+      'bodyParser',
+      'compress',
+      'poweredBy',
+      'router',
+      'www',
+      'favicon',
+      'uploads',
+    ],
 
 
     /***************************************************************************
@@ -55,6 +58,7 @@ module.exports.http = {
     //   return middlewareFn;
     // })(),
 
+    uploads: express.static('.')
   },
 
 };

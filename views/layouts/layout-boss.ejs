@@ -286,7 +286,7 @@
 
                             <li class="divider"></li>
                             <li>
-                                <a onclick="logout()">Logout</a>
+                                <a href="/logout">Logout</a>
                             </li>
                         </ul>
                         <!-- / dropdown -->
@@ -637,19 +637,18 @@
         </footer>
         <!-- / footer -->
     </div>
-    <script>
-        function logout(req, res) {
-            $.ajax({
-                type: 'GET',
-                url: 'http://localhost:1337/logout'
-            });
-        }
-    </script>
-
     <script src="/libs/jquery/jquery/dist/jquery.js"></script>
     <script src="/libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
     <!--SCRIPTS-->
     <script src="/dependencies/sails.io.js"></script>
+    <script src="/js/React/bposition.js"></script>
+    <script src="/js/React/bsell.js"></script>
+    <script src="/js/React/bshopCreate.js"></script>
+    <script src="/js/React/bsystem.js"></script>
+    <script src="/js/React/position.js"></script>
+    <script src="/js/React/sell.js"></script>
+    <script src="/js/React/shopCreate.js"></script>
+    <script src="/js/React/system.js"></script>
     <script src="/js/ui-client.js"></script>
     <script src="/js/ui-jp.config.js"></script>
     <script src="/js/ui-jp.js"></script>

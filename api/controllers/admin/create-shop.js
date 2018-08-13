@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
 
 
@@ -56,7 +58,7 @@ module.exports = {
 
 
   fn: async function (inputs, exits) {
-    Shop.create({
+    const shop = await Shop.create({
       name: inputs.name,
       email: inputs.email,
       address: inputs.address,
@@ -66,31 +68,27 @@ module.exports = {
       dayTo: inputs.dayTo,
       systems: inputs.systems
     }).fetch()
-      .exec(function (err, created) {
-        if (err) {
-          return exits.error('/main/addShop');
-        }
-        inputs.photo.upload({
-          dirname: require('path').resolve(sails.config.appPath, 'assets/images/shops'),
-          saveAs: function (__newFileStream, next) { return next(undefined, created.id + '-shop-avatar.png'); },
-          maxBytes: 1000000
-        }, function (err, uploadedFiles) {
-          if (err) {
-            return exits.error('/main/addShop');
-          }
-          if (uploadedFiles.length > 0) {
-            Shop.update({
-              id: created.id
-            }, {
-                avatar: require('path').basename(uploadedFiles[0].fd)
-              }).exec((err, updated) => {
-                if (err) {
-                  return exits.error('/main/addShop');
-                }
-                return exits.success('/main/listShop');
-              });
-          }
-        });
+    
+    if (!shop) {
+      return exits.error('/main/addShop')
+    }
+
+    const files = await new Promise((resolve, reject) => {
+      inputs.photo.upload({
+        dirname: path.resolve(sails.config.appPath, 'uploads'),
+        saveAs: shop.id + '-shop-avatar.png',
+        maxBytes: 1000000
+      }, (error, result) => {
+        error ? reject(error) : resolve(result)
       })
+    })
+
+    const result = await Shop.update({ id: shop.id }, { avatar: path.basename(files[0].fd) }).fetch()
+
+    if (!result) {
+      return exits.error('/main/addShop')
+    }
+
+    return exits.success('/main/listShop')
   }
 };
