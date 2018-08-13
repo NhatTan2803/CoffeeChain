@@ -286,7 +286,7 @@
 
                             <li class="divider"></li>
                             <li>
-                                <a onclick="logout()">Logout</a>
+                                <a href="/logout">Logout</a>
                             </li>
                         </ul>
                         <!-- / dropdown -->
@@ -637,15 +637,6 @@
         </footer>
         <!-- / footer -->
     </div>
-    <script>
-        function logout(req, res) {
-            $.ajax({
-                type: 'GET',
-                url: 'http://localhost:1337/logout'
-            });
-        }
-    </script>
-
     <script src="/libs/jquery/jquery/dist/jquery.js"></script>
     <script src="/libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
     <!--SCRIPTS-->
