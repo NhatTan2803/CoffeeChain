@@ -39,7 +39,7 @@ class Position extends React.Component {
                     <td>{item.id}</td>
                     <td>{item.name}</td>
                     <td>
-                        <button className="btn btn-xs btn-danger">Xoá</button>
+                        <button className="btn btn-xs btn-danger">Delete</button>
                     </td>
                 </tr>
             )
@@ -49,28 +49,28 @@ class Position extends React.Component {
                 <div className="row">
                     <div className="col-sm-5">
                         <div className="panel panel-default">
-                            <div className="panel-heading font-bold">Thêm vị trí</div>
+                            <div className="panel-heading font-bold">Thêm Position</div>
                             <div className="panel-body">
                                 <form onSubmit={e => this.handleSubmit(e)} >
                                     <div className="form-group">
-                                        <label>Tên vị trí</label>
-                                        <input id="position-name" type="text" name="name" className="form-control" placeholder="Tên vị trí" />
+                                        <label>Name Position</label>
+                                        <input id="position-name" type="text" name="name" className="form-control" placeholder="Position" />
                                     </div>
-                                    <button type="submit" className="btn btn-sm btn-primary">Thêm</button>
+                                    <button type="submit" className="btn btn-sm btn-primary">Add</button>
                                 </form>
                             </div>
                         </div>
                     </div>
                     <div className="col-sm-7">
                         <div className="panel panel-default">
-                            <div className="panel-heading font-bold">Danh sách vị trí</div>
+                            <div className="panel-heading font-bold">List position</div>
                             <div className="panel-body">
                                 <table className="table table-striped m-b-none">
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Vị trí</th>
-                                            <th>Tác vụ</th>
+                                            <th>Position</th>
+                                            <th>Acction</th>
                                         </tr>
                                     </thead>
                                     <tbody>

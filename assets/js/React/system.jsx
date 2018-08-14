@@ -40,7 +40,7 @@ class System extends React.Component {
                     <td>{item.name}</td>
                     <td>{item.address}</td>
                     <td>
-                        <button style={buttonStyle} className="btn btn-xs btn-danger">Xoá</button>
+                        <button style={buttonStyle} className="btn btn-xs btn-danger">Delete</button>
                         <button className="btn btn-xs btn-info" data-toggle="modal" data-target="#systemModal">Chi Tiết</button>
                     </td>
                 </tr>
@@ -51,33 +51,33 @@ class System extends React.Component {
                 <div className="row">
                     <div className="col-sm-5">
                         <div className="panel panel-default">
-                            <div className="panel-heading font-bold">Thêm hệ thống quán</div>
+                            <div className="panel-heading font-bold"> System</div>
                             <div className="panel-body">
                                 <form onSubmit={this.handleSubmit} >
                                     <div className="form-group">
-                                        <label>Tên hệ thống</label>
-                                        <input id="system_name" type="text" name="name" className="form-control" placeholder="Tên hệ thống" />
+                                        <label>System name</label>
+                                        <input id="system_name" type="text" name="name" className="form-control" placeholder="System name" />
                                     </div>
                                     <div className="form-group">
-                                        <label>Địa chỉ của hệ thống chung</label>
-                                        <input id="system_address" type="text" name="address" className="form-control" placeholder="Địa chỉ" />
+                                        <label>Address</label>
+                                        <input id="system_address" type="text" name="address" className="form-control" placeholder="Address" />
                                     </div>
-                                    <button type="submit" className="btn btn-sm btn-primary">Thêm</button>
+                                    <button type="submit" className="btn btn-sm btn-primary"></button>
                                 </form>
                             </div>
                         </div>
                     </div>
                     <div className="col-sm-7">
                         <div className="panel panel-default">
-                            <div className="panel-heading font-bold">Danh sách hệ thống</div>
+                            <div className="panel-heading font-bold">List system</div>
                             <div className="panel-body">
                                 <table className="table table-striped m-b-none">
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Hệ thống</th>
-                                            <th>Địa chỉ</th>
-                                            <th>Tác vụ</th>
+                                            <th>System</th>
+                                            <th>Address</th>
+                                            <th>Acction</th>
                                         </tr>
                                     </thead>
                                     <tbody>

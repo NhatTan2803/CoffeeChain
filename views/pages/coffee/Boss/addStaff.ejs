@@ -6,7 +6,7 @@
       <div class="bg-light lter b-b wrapper-md">
         <div class="row">
           <div class="col-sm-12 col-xs-12">
-            <h1 class="m-n font-thin h3 text-black">Thêm Nhân Viên</h1>
+            <h1 class="m-n font-thin h3 text-black">Add staff</h1>
           </div>
         </div>
       </div>
@@ -18,53 +18,53 @@
 
             <div class="col-sm-9 col-xs-12 col-md-10">
               <div class="panel panel-default">
-                <div class="panel-heading font-bold">Thêm</div>
+                <div class="panel-heading font-bold"></div>
                 <div class="panel-body">
                   <div class="col-sm-3">
                     <div class="form-group">
-                      <label>Tên nhân viên</label>
-                      <input id="staff-name" type="text" name="name" class="form-control" placeholder="Nhập tên nhân viên">
+                      <label>Add staff</label>
+                      <input id="staff-name" type="text" name="name" class="form-control" placeholder=" Name">
                     </div>
                   </div>
                   <div class="col-sm-3">
                     <div class="form-group">
-                      <label>Địa chỉ email</label>
-                      <input id="staff-email" type="text" name="email" class="form-control" placeholder="Nhập email">
+                      <label>Address email</label>
+                      <input id="staff-email" type="text" name="email" class="form-control" placeholder=" email">
                     </div>
                   </div>
                   <div class="col-sm-3">
                     <div class="form-group">
-                      <label>Mật khẩu</label>
-                      <input id="staff-password" type="text" name="password" class="form-control" placeholder="Nhập mật khẩu">
+                      <label>Password</label>
+                      <input id="staff-password" type="text" name="password" class="form-control" placeholder=" Password">
                     </div>
                   </div>
                   <div class="col-sm-3">
                     <div class="form-group">
-                      <label>Số CMND</label>
-                      <input id="staff-Idcard" type="text" name="idcard" class="form-control" placeholder="Nhập CMND">
+                      <label>ID</label>
+                      <input id="staff-Idcard" type="text" name="idcard" class="form-control" placeholder=" CMND">
                     </div>
                   </div>
                   <div class="col-sm-3">
                     <div class="form-group">
-                      <label>Ngày sinh</label>
-                      <input id="staff-birthday" type="date" name="birthday" class="form-control" placeholder="Nhập ngày sinh">
+                      <label>Birthday</label>
+                      <input id="staff-birthday" type="date" name="birthday" class="form-control" placeholder=" Birthday">
                     </div>
                   </div>
                   <div class="col-sm-3">
                     <div class="form-group">
-                      <label>Gới tính</label>
+                      <label>Gender</label>
                       <select id="staff-sex" name="gender" class="form-control">
-                        <option value="undefined">Chọn Giới tính</option>
-                        <option value="male">Nam</option>
-                        <option value="female">Nữ</option>
+                        <option value="undefined">Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
                       </select>
                     </div>
                   </div>
                   <div class="col-sm-3">
                     <div class="form-group">
-                      <label>Vị trí</label>
+                      <label>Position</label>
                       <select id="staff-position" name="position" class="form-control">
-                        <option value="undefined">Chọn vị trí</option>
+                        <option value="undefined">Position</option>
                         <% positions.forEach((position)=>{%>
                           <option value="<%=position.id%>">
                             <%= position.name%>
@@ -75,23 +75,23 @@
                   </div>
                   <div class="col-sm-3">
                     <div class="form-group">
-                      <label>Số điện thoại</label>
-                      <input id="staff-phone" type="text" name="phone" class="form-control" placeholder="Nhập số điện thoại">
+                      <label>Phone</label>
+                      <input id="staff-phone" type="text" name="phone" class="form-control" placeholder=" Phone">
                     </div>
                   </div>
                   <div class="col-sm-3">
                     <div class="form-group">
-                      <label>Địa chỉ</label>
-                      <input id="staff-address" type="text" name="address" class="form-control" placeholder="Nhập địa chỉ">
+                      <label>Address</label>
+                      <input id="staff-address" type="text" name="address" class="form-control" placeholder=" Address">
                     </div>
                   </div>
                   <div class="col-sm-3">
                     <div class="form-group">
-                      <label>Trạng Thái</label>
+                      <label>Status</label>
                       <select id="staff-active" name="active" class="form-control">
-                        <option value="undefined">Chọn chế độ</option>
-                        <option value="on">Hoạt động</option>
-                        <option value="off">Dừng</option>
+                        <option value="undefined">Select status</option>
+                        <option value="on">On</option>
+                        <option value="off">Off</option>
                       </select>
                     </div>
                   </div>
@@ -100,7 +100,7 @@
                 </div>
 
                 <div class="panel-footer">
-                  <button type="submit" class="btn btn-primary btn-block">Thêm nhân viên</button>
+                  <button type="submit" class="btn btn-primary btn-block">Add staff</button>
                 </div>
 
               </div>
@@ -108,13 +108,13 @@
 
             <div class="col-sm-3 col-xs-12 col-md-2 staff-avatar-wapper">
               <div class="panel panel-default">
-                <div class="panel-heading font-bold">Ảnh Chủ Quán</div>
+                <div class="panel-heading font-bold">Image</div>
                 <div class="panel-body">
                   <div class="staff-avatar" style="display: block; text-align: center;">
                     <img id="blah" src="" style="width: 100%" />
                     <!-- <img *ngIf="staff_avatar != ''" [src]="folder_avatar + staff_avatar" style="width: 100%" /> -->
                     <label class="btn btn-default btn-file" style="margin-top: 17px">
-                      Chọn ảnh
+                      Choose Image
                       <input id="imgInp" type="file" multiple="multiple" name="photo" style="display: none;" accept="image/png, image/jpeg" />
                     </label>
                   </div>

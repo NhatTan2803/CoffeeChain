@@ -6,7 +6,7 @@
             <div class="bg-light lter b-b wrapper-md">
                 <div class="row">
                     <div class="col-sm-12 col-xs-12">
-                        <h1 class="m-n font-thin h3 text-black">Danh sách đồ uống của quán</h1>
+                        <h1 class="m-n font-thin h3 text-black">List drink</h1>
                     </div>
                 </div>
             </div>
@@ -22,10 +22,10 @@
                                                     <thead>
                                                         <tr>
                                                             <th>STT</th>
-                                                            <th>Ảnh</th>
-                                                            <th>Tên </th>
-                                                            <th>Giá</th>
-                                                            <th style="width:120px">Công Cụ</th>
+                                                            <th>Image</th>
+                                                            <th>Name </th>
+                                                            <th>Price</th>
+                                                            <th style="width:120px">Action</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -44,7 +44,7 @@
                                                                     <td><%= drinkList[index].price %></td>
                                                                     <td>
                                                                         <button class="btn btn-xs btn-danger">Xóa</button>
-                                                                        <button (click)="" class="btn btn-xs btn-info" data-toggle="modal" data-target="#drinkModal">Xem </button>
+                                                                        <button (click)="" class="btn btn-xs btn-info" data-toggle="modal" data-target="#drinkModal">See </button>
                                                                     </td>
                                                             </tr>  
                                                         <%}%>
@@ -77,14 +77,14 @@
                     <div class="row">
                         <div class="col-sm-3 col-xs-12 col-md-2 drink-avatar-wapper">
                             <div class="panel panel-default">
-                                <div class="panel-heading font-bold">Ảnh</div>
+                                <div class="panel-heading font-bold">Image</div>
                                 <div class="panel-body">
                                     <div class="drink-avatar" style="display: block; text-align: center;">
                                         <img *ngIf="drink_avatar === ''" src="https://cdn3.iconfinder.com/data/icons/yummicon-pro/100/046_Water-512.png" width="120"
                                             height="150" />
                                         <img *ngIf="drink_avatar != ''" [src]="folder_avatar + drink_avatar" width="120" height="150" />
                                         <label class="btn btn-default btn-file" style="margin-top: 17px">
-                                            Chọn ảnh
+                                            Choose Image
                                             <input id="drink-avatar" (change)="uploadImg($event)" type="file" style="display: none;" />
                                         </label>
                                     </div>
@@ -98,14 +98,14 @@
                                     <form role="form" #formAddDrink="ngForm">
                                         <div class="col-sm-3">
                                             <div class="form-group">
-                                                <label>Tên đồ uống</label>
-                                                <input id="drink-name" type="text" [(ngModel)]="drink_name" name="drink_name" class="form-control" placeholder="Nhập tên đồ uống">
+                                                <label>Drink name</label>
+                                                <input id="drink-name" type="text" [(ngModel)]="drink_name" name="drink_name" class="form-control" placeholder="Nhập Drink name">
                                             </div>
                                         </div>
                                         <div class="col-sm-3">
                                             <div class="form-group">
-                                                <label>Giá đồ uống</label>
-                                                <input id="drink-price" type="text" [(ngModel)]="drink_price" name="drink_price" class="form-control" placeholder="Nhập giá">
+                                                <label>Price</label>
+                                                <input id="drink-price" type="text" [(ngModel)]="drink_price" name="drink_price" class="form-control" placeholder="Nhập Price">
                                             </div>
                                         </div>
                                         <!-- <button type="button" (click)="addRoom()" class="btn btn-sm btn-primary">Thêm</button> -->

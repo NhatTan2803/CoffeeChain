@@ -20,7 +20,7 @@ module.exports = {
     //     if (!password) {
     //         return res.json({
     //             status: 'error',
-    //             message: 'Bạn chưa nhập mật khẩu'
+    //             message: 'Bạn chưa nhập Password'
     //         });
     //     }
     //     Users.findOne({ email }).exec(function (err, found) {
@@ -47,7 +47,7 @@ module.exports = {
     //                         if (!valid) {
     //                             return res.json({
     //                                 status: 'error',
-    //                                 message: 'Tài khoản không tồn tại'
+    //                                 message: 'Account không tồn tại'
     //                             })
     //                         }
     //                     }

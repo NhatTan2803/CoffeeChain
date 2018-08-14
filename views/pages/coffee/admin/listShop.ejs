@@ -6,7 +6,7 @@
             <div class="bg-light lter b-b wrapper-md">
                 <div class="row">
                     <div class="col-sm-12 col-xs-12">
-                        <h1 class="m-n font-thin h3 text-black">Danh sách các quán</h1>
+                        <h1 class="m-n font-thin h3 text-black"></h1>
                     </div>
                 </div>
             </div>
@@ -21,13 +21,13 @@
                                             <thead>
                                                 <tr>
                                                     <th>STT</th>
-                                                    <th>Ảnh</th>
-                                                    <th>Tên Quán</th>
-                                                    <th>SĐT</th>
-                                                    <th>Ngày Thuê</th>
-                                                    <th>Ngày Hết</th>
-                                                    <th>Hệ Thống</th>
-                                                    <th style="width:120px">Công Cụ</th>
+                                                    <th>Image</th>
+                                                    <th>Shop Name</th>
+                                                    <th>Phone</th>
+                                                    <th>From</th>
+                                                    <th>To</th>
+                                                    <th>System</th>
+                                                    <th style="width:120px">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -57,7 +57,7 @@
                                                             </td>
                                                             <td>
                                                                 <button class="btn btn-xs btn-danger">Xóa</button>
-                                                                <button (click)="selectShop(st)" class="btn btn-xs btn-info" data-toggle="modal" data-target="#staffModal">Xem </button>
+                                                                <button (click)="selectShop(st)" class="btn btn-xs btn-info" data-toggle="modal" data-target="#staffModal">See </button>
                                                             </td>
                                                         </tr>
                                                         <% }); %>
@@ -87,13 +87,13 @@
                     <div class="row">
                         <div class="col-sm-3 col-xs-12 col-md-2 staff-avatar-wapper">
                             <div class="panel panel-default">
-                                <div class="panel-heading font-bold">Ảnh Quán</div>
+                                <div class="panel-heading font-bold">Image</div>
                                 <div class="panel-body">
                                     <div class="staff-avatar" style="display: block; text-align: center;">
                                         <img *ngIf="shop_avatar ==null" src="http://simpleicon.com/wp-content/uploads/shop-3.png" style="width: 100%" />
                                         <img *ngIf="shop_avatar !=null" [src]="folder_avatar + shop_avatar" style="width: 100%" />
                                         <label class="btn btn-default btn-file" style="margin-top: 17px">
-                                            Chọn ảnh
+                                            Choose Image
                                             <input id="shop-avatar" (change)="uploadImg($event)" type="file" style="display: none;" />
                                         </label>
                                     </div>
@@ -107,45 +107,45 @@
                                     <form role="form" #formProfileShop="ngForm">
                                         <div class="col-sm-3">
                                             <div class="form-group">
-                                                <label>Tên cửa hàng</label>
-                                                <input id="shop-name" type="text" [(ngModel)]="shop_name" name="shop_name" class="form-control" placeholder="Nhập tên cửa hàng">
+                                                <label>Shop name</label>
+                                                <input id="shop-name" type="text" [(ngModel)]="shop_name" name="shop_name" class="form-control" placeholder="Nhập Shop name">
                                             </div>
                                         </div>
                                         <div class="col-sm-3">
                                             <div class="form-group">
-                                                <label>Địa chỉ email</label>
+                                                <label>Address email</label>
                                                 <input id="shop-email" type="text" [(ngModel)]="shop_email" name="shop_email" class="form-control" placeholder="Nhập email">
                                             </div>
                                         </div>
                                         <div class="col-sm-3">
                                             <div class="form-group">
-                                                <label>Số điện thoại</label>
-                                                <input id="shop-phone" type="text" [(ngModel)]="shop_phone" name="shop_phone" class="form-control" placeholder="Nhập số điện thoại">
+                                                <label>Phone</label>
+                                                <input id="shop-phone" type="text" [(ngModel)]="shop_phone" name="shop_phone" class="form-control" placeholder="Nhập Phone">
                                             </div>
                                         </div>
                                         <div class="col-sm-3">
                                             <div class="form-group">
-                                                <label>Ngày thuê</label>
-                                                <input id="shop-dayFrom" type="text" class="form-control" placeholder="Nhập ngày thuê">
+                                                <label>From</label>
+                                                <input id="shop-dayFrom" type="text" class="form-control" placeholder="Nhập From">
                                             </div>
                                         </div>
                                         <div class="col-sm-3">
                                             <div class="form-group">
-                                                <label>Ngày hết hạn</label>
-                                                <input id="shop-dayTo" type="text" class="form-control" placeholder="Nhập ngày hết hạn">
+                                                <label>To hạn</label>
+                                                <input id="shop-dayTo" type="text" class="form-control" placeholder="Nhập To hạn">
                                             </div>
                                         </div>
                                         <div class="col-sm-3">
                                             <div class="form-group">
-                                                <label>Địa chỉ</label>
-                                                <input id="shop-address" type="text" [(ngModel)]="shop_address" name="shop_address" class="form-control" placeholder="Nhập địa chỉ">
+                                                <label>Address</label>
+                                                <input id="shop-address" type="text" [(ngModel)]="shop_address" name="shop_address" class="form-control" placeholder="Nhập Address">
                                             </div>
                                         </div>
                                         <div class="col-sm-3">
                                             <div class="form-group">
-                                                <label>Hệ thống</label>
+                                                <label>System</label>
                                                 <select id="shop-system" [(ngModel)]="shop_system" name="shop_system" class="form-control">
-                                                    <option value="undefined">Chọn hệ thống</option>
+                                                    <option value="undefined">Chọn System</option>
                                                     <option *ngFor="let sys of listSystem" [ngValue]="sys['system_id']">{{sys['system_name']}}</option>
                                                 </select>
                                             </div>

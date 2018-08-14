@@ -6,7 +6,7 @@
             <div class="bg-light lter b-b wrapper-md">
                 <div class="row">
                     <div class="col-sm-12 col-xs-12">
-                        <h1 class="m-n font-thin h3 text-black">Thêm tài khoản</h1>
+                        <h1 class="m-n font-thin h3 text-black">Add account</h1>
                     </div>
                 </div>
             </div>
@@ -14,7 +14,7 @@
                 <div class="row">
                     <div class="col-sm-3 col-xs-12 col-md-2 boss-avatar-wapper">
                         <div class="panel panel-default">
-                            <div class="panel-heading font-bold">Ảnh Chủ Quán</div>
+                            <div class="panel-heading font-bold">Imgae</div>
                             <div class="panel-body">
                                 <div class="boss-avatar" style="display: block; text-align: center;">
                                     <img  src="https://i.imgur.com/jNNT4LE.jpg" style="width: 100%" />
@@ -24,38 +24,38 @@
                     </div>
                     <div class="col-sm-9 col-xs-12 col-md-10">
                         <div class="panel panel-default">
-                            <div class="panel-heading font-bold">Thêm</div>
+                            <div class="panel-heading font-bold">Add</div>
                             <div class="panel-body">
                                 <form role="form" id="addBoss" method="POST" action="/admin/newboss" enctype="multipart/form-data">
                                     <div class="col-sm-3">
                                         <div class="form-group">
-                                            <label>Tên chủ quán</label>
-                                            <input  type="text" name="name" class="form-control" placeholder="Nhập tên của chủ quán">
+                                            <label>Name</label>
+                                            <input  type="text" name="name" class="form-control" placeholder="Name">
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
-                                            <label>Địa chỉ email</label>
-                                            <input  type="email" name="email" class="form-control" placeholder="Nhập email">
+                                            <label>Email</label>
+                                            <input  type="email" name="email" class="form-control" placeholder="Email">
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
-                                            <label>Mật khẩu</label>
-                                            <input  type="text" name="password" class="form-control" placeholder="Nhập mật khẩu">
+                                            <label>Password</label>
+                                            <input  type="text" name="password" class="form-control" placeholder="Password">
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
-                                            <label>CMND</label>
-                                            <input  type="text" name="idCard" class="form-control" placeholder="Nhập CMND">
+                                            <label>ID</label>
+                                            <input  type="text" name="idCard" class="form-control" placeholder="ID">
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
-                                            <label>Chủ Quán</label>
+                                            <label>Boss Shop</label>
                                             <select name="shops" class="form-control">
-                                                <option value="undefined">Chọn quán</option>
+                                                <option value="undefined">Select shop</option>
                                                 <%found.forEach((shop)=>{%>
                                                     <option value="<%=shop.id%>">
                                                         <%=shop.name%>
@@ -66,52 +66,52 @@
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
-                                            <label>Ngày sinh</label>
+                                            <label>Birthday</label>
                                             <input  name="birthday" type="date" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
-                                            <label>Gới tính</label>
+                                            <label>Gender</label>
                                             <select name="gender" class="form-control">
-                                                <option value="undefined">Chọn Giới tính</option>
-                                                <option value="male">Nam</option>
-                                                <option value="female">Nữ</option>
+                                                <option value="undefined">Gender</option>
+                                                <option value="male">Male</option>
+                                                <option value="female">Female</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
-                                            <label>Số điện thoại</label>
-                                            <input  type="text" name="phone" class="form-control" placeholder="Nhập số điện thoại">
+                                            <label>Phone</label>
+                                            <input  type="text" name="phone" class="form-control" placeholder="Phone">
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
-                                            <label>Địa chỉ</label>
-                                            <input  type="text" name="address" class="form-control" placeholder="Nhập địa chỉ">
+                                            <label>Address</label>
+                                            <input  type="text" name="address" class="form-control" placeholder="Address">
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
-                                            <label>Trạng Thái</label>
+                                            <label>Status</label>
                                             <select  name="active" class="form-control">
-                                                <option value="undefined">Chọn chế độ</option>
-                                                <option value="on">Hoạt động</option>
-                                                <option value="off">Dừng</option>
+                                                <option value="undefined">Select</option>
+                                                <option value="on">On</option>
+                                                <option value="off">Off</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
-                                            <label>Chọn ảnh</label>
+                                            <label></label>
                                             <input  class="form-control" name="photo" type="file" accept=".jpg, .jpeg, .png" >
                                         </div>
                                     </div>
                                 </form>
                             </div>
                             <div class="panel-footer">
-                                <button class="btn btn-primary btn-block" type="submit" form="addBoss">Thêm tài khoản</button>
+                                <button class="btn btn-primary btn-block" type="submit" form="addBoss">Add Account</button>
                             </div>
                         </div>
                     </div>

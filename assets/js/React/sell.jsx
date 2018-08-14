@@ -184,9 +184,9 @@ class Sell extends React.Component {
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Tên</th>
-                                                    <th>Giá</th>
-                                                    <th>Tác vụ</th>
+                                                    <th>Name</th>
+                                                    <th>Price</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -194,7 +194,7 @@ class Sell extends React.Component {
                                             </tbody>
                                         </table>
                                     </div>
-                                    <button type="button" className="btn btn-sm btn-primary">Thêm</button>
+                                    <button type="button" className="btn btn-sm btn-primary">Order</button>
                                 </form>
                             </div >
                         </div >
@@ -207,11 +207,11 @@ class Sell extends React.Component {
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Tên</th>
-                                            <th>Số Lượng</th>
-                                            <th>Đơn Giá</th>
-                                            <th>Thành Tiền</th>
-                                            <th>Tác vụ</th>
+                                            <th>Name</th>
+                                            <th>Quality</th>
+                                            <th>Price</th>
+                                            <th>Total</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -221,18 +221,18 @@ class Sell extends React.Component {
                             </div>
                         </div>
                         <div className="payView">
-                            <div >Tổng tiền : {outputTotal} VNĐ</div>
+                            <div >Total money : {outputTotal} VNĐ</div>
                             <div >
-                                <span>Mã khách hàng:</span><input className="inputStyle" type="text" name="users" onChange={this.inputCustomerId} />
+                                <span>Customer ID</span><input className="inputStyle" type="text" name="users" onChange={this.inputCustomerId} />
                             </div>
                             <div >
-                                <span>Tiền khách trả:</span><input className="inputStyle" type="text" name="cash" onChange={this.inputCash} value={outputCash} />
+                                <span>Receive:</span><input className="inputStyle" type="text" name="cash" onChange={this.inputCash} value={outputCash} />
                             </div>
                             <div >
-                                <span>Tiền trả khách:</span><input className="inputStyle" type="text" disabled value={outputChange} />
+                                <span>Return:</span><input className="inputStyle" type="text" disabled value={outputChange} />
                             </div>
                             <div >
-                                <button type="submit" onClick={this.handleButtonSubmit} className="btn btn-sm btn-primary" > Thanh Toán</button >
+                                <button type="submit" onClick={this.handleButtonSubmit} className="btn btn-sm btn-primary" > Order drink </button >
                             </div>
                         </div>
 
