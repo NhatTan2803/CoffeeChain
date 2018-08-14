@@ -75,7 +75,7 @@ module.exports = {
 
     const files = await new Promise((resolve, reject) => {
       inputs.photo.upload({
-        dirname: path.resolve(sails.config.appPath, 'uploads/shops'),
+        dirname: path.resolve(sails.config.appPath, 'uploads/imgShops'),
         saveAs: shop.id + '-shop-avatar.png',
         maxBytes: 1000000
       }, (error, result) => {
