@@ -32,7 +32,7 @@ module.exports = {
         var listOrderShop = await Shop.find()
         console.log(listOrderShop);
 
-        return res.view('./pages/customer/ShopToOrder-customer', { listOrderShop: listOrderShop, layout: 'layouts/layout-intro' })
+        return res.view('./pages/customer/listShopOrder-customer', { listOrderShop: listOrderShop, layout: 'layouts/layout-intro' })
     },
     showOrderForCus: async function (req, res) {
         return res.view('./pages/customer/orderForCustomer-customer', {  layout: 'layouts/layout-intro' })
