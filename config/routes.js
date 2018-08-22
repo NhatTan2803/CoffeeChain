@@ -36,7 +36,7 @@ module.exports.routes = {
     '/main-customer/rate': 'CustomerController.showRateCus',
     '/main-customer/point': 'CustomerController.showPointCus',
     '/main-customer/listOrder': 'CustomerController.showOrderShop',
-    '/main-customer/OrderCustomer':'CustomerController.showOrderForCus',
+    '/main-customer/OrderCustomer/:id': 'CustomerController.showOrderForCus',
 
 
 
@@ -100,6 +100,7 @@ module.exports.routes = {
     'POST /drink/create': { action: 'drink/create' },
     'PUT /drink/update': { action: 'drink/update' },
     'GET /shop/drinks': { action: 'drink/get-drink-info' },
+    'GET /shop/shop-drinks': { action: 'drink/get-Shopdrink-info' },
     // 'GET /drink/info': { action: 'drink/get-drink-info' },
 
     'POST /admin/newshop': { action: 'admin/create-shop' },
@@ -118,7 +119,8 @@ module.exports.routes = {
     'POST /login-customer': 'CustomerController.customerLogIn',
     'POST /signup-customer': 'CustomerController.customerSignUp',
     'POST /rate': 'CustomerController.customerRate',
-    
+    'GET /drinks/listDrinkForCus':'CustomerController.customerGetList',
+
 
     /***************************************************************************
   *                                                                          *

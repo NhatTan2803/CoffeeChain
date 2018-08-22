@@ -23,7 +23,7 @@
                         <div class="grid-pro">
                             <div class=" grid-product ">
                                 <figure>
-                                    <a href="/main-customer/OrderCustomer">
+                                    <a href="/main-customer/OrderCustomer/<%= listOrderShop[i].id%>">
                                         <div class="grid-img">
                                             <img src="/uploads/imgShops/<%= listOrderShop[i].avatar%>"
                                             style="width: 190px; height: 190px; "
@@ -40,14 +40,12 @@
                                     <del></del>
                                     <em class="item_price"></em>
                                 </p>
-                                <a href="/main-customer/OrderCustomer" data-text="Choose" class="but-hover1 item_add">Choose</a>
+                                <a data-text="Choose" class="but-hover1 item_add">Choose</a>
                             </div>
                         </div>
                     </div>
                 <%}%>
-            </div>
-
-
+                </div>
         </div class="clearfix">
     </div>
 </div>

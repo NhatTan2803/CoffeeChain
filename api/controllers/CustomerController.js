@@ -35,7 +35,22 @@ module.exports = {
         return res.view('./pages/customer/listShopOrder-customer', { listOrderShop: listOrderShop, layout: 'layouts/layout-intro' })
     },
     showOrderForCus: async function (req, res) {
-        return res.view('./pages/customer/orderForCustomer-customer', {  layout: 'layouts/layout-intro' })
+        try {
+            let params = req.allParams();
+            await res.cookie('idSelect', params.id)
+            return res.view('./pages/customer/orderForCustomer-customer', { layout: 'layouts/layout-intro' })
+        } catch (error) {
+
+        }
+
+    },
+    customerGetList: async function (req, res) {
+        let { idSelect } = await req.cookies;
+        console.log(idSelect);
+
+        const drink = await Drink.find({ where: { shops: idSelect }, select: ['name', 'id', 'price'] })
+        console.log(drink);
+        
     },
     customerLogIn: async (req, res) => {
         let { email, password, repeat } = req.allParams();

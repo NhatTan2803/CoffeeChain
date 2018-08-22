@@ -2,6 +2,22 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 
 class OrderCustomer extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            drinks:[],
+        }
+    }
+    
+    componentDidMount() {
+        this.showDrink()
+    }
+    showDrink = () => {
+        fetch('/drinks/listDrinkForCus', { credentials: "same-origin" })
+            .then((resp) => console.log('22222'))
+            
+    }
+    
     render() {
         return (
             <div className="row">
