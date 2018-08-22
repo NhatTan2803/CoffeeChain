@@ -5,7 +5,7 @@
             <div class="row row-sm text-center">
                 <div class="col-xs-6">
                     <div class="panel padder-v item">
-                        <div class="h1 text-info font-thin h1">{{this.Fday}}k</div>
+                        <div class="h1 text-info font-thin h1"><%=todayRevenue%></div>
                         <span class="text-muted text-xs">Doanh thu theo ngày</span>
                         <div class="top text-right w-full">
                             <i class="fa fa-caret-down text-warning m-r-sm"></i>
@@ -14,7 +14,7 @@
                 </div>
                 <div class="col-xs-6">
                     <a href class="block panel padder-v bg-primary item">
-                        <span class="text-white font-thin h1 block">{{this.Fweek}}k</span>
+                        <span class="text-white font-thin h1 block"><%=weekRevenue%></span>
                         <span class="text-muted text-xs">Doanh thu theo tuần</span>
                         <span class="bottom text-right w-full">
                             <i class="fa fa-cloud-upload text-muted m-r-sm"></i>
@@ -23,7 +23,7 @@
                 </div>
                 <div class="col-xs-6">
                     <a href class="block panel padder-v bg-info item">
-                        <span class="text-white font-thin h1 block">{{this.Fmonth}}k</span>
+                        <span class="text-white font-thin h1 block"><%=monthRevenue%></span>
                         <span class="text-muted text-xs">Doanh thu theo tháng</span>
                         <span class="top">
                             <i class="fa fa-caret-up text-warning m-l-sm m-r-sm"></i>
@@ -32,7 +32,7 @@
                 </div>
                 <div class="col-xs-6">
                     <div class="panel padder-v item">
-                        <div class="font-thin h1">{{this.countBill}}</div>
+                        <div class="font-thin h1"><%=countBill%></div>
                         <span class="text-muted text-xs">Số lần thanh toán trong ngày</span>
                         <div class="bottom">
                             <i class="fa fa-caret-up text-warning m-l-sm m-r-sm"></i>
@@ -47,7 +47,9 @@
                         </div>
                         <div class="col dk padder-v r-r">
                             <div class="text-primary-dk font-thin h1">
-                                <span>{{countDrink}}</span>
+                                    <%(Object.keys(countDrink)).forEach(function(drink){%>
+                                        <span><%=drink%> : <%=countDrink[drink]%></span>  <br>
+                                        <%});%>
                             </div>
                             <span class="text-muted text-xs">Số đồ uống bán trong ngày</span>
                         </div>
