@@ -79,6 +79,6 @@ module.exports = {
       }
       return drinks;
     },{});
-    return exits.success({ monthRevenue, todayRevenue, weekRevenue, countBill,countDrink});
+    return exits.success({ monthRevenue, todayRevenue, weekRevenue, countBill,countDrink, layout: 'layouts/layout-boss'});
   }
 };
