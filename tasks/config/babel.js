@@ -33,18 +33,19 @@ module.exports = function (grunt) {
             },
             files: [{
                 expand: true,
-                cwd: 'assets/js/',
-                src: ['**/*.jsx', '/React/*.jsx',],
+                cwd: 'assets/js',
+                src: ['**/*.jsx', 'React/*.jsx'],
                 dest: '.tmp/public/js/',
                 ext: '.js'
-            }],
-            files: [{
-                expand: true,
-                cwd: 'assets/jsintro/',
-                src: ['**/*.jsx', '/React/*.jsx',],
-                dest: '.tmp/public/jsintro/',
-                ext: '.js'
-            }]
+            },
+                {
+                    expand: true,
+                    cwd: 'assets/jsintro',
+                    src: ['**/*.jsx','React/*.jsx'],
+                    dest: '.tmp/public/jsintro/',
+                    ext: '.js'
+                }],
+            
         }
     });
 

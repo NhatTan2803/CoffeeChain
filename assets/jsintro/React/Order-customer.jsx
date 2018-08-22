@@ -6,8 +6,8 @@ class OrderCustomer extends React.Component {
         return (
             <div className="row">
                 <div className="col-md-6 product-bottom">
-                    <div className="categories animated wow fadeInUp animated" data-wow-delay=".5s">
-                        <div style="border: 1px solid rgb(238, 238, 238); visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
+                    <div className="categories animated wow fadeInUp animated" >
+                        <div >
                             <table className="table">
                                 <thead>
                                     <tr>
@@ -29,9 +29,9 @@ class OrderCustomer extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="col-md-6 animated wow fadeInRight" data-wow-delay=".5s">
-                    <div className="categories animated wow fadeInUp animated" data-wow-delay=".5s">
-                        <div style="border: 1px solid rgb(238, 238, 238); visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
+                <div className="col-md-6 animated wow fadeInRight" >
+                    <div className="categories animated wow fadeInUp animated" >
+                        <div >
                             <table className="table">
                                 <thead>
                                     <tr>
