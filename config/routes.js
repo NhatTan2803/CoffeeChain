@@ -57,7 +57,7 @@ module.exports.routes = {
     '/main-shop/sell': 'ShowController.showSell',
     '/main-shop/list-drink': 'ShowController.showListDrink',
     '/main-shop/list-staff': 'ShowController.showListStaff',
-    '/main-shop/report': 'ShowController.showReport',
+    '/main-shop/report': { action: 'boss/profit' },
     '/main-staff': 'ShowController.showSellStaff',
     ////////////////////////// API 
 
@@ -111,6 +111,7 @@ module.exports.routes = {
     'POST /shop/sell/billdetail': { action: 'boss/create-bill-detail' },
     'GET /system': { action: 'boss/get-system-info' },
     'POST /system': { action: 'boss/create-system' },
+    'GET /profit': { action: 'boss/profit' },	
 
 
     // 'POST /user/login': 'UsersController.user_login',
