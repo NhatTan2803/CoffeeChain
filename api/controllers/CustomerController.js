@@ -45,11 +45,12 @@ module.exports = {
 
     },
     customerGetList: async function (req, res) {
-        let { idSelect } = await req.cookies;
+        let { idSelect } = req.cookies;
         console.log(idSelect);
 
         const drink = await Drink.find({ where: { shops: idSelect }, select: ['name', 'id', 'price'] })
-        console.log(drink);
+
+        return res.json(drink)
         
     },
     customerLogIn: async (req, res) => {
