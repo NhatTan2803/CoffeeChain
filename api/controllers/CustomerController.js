@@ -28,6 +28,31 @@ module.exports = {
     showPointCus: async function (req, res) {
         return res.view('./pages/customer/point-customer', { layout: 'layouts/layout-intro' })
     },
+    showOrderShop: async function (req, res) {
+        var listOrderShop = await Shop.find()
+        console.log(listOrderShop);
+
+        return res.view('./pages/customer/listShopOrder-customer', { listOrderShop: listOrderShop, layout: 'layouts/layout-intro' })
+    },
+    showOrderForCus: async function (req, res) {
+        try {
+            let params = req.allParams();
+            await res.cookie('idSelect', params.id)
+            return res.view('./pages/customer/orderForCustomer-customer', { layout: 'layouts/layout-intro' })
+        } catch (error) {
+
+        }
+
+    },
+    customerGetList: async function (req, res) {
+        let { idSelect } = req.cookies;
+        console.log(idSelect);
+
+        const drink = await Drink.find({ where: { shops: idSelect }, select: ['name', 'id', 'price'] })
+
+        return res.json(drink)
+        
+    },
     customerLogIn: async (req, res) => {
         let { email, password, repeat } = req.allParams();
         try {
@@ -88,8 +113,8 @@ module.exports = {
                 .then(() => {
                     res.redirect('main-customer/rate')
                 });
-                
-            
+
+
         } catch (error) {
             return console.log(error);
 

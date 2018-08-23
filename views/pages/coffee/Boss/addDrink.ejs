@@ -1,89 +1,101 @@
 <div class="app-content-body ">
-  <div class="hbox hbox-auto-xs hbox-auto-sm">
-    <!-- main -->
-    <div class="col">
-      <!-- main header -->
-      <div class="bg-light lter b-b wrapper-md">
-        <div class="row">
-          <div class="col-sm-12 col-xs-12">
-            <h1 class="m-n font-thin h3 text-black">Add drink</h1>
-          </div>
-        </div>
-      </div>
-      <div class="wrapper-md">
-        <!--created-->
-        <div>
-            <%if (req.query.created) {%>
-                Created Successfull
-            <%}%>
-        </div>
-        <form action="/drink/create" enctype="multipart/form-data" method="POST">
-          <div class="row">
-            <div class="col-sm-9 col-xs-12 col-md-10">
-              <div class="panel panel-default">
-                <div class="panel-heading font-bold"></div>
-                <div class="panel-body">
-                  <div class="col-sm-3">
-                    <div class="form-group">
-                      <label>Drink name</label>
-                      <input id="drink-name" type="text" name="name" class="form-control" placeholder=" Drink name">
+    <div class="hbox hbox-auto-xs hbox-auto-sm">
+        <!-- main -->
+        <div class="col">
+            <!-- main header -->
+            <div class="bg-light lter b-b wrapper-md">
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <h1 class="m-n font-thin h3 text-black">Add drink</h1>
                     </div>
-                  </div>
-                  <div class="col-sm-3">
-                    <div class="form-group">
-                      <label>Price</label>
-                      <input id="drink-price" type="text" name="price" class="form-control" placeholder=" Price">
-                    </div>
-                  </div>
-                  <!-- <button type="button" (click)="addRoom()" class="btn btn-sm btn-primary">Thêm</button> -->
-                  <button (click)="addDrink()" class="btn btn-primary btn-block">Add drink</button>
                 </div>
-                <!-- <div class="panel-footer">
+            </div>
+            <div class="wrapper-md">
+                <!--created-->
+                <div>
+                    <%if (req.query.created) {%>
+                        Created Successfull
+                        <%}%>
+                </div>
+                <form action="/drink/create" enctype="multipart/form-data" method="POST">
+                    <div class="row">
+                        <div class="col-sm-9 col-xs-12 col-md-10">
+                            <div class="panel panel-default">
+                                <div class="panel-heading font-bold"></div>
+                                <div class="panel-body">
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Drink name</label>
+                                            <input id="drink-name" type="text" name="name" class="form-control" placeholder=" Drink name">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Price</label>
+                                            <input id="drink-price" type="text" name="price" class="form-control" placeholder=" Price">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>PriceETH</label>
+                                            <input id="drink-price" type="text" name="priceETH" class="form-control" placeholder=" Price">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>PriceToken</label>
+                                            <input id="drink-price" type="text" name="priceTOKEN" class="form-control" placeholder=" Price">
+                                        </div>
+                                    </div>
+                                    <!-- <button type="button" (click)="addRoom()" class="btn btn-sm btn-primary">Thêm</button> -->
+                                    <button (click)="addDrink()" class="btn btn-primary btn-block">Add drink</button>
+                                </div>
+                                <!-- <div class="panel-footer">
                 <button (click)="addDrink()" class="btn btn-primary btn-block">Add drink</button>
               </div> -->
-              </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3 col-xs-12 col-md-2 drink-avatar-wapper">
+                            <div class="panel panel-default">
+                                <div class="panel-heading font-bold">Image</div>
+                                <div class="panel-body">
+                                    <div class="drink-avatar" style="display: block; text-align: center;">
+                                        <img id="blah" src="" style="width: 100%" />
+                                        <!-- <img *ngIf="drink_avatar != ''" [src]="folder_avatar + drink_avatar" style="width: 100%" /> -->
+                                        <label class="btn btn-default btn-file" style="margin-top: 17px">
+                                            Choose Image
+                                            <input id="imgInp" type="file" name="photo" multiple="multiple" style="display: none;" accept="image/png, image/jpeg" />
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- / main -->
             </div>
-
-            <div class="col-sm-3 col-xs-12 col-md-2 drink-avatar-wapper">
-              <div class="panel panel-default">
-                <div class="panel-heading font-bold">Image</div>
-                <div class="panel-body">
-                  <div class="drink-avatar" style="display: block; text-align: center;">
-                    <img id="blah" src="" style="width: 100%" />
-                    <!-- <img *ngIf="drink_avatar != ''" [src]="folder_avatar + drink_avatar" style="width: 100%" /> -->
-                    <label class="btn btn-default btn-file" style="margin-top: 17px">
-                      Choose Image
-                      <input id="imgInp" type="file" name="photo" multiple="multiple" style="display: none;" accept="image/png, image/jpeg" />
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </form>
-        <!-- / main -->
-      </div>
-    </div>
+        </div>
 
 
-    <!--Show Image after upload before "Submit"-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script>
-      function readURL(input) {
+        <!--Show Image after upload before "Submit"-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script>
+            function readURL(input) {
 
-        if (input.files && input.files[0]) {
-          var reader = new FileReader();
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
 
-          reader.onload = function (e) {
-            $('#blah').attr('src', e.target.result);
-          }
+                    reader.onload = function (e) {
+                        $('#blah').attr('src', e.target.result);
+                    }
 
-          reader.readAsDataURL(input.files[0]);
-        }
-      }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
 
-      $("#imgInp").change(function () {
-        readURL(this);
-      });
+            $("#imgInp").change(function () {
+                readURL(this);
+            });
 
-    </script>
+        </script>
