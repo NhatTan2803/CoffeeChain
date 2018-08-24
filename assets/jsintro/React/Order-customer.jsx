@@ -1,28 +1,34 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
-
+const TruffleContract = require('truffle-contract');
+const smartcontract = require('../../contract/build/contracts/Payment.json');
 class OrderCustomer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             drinks: [],
-            cash: 0,
+            order: false,
             shoppingCart: [],
             total: 0,
-            change: 0,
             users: 'Unknown',
         }
     }
 
     componentDidMount() {
-        this.showDrink()
+        this.showDrink();
+        let web3 = window.web3;
+        let data = TruffleContract(smartcontract);
+        data.setProvider(web3.currentProvider);
+        this.setState({
+            web3: web3,
+            data : data
+        })
     }
     showDrink = () => {
         fetch('/drinks/listDrinkForCus', { credentials: "same-origin" })
             .then((resp) => resp.json())
             .then(drink => {
                 const shoppingCart = drink
-                console.log(shoppingCart);
                 shoppingCart.map(item => {
                     item.quantity = 0
                     item.total = 0
@@ -45,6 +51,7 @@ class OrderCustomer extends React.Component {
         let total = shoppingCart.reduce((sum, item) => {
             return sum += item.total
         }, 0)
+        total = total * 0.0036;
         let change = cash - total
         change < 0 ? change = 0 : change
         this.setState({
@@ -65,6 +72,7 @@ class OrderCustomer extends React.Component {
         let total = shoppingCart.reduce((sum, item) => {
             return sum += item.total
         }, 0)
+        total = total * 0.0036;
         let change = cash - total
         change < 0 ? change = 0 : change
         this.setState({
@@ -74,9 +82,28 @@ class OrderCustomer extends React.Component {
         })
     }
     handleButtonSubmit = (e) => {
-        const { total, cash, change, users } = this.state
+        let number = 1;
+        let discount = 2;
+        const { total, cash, change, users, data, web3 } = this.state
         e.preventDefault();
-        // const form = new FormData()
+        let address = "0x7f580be20ccc4609fc43f90d98ddaa0d271b63ef";
+        let sender = web3.eth.accounts[0];
+        data.at(address).then(function (instance) {
+            console.log(instance);
+            return instance.payBill.sendTransaction(number,discount, {
+                from: sender,
+                value: web3.toWei(total,"ether"),
+                gas:30000
+            }), function(err, res){
+                
+            };
+            
+        }).then(function (result) {
+            console.log(result);
+            // Do something with the result or continue with more transactions.
+        });
+
+        // const form = new FormData();
         // form.append('total', total)
         // form.append('cash', cash)
         // form.append('change', change)
@@ -88,7 +115,7 @@ class OrderCustomer extends React.Component {
         //     .then(mess => {
         //         if (mess.success === 'ok') {
         //             this.state.shoppingCart.map(item => {
-        //                 console.log(item.name)
+
         //                 const form = new FormData()
         //                 form.append('name', item.name)
         //                 form.append('quantity', item.quantity)
@@ -194,7 +221,7 @@ class OrderCustomer extends React.Component {
                     </div>
                     <div className="container">
                         <div className="col-sm-3 social-ic">
-                            <div >Total money : {outputTotal} VNĐ</div>
+                            <div >Total money : {outputTotal} Ether</div>
                         </div>
                         <div className="col-sm-3 social-ic">
                             <button type="submit" onClick={this.handleButtonSubmit} className="btn btn-sm btn-primary" > Order drink </button >

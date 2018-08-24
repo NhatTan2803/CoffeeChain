@@ -13,7 +13,7 @@
     "babel-preset-react-app": "^3.1.2",
     "bcryptjs": "^2.4.3",
     "eslint": "^4.19.1",
-    "grunt": "1.0.1",
+    "grunt": "^1.0.3",
     "grunt-browserify": "^5.3.0",
     "jsonwebtoken": "^8.2.2",
     "moment": "^2.22.2",
@@ -24,10 +24,13 @@
     "sails-hook-babel": "^6.0.3",
     "sails-hook-grunt": "^3.0.2",
     "sails-hook-organics": "^0.14.5",
-    "sails-hook-orm": "^2.0.0-16",
-    "sails-hook-sockets": "^1.4.0",
+    "sails-hook-orm": "^2.1.0",
+    "sails-hook-sockets": "^1.5.3",
     "sails-mysql": "^1.0.0",
-    "underscore": "^1.9.0"
+    "truffle-contract": "^3.0.6",
+    "truffle-hdwallet-provider": "0.0.6",
+    "underscore": "^1.9.0",
+    "web3": "^1.0.0-beta.35"
   },
   "devDependencies": {
     "@sailshq/eslint": "^4.19.3",
