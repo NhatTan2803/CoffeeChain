@@ -9,7 +9,7 @@ module.exports = {
 
   attributes: {
 
-    otal: {
+    total: {
       type: 'number',
       columnType: 'decimal(16,0)'
     },

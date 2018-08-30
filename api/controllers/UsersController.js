@@ -76,7 +76,7 @@ module.exports = {
                             return res.redirect('/main-shop')
                         }
                         if (user.permission === 'staff') {
-                            return res.redirect('/main-staff')
+                            return res.redirect('/main-staff/shipping')
                         }
                     }
                     res.redirect('/login')

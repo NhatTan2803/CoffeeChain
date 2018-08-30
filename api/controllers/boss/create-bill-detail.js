@@ -34,14 +34,14 @@ module.exports = {
 
 
   fn: async function (inputs, exits) {
-    const newdrink = await BillDetail.create({
+    let newdrink = await BillDetail.create({
       drinkName: inputs.name,
       quantity: inputs.quantity,
       drinkSubtotal: inputs.drinkSubtotal,
       price: inputs.price,
       bills: inputs.bills,
       drinks: inputs.drinks
-    })
-    return exits.success();
+    }).fetch()
+    return exits.success(newdrink);
   }
 };

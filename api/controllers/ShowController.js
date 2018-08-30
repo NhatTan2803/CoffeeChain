@@ -4,6 +4,7 @@
  * @description :: Server-side actions for handling incoming requests.
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
+var jwt = require('../services/jsonwebtoken');
 
 module.exports = {
     index: function (req, res) {
@@ -62,7 +63,7 @@ module.exports = {
 
     showSellStaff: (req, res) => {
         res.view('./pages/coffee/Boss/main-staff', { layout: 'layouts/layout-staff' })
-    }
+    },
 
 };
 

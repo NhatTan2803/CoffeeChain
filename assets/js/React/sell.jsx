@@ -88,19 +88,21 @@ class Sell extends React.Component {
             .then(mess => {
                 if (mess.success === 'ok') {
                     this.state.shoppingCart.map(item => {
-                        console.log(item.name)
-                        const form = new FormData()
-                        form.append('name', item.name)
-                        form.append('quantity', item.quantity)
-                        form.append('price', item.price)
-                        form.append('drinkSubtotal', item.total)
-                        form.append('bills', mess.billId)
-                        form.append('drinks', item.id)
-                        fetch('/shop/sell/billdetail', {
-                            method: 'POST',
-                            body: form
-                        })
+                        if (item.quantity !== 0) {
+                            const form = new FormData()
+                            form.append('name', item.name)
+                            form.append('quantity', item.quantity)
+                            form.append('price', item.price)
+                            form.append('drinkSubtotal', item.total)
+                            form.append('bills', mess.billId)
+                            form.append('drinks', item.id)
+                            fetch('/shop/sell/billdetail', {
+                                method: 'POST',
+                                body: form
+                            })
+                        }
                     })
+
                     this.state.shoppingCart.map(item => {
                         item.quantity = 0
                         item.total = 0

@@ -35,7 +35,7 @@ module.exports.routes = {
     '/main-customer/profile': 'CustomerController.showProfileCus',
     '/main-customer/rate': 'CustomerController.showRateCus',
     '/main-customer/point': 'CustomerController.showPointCus',
-    '/main-customer/listOrder': 'CustomerController.showOrderShop',
+    '/listOrder': 'CustomerController.showOrderShop',
     '/main-customer/OrderCustomer/:id': 'CustomerController.showOrderForCus',
 
 
@@ -59,6 +59,7 @@ module.exports.routes = {
     '/main-shop/list-staff': 'ShowController.showListStaff',
     '/main-shop/report': { action: 'boss/profit' },
     '/main-staff': 'ShowController.showSellStaff',
+    'GET /shipping': 'ShowController.showShippingDeal',
     ////////////////////////// API 
 
     'GET /main-shop/list-staff': {
@@ -111,7 +112,9 @@ module.exports.routes = {
     'POST /shop/sell/billdetail': { action: 'boss/create-bill-detail' },
     'GET /system': { action: 'boss/get-system-info' },
     'POST /system': { action: 'boss/create-system' },
-    'GET /profit': { action: 'boss/profit' },	
+    'GET /profit': { action: 'boss/profit' },
+    'POST /shop/shipping': { action: 'boss/shipping' },
+    'GET /newOrder' : {action: 'boss/online'},
 
 
     // 'POST /user/login': 'UsersController.user_login',
@@ -120,8 +123,7 @@ module.exports.routes = {
     'POST /login-customer': 'CustomerController.customerLogIn',
     'POST /signup-customer': 'CustomerController.customerSignUp',
     'POST /rate': 'CustomerController.customerRate',
-    'GET /drinks/listDrinkForCus':'CustomerController.customerGetList',
-
+    'GET /drinks/listDrinkForCus': 'CustomerController.customerGetList',
 
     /***************************************************************************
   *                                                                          *

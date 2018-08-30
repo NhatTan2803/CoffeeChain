@@ -38,7 +38,7 @@ module.exports = {
         try {
             let params = req.allParams();
             await res.cookie('idSelect', params.id)
-            return res.view('./pages/customer/orderForCustomer-customer', { layout: 'layouts/layout-intro' })
+            return res.view('./pages/customer/orderForCustomer-customer', { idShop: params.id, layout: 'layouts/layout-intro' })
         } catch (error) {
 
         }

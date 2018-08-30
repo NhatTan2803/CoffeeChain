@@ -29,7 +29,7 @@ contract Payment{
         _;
     }
     
-    function payBill(uint256 _luckyNumber,uint256 _discount) public payable returns (uint256) {
+    function payBill(uint256 _luckyNumber,uint256 _discount) public payable returns (uint256 _luckyNumberis) {
         require(msg.value > 0);
         owner.transfer(msg.value);
         emit transferEther(msg.sender,msg.value);
@@ -38,8 +38,8 @@ contract Payment{
             Cafe.createArticle(_discount,msg.sender);
             return _luckyNumber;
         }
-        return 100;
+        else {
+            return random_number;
+        }
     }
-    
-    
 }

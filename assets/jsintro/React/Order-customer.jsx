@@ -1,29 +1,36 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
-const TruffleContract = require('truffle-contract');
 const smartcontract = require('../../contract/build/contracts/Payment.json');
+const Cookies = require('js-cookie');
+// const Web3 = require('web3');
+
 class OrderCustomer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             drinks: [],
-            order: false,
             shoppingCart: [],
             total: 0,
             users: 'Unknown',
+            hideOrderButton: false,
+            hideAddressForm: 'none',
+            address: '',
+            billId: 0,
         }
     }
 
     componentDidMount() {
         this.showDrink();
         let web3 = window.web3;
-        let data = TruffleContract(smartcontract);
-        data.setProvider(web3.currentProvider);
+        let contract = web3.eth.contract(smartcontract.abi);
+        let contractInstance = contract.at("0xbf3799ffa4c698862cbebe2e84002bd909a6e2b9");
         this.setState({
             web3: web3,
-            data : data
-        })
+            contractInstance: contractInstance
+        });
+
     }
+
     showDrink = () => {
         fetch('/drinks/listDrinkForCus', { credentials: "same-origin" })
             .then((resp) => resp.json())
@@ -39,9 +46,10 @@ class OrderCustomer extends React.Component {
                 })
             })
     }
+
     handleButtonAdd = (e) => {
         e.preventDefault();
-        const { shoppingCart, cash } = this.state
+        const { shoppingCart } = this.state
         shoppingCart.map(item => {
             if (item.id == e.target.value) {
                 item.quantity += 1
@@ -51,18 +59,15 @@ class OrderCustomer extends React.Component {
         let total = shoppingCart.reduce((sum, item) => {
             return sum += item.total
         }, 0)
-        total = total * 0.0036;
-        let change = cash - total
-        change < 0 ? change = 0 : change
         this.setState({
             shoppingCart: shoppingCart,
             total: total,
-            change: change
         })
     }
+
     handleButtonDelete = (e) => {
         e.preventDefault();
-        const { shoppingCart, cash } = this.state
+        const { shoppingCart } = this.state
         shoppingCart.map(item => {
             if (item.id == e.target.value) {
                 item.quantity -= 1
@@ -72,81 +77,111 @@ class OrderCustomer extends React.Component {
         let total = shoppingCart.reduce((sum, item) => {
             return sum += item.total
         }, 0)
-        total = total * 0.0036;
-        let change = cash - total
-        change < 0 ? change = 0 : change
         this.setState({
             shoppingCart: shoppingCart,
             total: total,
-            change: change
         })
     }
+
     handleButtonSubmit = (e) => {
         let number = 1;
-        let discount = 2;
-        const { total, cash, change, users, data, web3 } = this.state
+        let discount = 1;
+        const { total, users, contractInstance, web3 } = this.state
         e.preventDefault();
-        let address = "0x7f580be20ccc4609fc43f90d98ddaa0d271b63ef";
         let sender = web3.eth.accounts[0];
-        data.at(address).then(function (instance) {
-            console.log(instance);
-            return instance.payBill.sendTransaction(number,discount, {
-                from: sender,
-                value: web3.toWei(total,"ether"),
-                gas:30000
-            }), function(err, res){
-                
-            };
-            
-        }).then(function (result) {
-            console.log(result);
-            // Do something with the result or continue with more transactions.
+        let totalInEther = total * 0.0036;
+        contractInstance.payBill.sendTransaction(number, discount, {
+            from: sender,
+            value: web3.toWei(totalInEther, "ether"),
+            gas: 300000
+        }, (err, result) => {
+            if (err) {
+                console.log('Reject');
+            }
+            else {
+                console.log('Waiting for transaction to be authenticated');
+            }
         });
+        contractInstance.transferEther().watch((err, event) => {
+            if (err) {
+                console.log('Error', err);
+            }
 
-        // const form = new FormData();
-        // form.append('total', total)
-        // form.append('cash', cash)
-        // form.append('change', change)
-        // form.append('users', users)
-        // fetch('/shop/sell', {
-        //     method: 'POST',
-        //     body: form
-        // }).then((resp) => resp.json())
-        //     .then(mess => {
-        //         if (mess.success === 'ok') {
-        //             this.state.shoppingCart.map(item => {
+            if ((event.args._value.toNumber()).toString() === web3.toWei(totalInEther, "ether")) {
+                const form = new FormData();
+                form.append('total', total)
+                form.append('users', users)
+                fetch('/shop/sell', {
+                    method: 'POST',
+                    body: form
+                }).then((resp) => resp.json())
+                    .then(msg => {
+                        if (msg.success === 'ok') {
+                            this.state.shoppingCart.map(item => {
+                                if (item.quantity !== 0) {
+                                    const form = new FormData()
+                                    form.append('name', item.name)
+                                    form.append('quantity', item.quantity)
+                                    form.append('price', item.price)
+                                    form.append('drinkSubtotal', item.total)
+                                    form.append('bills', msg.billId)
+                                    form.append('drinks', item.id)
+                                    fetch('/shop/sell/billdetail', {
+                                        method: 'POST',
+                                        body: form
+                                    });
+                                }
+                            })
+                            this.state.shoppingCart.map(item => {
+                                item.quantity = 0
+                                item.total = 0
+                            })
 
-        //                 const form = new FormData()
-        //                 form.append('name', item.name)
-        //                 form.append('quantity', item.quantity)
-        //                 form.append('price', item.price)
-        //                 form.append('drinkSubtotal', item.total)
-        //                 form.append('bills', mess.billId)
-        //                 form.append('drinks', item.id)
-        //                 fetch('/shop/sell/billdetail', {
-        //                     method: 'POST',
-        //                     body: form
-        //                 })
-        //             })
-        //             this.state.shoppingCart.map(item => {
-        //                 item.quantity = 0
-        //                 item.total = 0
-        //             })
-        //             this.setState({
-        //                 cash: 0,
-        //                 total: 0,
-        //                 change: 0,
-        //                 users: 'Unknown',
-        //             })
+                        }
+                        this.setState({
+                            total: 0,
+                            hideOrderButton: true,
+                            hideAddressForm: 'inline',
+                            billId: msg.billId,
+                        })
 
-        //         }
-        //     })
+                    })
+            }
+
+        })
+    }
+    updateAddress = (e) => {
+        this.setState({
+            address: e.target.value
+        });
+    }
+
+    handleButtonOrder = (e) => {
+        const { address, billId } = this.state
+        e.preventDefault();
+        const form = new FormData();
+        form.append('shippingAddress', address)
+        form.append('billId', billId)
+        fetch('http://localhost:1337/shop/shipping', {
+            method: 'POST',
+            body: form
+        }).then((resp) => resp.json())
+            .then(msg => {
+                console.log(msg.order)
+            });
+        this.setState({
+            hideOrderButton: false,
+            hideAddressForm: 'none',
+        })
 
     }
     render() {
-        const { drinks, shoppingCart, change, cash, total } = this.state
+        const { drinks, shoppingCart, hideOrderButton, total, hideAddressForm, address } = this.state
         const buttonStyle = {
             width: '53px'
+        }
+        const shipingStyle = {
+            display: hideAddressForm
         }
         const drinkList = drinks.map(drink => {
             return (
@@ -155,7 +190,7 @@ class OrderCustomer extends React.Component {
                     <td>{drink.name}</td>
                     <td>{drink.price}</td>
                     <td>
-                        <button style={buttonStyle} onClick={this.handleButtonAdd} className="btn btn-xs btn-info" value={drink.id}>chọn</button>
+                        <button style={buttonStyle} onClick={this.handleButtonAdd} className="btn btn-xs btn-info" value={drink.id}>+</button>
                     </td>
                 </tr>
             )
@@ -170,25 +205,25 @@ class OrderCustomer extends React.Component {
                         <td>{item.price}</td>
                         <td>{item.total}</td>
                         <td>
-                            <button style={buttonStyle} onClick={this.handleButtonDelete} className="btn btn-xs btn-danger" value={item.id} >Giảm</button>
+                            <button style={buttonStyle} onClick={this.handleButtonDelete} className="btn btn-xs btn-danger" value={item.id} >-</button>
                         </td>
                     </tr>
                 )
             }
         })
         let output = (a) => { return a.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") }
-        const outputTotal = output(total)
+        const outputTotal = output(total * 0.0036)
         return (
             <div className="row">
-                <div className="col-md-5 product-bottom">
+                <div className="col-md-5 product-bottom"  >
                     <div className="categories animated wow fadeInUp animated" >
                         <div >
                             <table className="table">
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Name</th>
-                                        <th>Price</th>
+                                        <th>Drinks</th>
+                                        <th>$</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -206,9 +241,9 @@ class OrderCustomer extends React.Component {
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Name</th>
+                                        <th>Drinks</th>
                                         <th>Quality</th>
-                                        <th>Price</th>
+                                        <th>$</th>
                                         <th>Total</th>
                                         <th>Action</th>
                                     </tr>
@@ -219,17 +254,43 @@ class OrderCustomer extends React.Component {
                             </table>
                         </div>
                     </div>
-                    <div className="container">
-                        <div className="col-sm-3 social-ic">
-                            <div >Total money : {outputTotal} Ether</div>
-                        </div>
-                        <div className="col-sm-3 social-ic">
-                            <button type="submit" onClick={this.handleButtonSubmit} className="btn btn-sm btn-primary" > Order drink </button >
+                    <div className="container  float-left">
+                        <div className="row">
+                            <div className="col-md-7 ">
+                                <div >Total money : {outputTotal} Ether </div>
+                            </div>
+                            <div className="col-md-7">
+                                <label>Choose a lucky number for a chance to get an eternal 1% voucher </label>
+                                <select name="luckyNumber" size="1">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                </select>
+                            </div>
+                            <div className="col-md-7 d-flex justify-content-center">
+                                <button  type="submit" onClick={this.handleButtonSubmit} className="btn btn-sm btn-primary" disabled={hideOrderButton}> Pay Bill </button >
+                            </div>
+
+
                         </div>
                     </div>
                 </div>
-            </div>
+                <div className="col-xs-12 col-md-8" style={shipingStyle}>
+                    <div className="input-group">
+                        <input type="text" className="form-control" placeholder="Your address for shipping . . ." value={address} onChange={this.updateAddress} />
+                        <span className="input-group-btn"><button className="btn btn-default" type="button" onClick={this.handleButtonOrder} > Order </button></span>
+                    </div>
+                </div>
+            </div >
         )
     }
 }
+
+
 ReactDOM.render(<OrderCustomer />, document.querySelector('#Order-customer'));
