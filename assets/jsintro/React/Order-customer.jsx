@@ -23,13 +23,26 @@ class OrderCustomer extends React.Component {
         this.showDrink();
         let web3 = window.web3;
         let contract = web3.eth.contract(smartcontract.abi);
-        let contractInstance = contract.at("0xbf3799ffa4c698862cbebe2e84002bd909a6e2b9");
-        this.setState({
-            web3: web3,
-            contractInstance: contractInstance
-        });
+        let contractInstance = contract.at("0x0c6973faa571d67e6e813827b4dcb638090f719f");
+        let sender = web3.eth.accounts[0];
+        let discount;
+        contractInstance.getDiscount.call(sender, (err, result) => {
+            if (err) {
+                return 0;
+            }
+            else {
+                discount = result.toNumber();
+                this.setState({
+                    discount: discount,
+                    web3: web3,
+                    contractInstance: contractInstance
+                });
+            }
+        })
 
     }
+
+
 
     showDrink = () => {
         fetch('/drinks/listDrinkForCus', { credentials: "same-origin" })
@@ -176,7 +189,7 @@ class OrderCustomer extends React.Component {
 
     }
     render() {
-        const { drinks, shoppingCart, hideOrderButton, total, hideAddressForm, address } = this.state
+        const { drinks, discount, shoppingCart, hideOrderButton, total, hideAddressForm, address } = this.state
         const buttonStyle = {
             width: '53px'
         }
@@ -235,9 +248,9 @@ class OrderCustomer extends React.Component {
                     </div>
                 </div>
                 <div className="col-md-7 animated wow fadeInRight" >
-                    <div className="categories animated wow fadeInUp animated" >
+                    <div className="row categories animated wow fadeInUp animated" >
                         <div >
-                            <table className="table">
+                            <table className="table table-striped">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -254,37 +267,36 @@ class OrderCustomer extends React.Component {
                             </table>
                         </div>
                     </div>
-                    <div className="container  float-left">
-                        <div className="row">
-                            <div className="col-md-7 ">
-                                <div >Total money : {outputTotal} Ether </div>
-                            </div>
-                            <div className="col-md-7">
-                                <label>Choose a lucky number for a chance to get an eternal 1% voucher </label>
-                                <select name="luckyNumber" size="1">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                </select>
-                            </div>
-                            <div className="col-md-7 d-flex justify-content-center">
-                                <button  type="submit" onClick={this.handleButtonSubmit} className="btn btn-sm btn-primary" disabled={hideOrderButton}> Pay Bill </button >
-                            </div>
-
-
+                    <div className="row text-center padding-top-bot">
+                        <h3>Current Discount: <span className="label label-info">{discount} % </span></h3>
+                    </div>
+                    <div className="row text-center padding-top-bot">
+                        <h3>Total money : <span className="label label-info">{outputTotal} Ether</span></h3>
+                    </div>
+                    <div className="row padding-top-bot">
+                        <div className="col-md-8 "><label className="text-danger" htmlFor="lucky">Choose a lucky number for a chance to get an eternal 1% voucher </label></div>
+                        <div className="col-md-4">
+                            <select name="luckyNumber" id="lucky" className="input-sm font16" size="1">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                            </select>
                         </div>
                     </div>
+                    <div className="col-md-12 text-center">
+                        <button type="submit" onClick={this.handleButtonSubmit} className="btn btn-lg btn-success" disabled={hideOrderButton}> Pay Bill </button >
+                    </div>
                 </div>
-                <div className="col-xs-12 col-md-8" style={shipingStyle}>
+                <div className="row" style={shipingStyle}>
                     <div className="input-group">
                         <input type="text" className="form-control" placeholder="Your address for shipping . . ." value={address} onChange={this.updateAddress} />
-                        <span className="input-group-btn"><button className="btn btn-default" type="button" onClick={this.handleButtonOrder} > Order </button></span>
+                        <span className="input-group-btn"><button className="btn btn-success" type="button" onClick={this.handleButtonOrder} > Order </button></span>
                     </div>
                 </div>
             </div >

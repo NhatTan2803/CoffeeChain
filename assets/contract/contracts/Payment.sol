@@ -7,6 +7,7 @@ contract CafeArticle {
     function createArticle(uint256 _value,address _to) external;
     function transferToOwner (address _from,uint256 _id) external;
     function ownerOf(uint256 _id) external view returns (address);
+    function totalDiscount(address _owner) public view returns (uint256);
 }
 
 
@@ -17,7 +18,7 @@ contract Payment{
     bool internal configOwner;
     
     event transferEther(address _from,uint256 _value);
-    event lucky(uint _discount);
+    event lucky(uint _luckyNumber, uint _discount);
     
     constructor (address _tokenAdd) public {
         owner = msg.sender;
@@ -36,10 +37,14 @@ contract Payment{
         uint256 random_number = uint(blockhash(block.number-1))%10 + 1;
         if(random_number == _luckyNumber){
             Cafe.createArticle(_discount,msg.sender);
+            emit lucky(_luckyNumber,_discount);
             return _luckyNumber;
         }
         else {
             return random_number;
         }
+    }
+    function getDiscount(address _owner) public view returns(uint256 _discount) {
+        return Cafe.totalDiscount(_owner);
     }
 }
