@@ -21,7 +21,7 @@ module.exports = {
     if (!this.req.isSocket) {
       return exits.error('Only a client socket can subscribe to Louies.  But you look like an HTTP request to me.');
     }
-    let lastBill = OnlineOrder.find({ sort: 'id DESC', limit: 1 });
+    let lastBill = await OnlineOrder.find({ sort: 'id DESC', limit: 1 });
     OnlineOrder.subscribe(this.req, lastBill);
     return exits.success('Okay');
   }

@@ -57,6 +57,7 @@ module.exports.routes = {
     '/main-shop/sell': 'ShowController.showSell',
     '/main-shop/list-drink': 'ShowController.showListDrink',
     '/main-shop/list-staff': 'ShowController.showListStaff',
+    '/main-shop/list-shipping':'ShowController.showShipping',
     '/main-shop/report': { action: 'boss/profit' },
     '/main-staff': 'ShowController.showSellStaff',
     'GET /shipping': 'ShowController.showShippingDeal',

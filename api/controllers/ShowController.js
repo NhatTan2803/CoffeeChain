@@ -60,10 +60,17 @@ module.exports = {
     showReport: function (req, res) {
         res.view('./pages/coffee/Boss/report', { layout: 'layouts/layout-boss' })
     },
+    showShipping: function (req, res) {
+        res.view('./pages/coffee/Boss/listShipping', { layout: 'layouts/layout-boss' })
+    },
 
     showSellStaff: (req, res) => {
         res.view('./pages/coffee/Boss/main-staff', { layout: 'layouts/layout-staff' })
     },
+
+    
+
+
 
 };
 
