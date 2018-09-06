@@ -22,6 +22,7 @@ class OrderCustomer extends React.Component {
 
     componentDidMount() {
         this.showDrink();
+        this.socket();
         let web3 = window.web3;
         let contract = web3.eth.contract(smartcontract.abi);
         let contractInstance = contract.at("0x0c6973faa571d67e6e813827b4dcb638090f719f");
@@ -57,6 +58,16 @@ class OrderCustomer extends React.Component {
                     shoppingCart: shoppingCart,
                 })
             })
+    }
+    socket = () => {
+        io.socket.get('/newOrder', function (resData) {
+            console.log(resData);
+        });
+        io.socket.on('confirm', (msg) => {
+            if (msg.status === 'confirmed') {
+                this.handleButtonSubmit()
+            }
+        })
     }
 
     handleButtonAdd = (e) => {
@@ -96,12 +107,15 @@ class OrderCustomer extends React.Component {
             total: total,
         })
     }
-
-    handleButtonSubmit = (e) => {
+    handleButtonCreateShopCart = (e) => {
+        this.setState({
+            hideOrderButton: 'flex',
+            hideAddressForm: 'none'
+        })
+    }
+    handleButtonSubmit = () => {
         let discount = 1;
-        const { total, users, contractInstance, web3, lucky } = this.state
-        e.preventDefault();
-        console.log(lucky);
+        const { total, users, contractInstance, web3, lucky, orderId } = this.state
         let sender = web3.eth.accounts[0];
         let totalInEther = total * 0.036
         contractInstance.payBill.sendTransaction(lucky, discount, {
@@ -120,8 +134,6 @@ class OrderCustomer extends React.Component {
             if (err) {
                 console.log('Error', err);
             }
-            console.log((event.args._value.toNumber()).toString())
-            console.log(web3.toWei(totalInEther, "ether"))
             if ((event.args._value.toNumber()).toString() === web3.toWei(totalInEther, "ether")) {
                 const form = new FormData();
                 form.append('total', total)
@@ -131,7 +143,7 @@ class OrderCustomer extends React.Component {
                     body: form
                 }).then((resp) => resp.json())
                     .then(msg => {
-                        
+
                         if (msg.success === 'ok') {
                             this.state.shoppingCart.map(item => {
                                 if (item.quantity !== 0) {
@@ -148,18 +160,23 @@ class OrderCustomer extends React.Component {
                                     });
                                 }
                             })
+                            const form = new FormData();
+                            form.append('id', orderId)
+                            form.append('bills', msg.billId)
+                            fetch('/updateOrderBill', {
+                                method: 'PATCH',
+                                body: form
+                            });
                             this.state.shoppingCart.map(item => {
                                 item.quantity = 0
                                 item.total = 0
                             })
 
                         }
-                        console.log(msg.billId)
                         this.setState({
                             total: 0,
-                            hideOrderButton: 'flex',
-                            hideAddressForm: 'none',
                             billId: msg.billId,
+                            hideAddressForm: 'inline'
                         })
 
                     })
@@ -174,6 +191,7 @@ class OrderCustomer extends React.Component {
     }
 
     updatePhone = (e) => {
+        console.log(e.target.value)
         this.setState({
             phone: e.target.value
         });
@@ -190,27 +208,21 @@ class OrderCustomer extends React.Component {
         const { address, billId, shoppingCart, phone } = this.state
         e.preventDefault();
         let shippingcart = JSON.stringify(shoppingCart)
-        console.log(shippingcart)
-        console.log(address)
-        console.log(phone)
-        console.log(billId)
         const form = new FormData();
         form.append('cart', shippingcart)
         form.append('shippingAddress', address)
-        form.append('bills', billId)
         form.append('phone', phone)
         fetch('http://localhost:1337/shop/shipping', {
             method: 'POST',
             body: form
         }).then((resp) => resp.json())
             .then(msg => {
-                console.log(msg.order)
+                this.setState({
+                    hideOrderButton: 'none',
+                    orderId: msg.orderId
+                })
             });
-        this.setState({
-            hideOrderButton: 'none',
-            hideAddressForm: 'inline',
-        })
-
+        alert("Please wait for the call from our Shop");
     }
     render() {
         const { drinks, discount, shoppingCart, hideOrderButton, total, hideAddressForm, address, phone } = this.state
@@ -322,7 +334,7 @@ class OrderCustomer extends React.Component {
                             </div>
                         </div>
                         <div className="col-md-12 text-center">
-                            <button type="submit" onClick={this.handleButtonSubmit} className="btn btn-lg btn-success" > Pay Bill </button >
+                            <button type="submit" onClick={this.handleButtonCreateShopCart} className="btn btn-lg btn-success" > Create Cart</button >
                         </div>
                     </div>
                 </div>
@@ -334,9 +346,9 @@ class OrderCustomer extends React.Component {
                         </div>
                     </div>
                     <div className="form-group row">
-                        <label htmlFor="phone" id="phone" className="col-md-2 col-form-label">Phone</label>
+                        <label htmlFor="phone" className="col-md-2 col-form-label">Phone</label>
                         <div className="col-md-5">
-                            <input type="tel" placeholder='Phone...' className="form-control" onChange={this.updatePhone} required />
+                            <input type="tel" placeholder='Phone...' className="form-control" id="phone" value={phone} onChange={this.updatePhone} />
                         </div>
                         <div className="col-md-3 text-center">
                             <button className="btn btn-success" type="button" onClick={this.handleButtonOrder} > Order </button>

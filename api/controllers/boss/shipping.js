@@ -17,9 +17,6 @@ module.exports = {
     phone: {
       type: 'number'
     },
-    bills: {
-      type: 'number'
-    }
   },
 
 
@@ -32,16 +29,13 @@ module.exports = {
       let newOrder = await OnlineOrder.create({
         shippingAddress: inputs.shippingAddress,
         cart: inputs.cart,
-        phone: inputs.number,
-        bills: inputs.bills
+        phone: inputs.phone,
       }).fetch();
-
-      let lastBill = await OnlineOrder.find({ where: { idConfirmed: false }, sort: 'id DESC', limit: 3, select: 'id' });
 
       if (newOrder) {
         sails.sockets.broadcast('shipping', 'new', newOrder);
         return exits.success({
-          order: 'success'
+          orderId: newOrder.id
         });
       }
     } catch (err) {

@@ -2,20 +2,16 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 import Modal from './modal';
 const TimeAgo = require('javascript-time-ago');
-
-// Load locale-specific relative date/time formatting rules.
 import en from 'javascript-time-ago/locale/en';
-
-// Add locale-specific relative date/time formatting rules.
 TimeAgo.locale(en);
-
-// Create relative date/time formatter.
 const timeAgo = new TimeAgo('en-US');
 
 class Shipping extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
+            orders: []
         }
     }
     componentDidMount() {
@@ -24,14 +20,12 @@ class Shipping extends React.Component {
         });
         io.socket.on('new', (msg) => {
             if (msg) {
-                // console.log();
                 if (!this.state.orders) {
                     msg.cart = JSON.parse(msg.cart);
                     let orders = [msg];
                     this.setState({
                         orders: orders
                     })
-
                 }
                 else {
                     let orders = this.state.orders;
@@ -40,32 +34,86 @@ class Shipping extends React.Component {
                     this.setState({
                         orders: orders
                     })
-
                 }
             }
         });
+        io.socket.on('billId', (msg) => {
+            const { orders } = this.state;
+            let updatedOrder = orders.map(order => {
+                if (order.id === msg.id) {
+                    order.bills = msg.billId
+                }
+                return order;
+            })  
+            this.setState({
+                orders: updatedOrder
+            })
+        });
     }
 
+    handleConfirmButton = (e) => {
+        e.preventDefault();
+        const { orders } = this.state
+        const form = new FormData();
+        form.append('id', e.target.value)
+        form.append('status', 'confirmed')
+        fetch('/updateOrder', {
+            method: 'PATCH',
+            body: form
+        })
+    }
+
+    handleCompleteButton = (e) => {
+        e.preventDefault();
+        const { orders } = this.state
+        const form = new FormData();
+        form.append('id', e.target.value)
+        form.append('status', 'completed')
+        fetch('/updateOrder', {
+            method: 'PATCH',
+            body: form
+        }).then((resp) => resp.json())
+            .then(msg => {
+                if (orders.length > 1) {
+                    for (let i = 0; i < orders.length; i++) {
+                        if (orders[i].id === msg.id) {
+                            let begin = orders.slice(0, i)
+                            let end = orders.slice(i + 1, orders.length)
+                            let newOrders = begin.concat(end)
+                            this.setState({
+                                orders: newOrders
+                            })
+                            break;
+                        }
+                    }
+                }
+                else {
+
+                    this.setState({
+                        orders: []
+                    })
+                }
+            })
+
+    }
 
     render() {
         const { orders } = this.state
-        const tableStyle = {
-            width: '120px'
-        }
         let view;
-        if (typeof orders !== 'undefined') {
+        if (orders.length > 0) {
             let allOrder = orders.map(order => {
                 return (
                     <tr key={order.id}>
                         <td>{order.id}</td>
+                        <td>{order.bills}</td>
                         <td>{order.shippingAddress}</td>
                         <td>{order.phone}</td>
                         <td>
                             <Modal drinks={order.cart} orderId={order.id} />
                         </td>
                         <td>
-                            <button className="btn btn-xs btn-danger">Confirm</button>
-                            <button className="btn btn-xs btn-info">Complete</button>
+                            <button className="btn btn-xs btn-danger" value={order.id} onClick={this.handleConfirmButton}>Confirm</button>
+                            <button className="btn btn-xs btn-info" value={order.id} onClick={this.handleCompleteButton} >Complete</button>
                         </td>
                         <td>
                             {timeAgo.format(Date.now() - (Date.now() - order.createdAt) * 1000)}
@@ -87,11 +135,13 @@ class Shipping extends React.Component {
                                             <thead>
                                                 <tr>
                                                     <th >STT</th>
+                                                    <th >BillID</th>
                                                     <th>Address</th>
                                                     <th>Phone</th>
                                                     <th >Info</th>
                                                     <th >Status</th>
                                                     <th >Time</th>
+                                                    
                                                 </tr>
                                             </thead>
                                             <tbody>

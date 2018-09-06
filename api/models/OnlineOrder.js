@@ -20,15 +20,12 @@ module.exports = {
     bills: {
       model: 'Bill',
       columnName: 'BillId',
-      required: true
     },
-    idConfirmed: {
-      type: 'boolean',
-      defaultsTo : false
-    },
-    isShipped: {
-      type: 'boolean',
-      defaultsTo : false
+    status: {
+      type: 'string',
+      isIn: ['refund', 'completed', 'unconfirmed','confirmed'],
+      defaultsTo: 'unconfirmed'
+
     }
   },
 

@@ -18,7 +18,7 @@ const Modal = (props) => {
     let target = "#"
     let modalid = target.concat(index);
     return (
-        <div className="container">
+        <div>
             <button type="button" className="btn btn-info btn-sm" data-toggle="modal" data-target={modalid} >Info</button>
             <div className="modal fade" id={props.orderId} role="dialog">
                 <div className="modal-dialog">
@@ -46,14 +46,10 @@ const Modal = (props) => {
                             <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
-
                 </div>
             </div>
-
         </div>
     )
-
-
 }
 
 export default Modal;
