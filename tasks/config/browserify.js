@@ -6,6 +6,7 @@ module.exports = function (grunt) {
                 '.tmp/public/js/React/position.js': ['.tmp/public/js/React/position.js'],
                 '.tmp/public/js/React/system.js': ['.tmp/public/js/React/system.js'],
                 '.tmp/public/js/React/shopCreate.js': ['.tmp/public/js/React/shopCreate.js'],
+                '.tmp/public/js/React/listShipping.js': ['.tmp/public/js/React/listShipping.js'],
                 '.tmp/public/jsintro/React/Order-customer.js': ['.tmp/public/jsintro/React/Order-customer.js']
 
             }

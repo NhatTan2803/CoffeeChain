@@ -21,10 +21,17 @@ module.exports = {
     if (!this.req.isSocket) {
       return exits.error('Only a client socket can subscribe to Louies.  But you look like an HTTP request to me.');
     }
-    let lastBill = await OnlineOrder.find({ sort: 'id DESC', limit: 1 });
-    OnlineOrder.subscribe(this.req, lastBill);
-    return exits.success('Okay');
-  }
 
+    sails.sockets.join(this.req, 'shipping', (err) => {
+      if (err) {
+        return exits.error(err);
+      }
+
+      return exits.success({
+        message: 'Subscribed to a fun room called shipping !'
+      });
+    });
+
+  }
 
 };

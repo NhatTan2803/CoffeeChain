@@ -17,7 +17,7 @@ module.exports = {
         return res.view('./pages/customer/main-customer', { layout: 'layouts/layout-intro' })
     },
     showProfileCus: async function (req, res) {
-        console.log(req.cookies.id);
+        
         let { id } = req.cookies;
         var info = await User.find({ id })
         return res.view('./pages/customer/profile-customer', { info: info, layout: 'layouts/layout-intro' })
@@ -30,7 +30,7 @@ module.exports = {
     },
     showOrderShop: async function (req, res) {
         var listOrderShop = await Shop.find()
-        console.log(listOrderShop);
+        
 
         return res.view('./pages/customer/listShopOrder-customer', { listOrderShop: listOrderShop, layout: 'layouts/layout-intro' })
     },
@@ -46,7 +46,6 @@ module.exports = {
     },
     customerGetList: async function (req, res) {
         let { idSelect } = req.cookies;
-        console.log(idSelect);
 
         const drink = await Drink.find({ where: { shops: idSelect }, select: ['name', 'id', 'price'] })
 

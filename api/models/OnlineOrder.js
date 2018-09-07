@@ -8,15 +8,25 @@
 module.exports = {
 
   attributes: {
+    cart: {
+      type: 'string'
+    },
     shippingAddress: {
       type: 'string'
+    },
+    phone: {
+      type: 'number'
     },
     bills: {
       model: 'Bill',
       columnName: 'BillId',
-      required: true
     },
+    status: {
+      type: 'string',
+      isIn: ['refund', 'completed', 'unconfirmed','confirmed'],
+      defaultsTo: 'unconfirmed'
 
+    }
   },
 
 };

@@ -8,12 +8,15 @@ module.exports = {
 
 
   inputs: {
+    cart: {
+      type: 'json'
+    },
     shippingAddress: {
       type: 'string'
     },
-    billId: {
+    phone: {
       type: 'number'
-    }
+    },
   },
 
 
@@ -25,17 +28,14 @@ module.exports = {
     try {
       let newOrder = await OnlineOrder.create({
         shippingAddress: inputs.shippingAddress,
-        bills: inputs.billId
+        cart: inputs.cart,
+        phone: inputs.phone,
       }).fetch();
 
-      let lastBill = OnlineOrder.find({ sort: 'id DESC', limit: 1 });
       if (newOrder) {
-        OnlineOrder.publish(lastBill, {
-          verb: 'created',
-          address: inputs.shippingAddress
-        });
+        sails.sockets.broadcast('shipping', 'new', newOrder);
         return exits.success({
-          order: 'success'
+          orderId: newOrder.id
         });
       }
     } catch (err) {

@@ -116,7 +116,8 @@ module.exports.routes = {
     'GET /profit': { action: 'boss/profit' },
     'POST /shop/shipping': { action: 'boss/shipping' },
     'GET /newOrder' : {action: 'boss/online'},
-
+    'PATCH /updateOrder' : {action: 'boss/update-shipping'},
+    'PATCH /updateOrderBill' :{action:'boss/update-order-bill'},
 
     // 'POST /user/login': 'UsersController.user_login',
 

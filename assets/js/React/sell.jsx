@@ -1,6 +1,6 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
-
+const Web3 = require('web3');
 
 class Sell extends React.Component {
     constructor(props) {
@@ -15,7 +15,7 @@ class Sell extends React.Component {
         }
     }
     componentDidMount() {
-        this.showDrink()
+        this.showDrink();
     }
     showDrink = () => {
 
