@@ -17,6 +17,7 @@ class OrderCustomer extends React.Component {
             billId: 0,
             lucky: 0,
             phone: 0,
+            orderId: 0
         }
     }
 
@@ -60,12 +61,16 @@ class OrderCustomer extends React.Component {
             })
     }
     socket = () => {
+        
         io.socket.get('/newOrder', function (resData) {
             console.log(resData);
         });
         io.socket.on('confirm', (msg) => {
+            const { orderId } = this.state
+            console.log(orderId,msg.id)
             if (msg.status === 'confirmed') {
-                this.handleButtonSubmit()
+                if (msg.id == orderId)
+                    this.handleButtonSubmit()
             }
         })
     }
